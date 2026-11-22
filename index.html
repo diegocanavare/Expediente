@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="1.04">
+<meta name="application-version" content="1.05">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <title>Expediente Clínico</title>
@@ -355,7 +355,7 @@ textarea.grow{overflow:hidden;resize:none}
 .xdoc .xd-t{flex:1;min-width:0}.xdoc .xd-t b{display:block;font-size:14px}.xdoc .xd-t small{color:var(--mute);font-size:12px}
 .xdoc .rec-a{margin:0;justify-content:flex-end}.xdoc.anul{background:#FBF7F7}.xdoc.anul .xd-t>b{text-decoration:line-through;color:#7a5050}.bad-t{color:#a12520}
 .xarch{background:#F4FBF6;border-color:#cfe9d8;color:inherit}
-#dlgVer .dlg{height:100%}.ver-b{padding:0!important;background:#e6e6ee}.ver-b iframe{width:100%;height:100%;min-height:70vh;border:0;display:block}
+#dlgVer .dlg{height:100%}.ver-b{padding:14px 10px!important;background:#e3e3ec;overflow:auto}.ver-w{margin:0 auto;box-shadow:0 8px 28px rgba(20,20,60,.22);background:#fff;overflow:hidden}.ver-w iframe{width:816px;border:0;display:block;background:#fff;transform-origin:top left}
 .btn.ax{gap:6px}
 /* cargando */
 #cargando{position:fixed;inset:0;z-index:99999;background:rgba(30,30,70,.28);display:grid;place-items:center;backdrop-filter:blur(1.5px)}
@@ -501,6 +501,37 @@ textarea.grow{overflow:hidden;resize:none}
 @media (max-width:640px){.appft{padding-bottom:calc(86px + env(safe-area-inset-bottom));font-size:11px}body:not(.locked) main{padding-bottom:16px}}
 .appft[hidden]{display:none}
 #btnNew[hidden]{display:none!important}
+/* ventanas de confirmación */
+#dlgAsk{max-width:440px;width:calc(100% - 32px);border-radius:22px}
+#dlgAsk .dlg{background:#fff}
+.ask{padding:26px 24px 20px;text-align:center}
+.ask-ic{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:50%;margin-bottom:12px}.ask-ic .ic{width:28px;height:28px}
+.ask h3{margin:0 0 8px;font-size:19px;font-weight:700;color:var(--ink)}
+.ask-t{margin:0 0 6px;color:#4a5568;font-size:14px;line-height:1.5;white-space:pre-wrap}
+.ask-h{text-align:left;font-size:14px;color:#3a4558;margin-top:6px}
+.ask-in{text-align:left;margin-top:12px}.ask-in input,.ask-in textarea{width:100%}
+.ask-b{display:flex;gap:10px;margin-top:20px}.ask-b .btn{flex:1;padding:12px 14px;border-radius:12px}
+.btn.dng{background:#C62828;border-color:#C62828;color:#fff}.btn.dng:hover{background:#a51f1f}
+.falta-l{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}.falta-l li::marker{color:#B7791F}
+.falta{border-color:#e0a23a!important;box-shadow:0 0 0 3px rgba(224,162,58,.25)!important;background:#FFFBF0!important}
+#askRoot .aviso{max-height:50vh;overflow:auto;text-align:left}
+@media (max-width:640px){#dlgAsk{position:fixed;inset:auto 0 0 0;margin:0;width:100%;max-width:none;max-height:90vh;border-radius:22px 22px 0 0}.ask{padding-bottom:calc(20px + env(safe-area-inset-bottom))}.ask-b{flex-direction:column-reverse}}
+/* índice de formatos (hoja de datos) */
+.fmt-card{padding:14px}
+.fmt-g{display:flex;flex-direction:column;gap:6px;margin-top:12px}.fmt-g>span{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.fmt-i{--c:#3B3B8F;--t:#EDEDF8;display:flex;align-items:center;gap:10px;width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 10px;text-align:left;color:var(--ink);transition:.15s}
+.fmt-i:hover{border-color:var(--c);background:var(--t)}
+.fmt-i .ti{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--t);color:var(--c);flex:none}.fmt-i .ti .ic{width:18px;height:18px}
+.fmt-i b{flex:1;font-size:13.5px;font-weight:600}.fmt-i>.ic{width:16px;height:16px;color:var(--c);opacity:.6}
+.fmt-i[data-t=indic]{--c:#1f6b8f;--t:#E6F3F9}.fmt-i[data-t=postqx]{--c:#8a3b8f;--t:#F6EAF7}.fmt-i[data-t=alta]{--c:#2e7d4f;--t:#E8F5EE}
+.fmt-i[data-t=receta]{--c:#3B3B8F;--t:#EDEDF8}.fmt-i[data-t=lab]{--c:#b45f06;--t:#FDF1E3}.fmt-i[data-t=gab]{--c:#0f6f6a;--t:#E3F4F3}.fmt-i[data-t=consent]{--c:#9b2c2c;--t:#FBEAEA}
+.fmt-i.g{--c:#1f5b36;--t:#EEF8F1}.fmt-i.y{--c:#8a6200;--t:#FFF5D6}
+/* acciones de registros previos en una sola fila (escritorio) */
+@media (min-width:641px){.rec-a{flex-wrap:nowrap;gap:4px}.rec .rb{padding:4px 6px;font-size:11px;gap:3px}.rec .rb .ic{width:12px;height:12px}}
+/* receta con aspecto de hoja */
+.rx-half{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='28'%3E%3Cpath d='M0 27.5h10' stroke='%23ececf6'/%3E%3C/svg%3E");border:1px solid #d9d9ef;border-top:6px solid #3B3B8F;border-radius:12px;padding:12px 14px;margin-bottom:12px;box-shadow:0 6px 18px -14px rgba(40,40,120,.5)}
+.rx-half h6{color:#3B3B8F;font-family:var(--serif);font-size:16px;font-weight:400;letter-spacing:0;text-transform:none;margin:0 0 6px}
+.rx-half textarea{width:100%;border:0;background:transparent;font-family:"Libre Caslon Text",Georgia,serif;font-size:16px;line-height:28px;padding:0 4px;outline:none;box-shadow:none}
 </style>
 </head>
 <body>
@@ -552,7 +583,7 @@ textarea.grow{overflow:hidden;resize:none}
    Todo (nombre del médico, cédulas, sedes, pacientes, agenda) llega desde el
    servidor de Google Apps Script (Codigo.gs) después de iniciar sesión con Google.
    ===================================================================== */
-const APP_VERSION = '1.04';
+const APP_VERSION = '1.05';
 const API_URL   = 'https://script.google.com/macros/s/AKfycbx-HbaNR8wABXVLHHqcTswh-lwvzBegrviIMudE10e3NS7bDmQtydUYrlsqtp6022goyA/exec';   // enlace /exec del Apps Script
 const CLIENT_ID = '536887128333-fe75imrstc37jboajmq9lt8vum0ojq1v.apps.googleusercontent.com';   // ID de cliente OAuth (Google Cloud › Expediente Clinico)
 
@@ -612,6 +643,7 @@ const P = {
   gab: '<rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M12 8v7M8.5 11.5h7"/>',
   hc: '<path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6M8 15h4"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
+  chev: '<path d="m9 6 6 6-6 6"/>',
   print: '<path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/>',
   eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
   search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
@@ -650,17 +682,23 @@ let CARG = 0;
 function cargando(on, msg) { CARG = Math.max(0, CARG + (on ? 1 : -1)); const el = $('#cargando'); if (!el) return; if (msg) $('#cargTxt').textContent = msg; el.hidden = !CARG; }
 async function conCarga(msg, fn) { if (CARG) return; cargando(true, msg); try { return await fn(); } finally { cargando(false); } }
 /* Diálogo de confirmación / captura simple */
-function ask({ title, text, html, input, ok = 'Aceptar', cancel = 'Cancelar', danger, value = '', area }) {
+/* Ventana de confirmación con ícono, título centrado y botones ordenados */
+const ASK_IC = { warn: ['#B7791F', '#FFF6E0', '<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>'],
+  danger: ['#C62828', '#FDECEA', '<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/>'],
+  info: ['#3B3B8F', '#EDEDF8', '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'],
+  input: ['#3B3B8F', '#EDEDF8', '<path d="m14 5 5 5M4 20l4-1 12-12a2.8 2.8 0 0 0-4-4L4 15z"/>'] };
+function ask({ title, text, html, input, ok = 'Aceptar', cancel = 'Cancelar', danger, value = '', area, icon }) {
   return new Promise(res => {
-    const d = $('#dlgAsk');
-    $('#askRoot').innerHTML = `<div class="dlg-h"><div class="t"><b>${esc(title || '')}</b></div></div>
-      <div class="dlg-b" style="background:#fff">${text ? `<p style="margin:0 0 12px;white-space:pre-wrap">${esc(text)}</p>` : ''}${html || ''}
-      ${input ? `<div class="f s6"><label>${esc(input)}</label>${area ? `<textarea id="askIn" rows="4">${esc(value)}</textarea>` : `<input id="askIn" value="${esc(value)}">`}</div>` : ''}</div>
-      <div class="dlg-f">${cancel ? `<button class="btn" data-a="0">${esc(cancel)}</button>` : ''}<button class="btn ${danger ? 'danger' : 'pri'}" data-a="1">${esc(ok)}</button></div>`;
+    const d = $('#dlgAsk'), k = icon || (danger ? 'danger' : input ? 'input' : 'info'), [col, bg, path] = ASK_IC[k] || ASK_IC.info;
+    $('#askRoot').innerHTML = `<div class="ask"><span class="ask-ic" style="color:${col};background:${bg}"><svg class="ic" viewBox="0 0 24 24">${path}</svg></span>
+      <h3>${esc(title || '')}</h3>${text ? `<p class="ask-t">${esc(text)}</p>` : ''}${html ? `<div class="ask-h">${html}</div>` : ''}
+      ${input ? `<div class="f s6 ask-in"><label>${esc(input)}</label>${area ? `<textarea id="askIn" rows="4">${esc(value)}</textarea>` : `<input id="askIn" value="${esc(value)}" autocomplete="off">`}</div>` : ''}
+      <div class="ask-b">${cancel ? `<button class="btn" data-a="0">${esc(cancel)}</button>` : ''}<button class="btn ${danger ? 'dng' : 'pri'}" data-a="1">${esc(ok)}</button></div></div>`;
     const done = v => { d.close(); res(v); };
-    $('#askRoot').onclick = e => { const b = e.target.closest('[data-a]'); if (!b) return; if (b.dataset.a === '1') done(input ? ($('#askIn').value || '').trim() : true); else done(input ? null : false); };
+    $('#askRoot').onclick = e => { const b = e.target.closest('[data-a]'); if (!b) return; if (b.dataset.a === '1') { if (input && !($('#askIn').value || '').trim()) { $('#askIn').classList.add('falta'); $('#askIn').focus(); return; } done(input ? ($('#askIn').value || '').trim() : true); } else done(input ? null : false); };
+    $('#askRoot').onkeydown = e => { if (e.key === 'Enter' && input && !area) { e.preventDefault(); $('#askRoot [data-a="1"]').click(); } };
     d.oncancel = e => { e.preventDefault(); done(input ? null : false); };
-    d.showModal(); setTimeout(() => { const i = $('#askIn'); if (i) i.focus(); }, 50);
+    d.showModal(); setTimeout(() => { const i = $('#askIn'); if (i) i.focus(); else { const b = $('#askRoot [data-a="1"]'); if (b) b.focus(); } }, 50);
   });
 }
 async function askLibre(o) { const n = CARG; while (CARG) cargando(false); try { return await ask(o); } finally { for (let i = 0; i < n; i++) cargando(true); } }
@@ -751,7 +789,7 @@ async function enter() {
   try {
     const d = await call('dcInit');
     aplicarSesion(d.sesion);
-    S.lista = d.lista || [];
+    S.lista = sinBorrados(d.lista || []); setTimeout(reintentarBorrados, 3000);
     ['quirofano', 'consulta'].forEach(t => { if (d.ag && d.ag[t]) S.ag[t] = d.ag[t]; });
     hideGate(); buildTabs(); go(S.tab);
     setInterval(refrescarAgendas, 60000);
@@ -908,24 +946,36 @@ function duplicadoDe(d, nombreLibre) {
   const n = norm(nombreDe(d) || nombreLibre || ''); if (!n) return null;
   return S.lista.find(x => x.m && norm(x.m.n) === n && (!d.fnac || !x.m.fn || x.m.fn === d.fnac)) || null;
 }
-/* Elimina un expediente (va a la papelera de Drive 30 días) y lo desvincula de las agendas */
+/* Elimina un expediente: desaparece al instante de todas las vistas y el borrado sigue en segundo plano.
+   Los identificadores pendientes se recuerdan (solo el id, sin datos) para que no reaparezcan al recargar. */
+const BORRADOS = new Set((() => { try { return JSON.parse(localStorage.getItem('dc-del') || '[]'); } catch (_) { return []; } })());
+function guardaBorrados() { try { localStorage.setItem('dc-del', JSON.stringify([...BORRADOS])); } catch (_) { } }
+const sinBorrados = l => l.filter(x => !BORRADOS.has(x.id));
 async function eliminarPaciente(id) {
   const it = S.lista.find(x => x.id === id), n = (it && it.m && it.m.n) || 'este paciente', nd = (it && it.m && it.m.nd) || 0;
   const ok = await ask({ title: 'Eliminar paciente', text: '¿Eliminar a ' + n + '?' + (nd ? ' Tiene ' + nd + ' documento(s) en su archivo clínico.' : '') + ' Se envía a la papelera de Drive, donde puede recuperarse durante 30 días.', ok: 'Eliminar', danger: true });
   if (!ok) return false;
-  try { await call('dcPacienteBorrar', id, true); PAC.delete(id); S.lista = S.lista.filter(x => x.id !== id);
-    for (const t of ['consulta', 'quirofano']) { const ls = Object.values(S.ag[t].items).filter(e => e.pac === id); if (ls.length) cambiarAg(t, ls.map(e => ({ id: e.id, set: { pac: '' }, a: 'Expediente eliminado' }))).catch(() => { }); }
-    updCounts(); if (VIEWS[S.tab] && !$('#dlgPanel').open) go(S.tab); toast('Paciente eliminado', 'ok'); return true; }
-  catch (e) { toast(e.message, 'bad'); return false; }
+  BORRADOS.add(id); guardaBorrados(); PAC.delete(id); S.lista = sinBorrados(S.lista);
+  for (const t of ['consulta', 'quirofano']) { const ls = Object.values(S.ag[t].items || {}).filter(e => e.pac === id); if (ls.length) cambiarAg(t, ls.map(e => ({ id: e.id, set: { pac: '' }, a: 'Expediente eliminado' }))).catch(() => { }); }
+  updCounts(); if (VIEWS[S.tab]) VIEWS[S.tab](); toast('Paciente eliminado', 'ok');
+  borrarEnServidor(id);
+  return true;
 }
-async function recargarLista() { S.lista = await call('dcLista'); updCounts(); }
+async function borrarEnServidor(id) {
+  PENDIENTES++; syncPill();
+  try { for (let n = 0; ; n++) { try { await (COLA.get(id) || Promise.resolve()).catch(() => { }); await call('dcPacienteBorrar', id, true); BORRADOS.delete(id); guardaBorrados(); return; }
+      catch (e) { if (n >= 3) { toast('El borrado se reintentará más tarde: ' + e.message, 'warn'); return; } await sleep(1500 * (n + 1)); } } }
+  finally { PENDIENTES--; syncPill(); }
+}
+function reintentarBorrados() { [...BORRADOS].forEach(borrarEnServidor); }
+async function recargarLista() { S.lista = sinBorrados(await call('dcLista')); updCounts(); }
 function buscarEn(lista, q) {
   const w = norm(q).split(' ').filter(Boolean); if (!w.length) return lista;
   return lista.filter(p => { const m = p.m || {}, t = norm([m.n, dmy(m.fn), m.fn, m.t, m.c, sedeNom(m.s), m.dx].join(' ')); return w.every(x => t.includes(x)); });
 }
 function tagFn(m) { return m.fn ? `<span>FN. ${dmy(m.fn)}</span><span>${edad(m.fn)}</span>` : ''; }
 function actBtns(id) {
-  return `<span class="pact"><button class="btn sm ax" data-exp="${id}" title="Abrir archivo clínico">${ic('arch')}Archivo clínico</button></span>`;
+  return `<span class="pact"><button class="sq y" data-exp="${id}" title="Archivo clínico" aria-label="Archivo clínico">${ic('arch')}</button></span>`;
 }
 document.addEventListener('click', e => {
   const h = e.target.closest('[data-hoja]'); if (h) { abrirHoja(h.dataset.hoja); return; }
@@ -945,7 +995,7 @@ VIEWS.archivo = function () {
   <div class="plist" id="arList"></div><div style="text-align:center;margin-top:12px"><button class="btn" id="arMas" hidden>Ver más</button></div>`;
   $('#arOrd').value = AR.orden;
   $('#arQ').oninput = e => { AR.q = e.target.value; AR.n = 60; pintaArchivo(); };
-  $('#arQ').onkeydown = e => { if (e.key === 'Enter') { const l = buscarEn(S.lista, AR.q); if (l.length === 1) abrirExpediente(l[0].id); else if (!l.length && AR.q.trim()) nuevoPaciente(AR.q); } };
+  $('#arQ').onkeydown = e => { if (e.key === 'Enter') { const l = buscarEn(S.lista, AR.q); if (l.length === 1) abrirHoja(l[0].id); else if (!l.length && AR.q.trim()) nuevoPaciente(AR.q); } };
   $('#arOrd').onchange = e => { AR.orden = e.target.value; pintaArchivo(); };
   $('#arRef').onclick = async () => { await recargarLista(); pintaArchivo(); toast('Lista actualizada'); };
   $('#arMas').onclick = () => { AR.n += 60; pintaArchivo(); };
@@ -971,7 +1021,7 @@ function pintaArchivo() {
       : (l.length ? '' : `<div class="empty"><b>Aún no hay pacientes</b>Usa «Nuevo paciente» para registrar el primero.</div>`));
   const b = $('#arList [data-nuevo]'); if (b) b.onclick = () => nuevoPaciente(q);
 }
-document.addEventListener('click', e => { const r = e.target.closest('.prow-click'); if (r && !e.target.closest('button,textarea,a,input')) abrirExpediente(r.dataset.row); });
+document.addEventListener('click', e => { const r = e.target.closest('.prow-click'); if (r && !e.target.closest('button,textarea,a,input')) abrirHoja(r.dataset.row); });
 
 /* ---------- Alta rápida: solo datos esenciales ---------- */
 function partirNombre(q) {
@@ -1218,13 +1268,24 @@ async function citaADoc(tipo, e, docTipo, sub) {
   } catch (er) { toast(er.message, 'bad'); }
   finally { CITA_LIGANDO.delete(e.id); }
 }
-async function cambiarAg(tipo, cambios) {
-  const r = await call('dcAgendaCambiar', tipo, cambios);
-  S.ag[tipo] = r; if (S.tab === tipo) pintaAgenda(tipo);
-  return r;
+/* La agenda cambia en pantalla al instante; el servidor se actualiza detrás, en orden */
+const AG_COLA = { quirofano: Promise.resolve(), consulta: Promise.resolve() }, AG_PEND = { quirofano: 0, consulta: 0 };
+function cambiarAg(tipo, cambios) {
+  const it = S.ag[tipo].items = S.ag[tipo].items || {};
+  cambios.forEach(c => { if (c.op === 'del') { delete it[c.id]; return; } const e = it[c.id] = it[c.id] || { id: c.id }; Object.entries(c.set || {}).forEach(([k, v]) => { if (v === '' || v == null) delete e[k]; else e[k] = v; }); });
+  if (S.tab === tipo) pintaAgenda(tipo);
+  AG_PEND[tipo]++; PENDIENTES++; syncPill();
+  const p = AG_COLA[tipo].catch(() => { }).then(async () => {
+    for (let n = 0; ; n++) {
+      try { const r = await call('dcAgendaCambiar', tipo, cambios); if (AG_PEND[tipo] === 1) { S.ag[tipo] = r; if (S.tab === tipo && !ocupado()) pintaAgenda(tipo); } return r; }
+      catch (e) { if (n >= 3) { toast('No se pudo guardar el cambio en la agenda: ' + e.message, 'bad'); refrescarAgendas(); throw e; } await sleep(1500 * (n + 1)); }
+    }
+  }).finally(() => { AG_PEND[tipo]--; PENDIENTES--; syncPill(); });
+  AG_COLA[tipo] = p;
+  return p;
 }
 async function refrescarAgendas() {
-  if (!S.ses || document.hidden) return;
+  if (!S.ses || document.hidden || PENDIENTES) return;
   for (const t of ['quirofano', 'consulta']) {
     try { const r = await call('dcAgendaLeer', t, S.ag[t].sello); if (r && !r.igual) { S.ag[t] = r; if (S.tab === t && !ocupado()) pintaAgenda(t); } } catch (_) { }
   }
@@ -1234,7 +1295,7 @@ async function refrescarAgendas() {
       const viejo = new Map(S.lista.map(x => [x.id, x.mod])), cambio = l.length !== S.lista.length || l.some(x => viejo.get(x.id) !== x.mod);
       if (!cambio) return;
       l.forEach(x => { const c = PAC.get(x.id); if (c && c.mod && c.mod !== x.mod && !COLA.has(x.id)) PAC.delete(x.id); });
-      S.lista = l; updCounts(); if ((S.tab === 'archivo' || S.tab === 'hosp') && !ocupado()) VIEWS[S.tab](); } catch (_) { }
+      S.lista = sinBorrados(l); updCounts(); if ((S.tab === 'archivo' || S.tab === 'hosp') && !ocupado()) VIEWS[S.tab](); } catch (_) { }
   }
 }
 /* No repintar mientras se escribe o hay una ventana abierta */
@@ -1310,7 +1371,7 @@ async function abrirCita(tipo, e, pre = {}) {
     if (ev.target.closest('[data-x]')) { d.close(); return; }
     if (ev.target.closest('[data-del]')) {
       if (!await ask({ title: 'Eliminar entrada', text: 'Se eliminará esta entrada de la agenda. ¿Continuar?', ok: 'Eliminar', danger: true })) return;
-      try { await cambiarAg(tipo, [{ id: e.id, op: 'del' }]); d.close(); toast('Entrada eliminada'); } catch (er) { toast(er.message, 'bad'); }
+      cambiarAg(tipo, [{ id: e.id, op: 'del' }]).catch(() => { }); d.close(); toast('Entrada eliminada');
       return;
     }
     if (!ev.target.closest('[data-ok]')) return;
@@ -1334,7 +1395,7 @@ async function abrirCita(tipo, e, pre = {}) {
     }
     const resumen = nuevo ? (tipo === 'quirofano' ? 'Programado' : 'Agendado') + (fecha ? ' para ' + dmy(fecha) + (set.hora ? ' ' + set.hora : '') : ' sin fecha') :
       (e.fecha !== fecha || e.hora !== set.hora ? 'Reprogramado ' + (dmy(e.fecha) || 'sin fecha') + ' → ' + (dmy(fecha) || 'sin fecha') + ' ' + set.hora : e.est !== set.est ? 'Estado: ' + set.est : 'Datos actualizados');
-    try { await cambiarAg(tipo, [{ id: e.id, set, a: resumen }]); d.close(); toast('Guardado', 'ok');
+    try { cambiarAg(tipo, [{ id: e.id, set, a: resumen }]).catch(() => { }); d.close(); toast('Guardado', 'ok');
       if (fecha && S.tab === tipo && !AGS[tipo].todos) { AGS[tipo].sel = fecha; pintaAgenda(tipo); } }
     catch (er) { toast(er.message, 'bad'); }
   };
@@ -1490,11 +1551,10 @@ async function abrirHoja(id, opt = {}) {
       ${k === 'hc' ? `<div class="hc-nav"><button class="btn" data-hcmov="-1">‹ Anterior</button><span class="grow"></span><button class="btn pri" data-hcmov="1">Siguiente ›</button></div>` : ''}
       ${k === 'ident' ? extra.ident : ''}</section>`).join('')}
   </div>
-  <aside class="side"><div class="card side-card"><h4>${ic('arch')} Formatos</h4><p class="muted sm-t">Se abren al instante con los datos de este paciente.</p>
-    <div class="tiles">${ED_TABS.map(t => `<button class="tile" data-dtipo="${t}"><span class="ti">${ic(TIPOS[t].ic)}</span>${t === 'nota' ? 'Nota médica' : TIPOS[t].tab}</button>`).join('')}
-      <button class="tile g" data-sec="arch"><span class="ti">${ic('clip')}</span>Archivos subidos</button>
-      <button class="tile w" data-verexp><span class="ti">${ic('arch')}</span>Ver todo el archivo clínico</button>
-    </div></div>
+  <aside class="side"><div class="card side-card fmt-card"><h4>${ic('arch')} Formatos</h4><p class="muted sm-t">Elige el documento; se abre al instante con los datos del paciente.</p>
+    ${[['Notas y registros', ['nota', 'indic', 'postqx', 'alta']], ['Solicitudes y recetas', ['receta', 'lab', 'gab']], ['Autorizaciones', ['consent']]].map(([g, l]) => `<div class="fmt-g"><span>${g}</span>${l.map(t => `<button class="fmt-i" data-dtipo="${t}" data-t="${t}"><span class="ti">${ic(TIPOS[t].ic)}</span><b>${t === 'nota' ? 'Nota médica' : TIPOS[t].tab}</b>${ic('plus')}</button>`).join('')}</div>`).join('')}
+    <div class="fmt-g"><span>Consulta</span><button class="fmt-i g" data-sec="arch"><span class="ti">${ic('clip')}</span><b>Archivos subidos</b>${ic('chev')}</button><button class="fmt-i y" data-verexp><span class="ti">${ic('arch')}</span><b>Archivo clínico completo</b>${ic('chev')}</button></div>
+    </div>
     <div class="card" style="padding:14px" id="hjRes"></div>
   </aside></div></div>`;
   const d = $('#dlgPac');
@@ -1672,7 +1732,7 @@ const TIPOS = {
   receta: { l: 'Receta médica', ic: 'receta', tab: 'Receta' },
   lab: { l: 'Solicitud de laboratorio', ic: 'lab', tab: 'Laboratorio' },
   gab: { l: 'Solicitud de gabinete', ic: 'gab', tab: 'Gabinete' },
-  consent: { l: 'Consentimiento informado', ic: 'sign', tab: 'Consentimiento' },
+  consent: { l: 'Consentimiento informado', ic: 'sign', tab: 'Consentimiento informado' },
   hc: { l: 'Historia clínica', ic: 'hc' }
 };
 const ED_TABS = ['nota', 'indic', 'postqx', 'alta', 'receta', 'lab', 'gab', 'consent'];
@@ -1811,7 +1871,7 @@ function pintaEditor() {
   const root = $('#docRoot');
   if (ro) $$('input,select,textarea', $('#dcForm')).forEach(e => e.disabled = true);
   $$('textarea.grow', root).forEach(autoAlto);
-  root.oninput = ev => { if (ev.target.closest('#dcForm')) { if (ev.target.classList.contains('grow')) autoAlto(ev.target); leerForm(); marcar(); } };
+  root.oninput = ev => { if (ev.target.closest('#dcForm')) { ev.target.classList.remove('falta'); if (ev.target.classList.contains('grow')) autoAlto(ev.target); leerForm(); marcar(); } };
   root.onchange = ev => { const el = ev.target;
     if (el.dataset.date !== undefined && el.value.trim()) { const v = parseDMY(el.value); if (v === null) { toast('Fecha no válida (DD.MM.AA)', 'warn'); return; } el.value = dmy(v); }
     if (el.id === 'dcSub') { const ant = D.doc.sub, txt = $('#dcTxt'); leerForm(); D.doc.sub = el.value;
@@ -1963,7 +2023,7 @@ async function accionCabecera(act) {
   if (act === 'close') return cerrarEditor();
   if (act === 'editar') { D.ro = false; pintaEditor(); return; }
   if (act === 'save') { leerForm(); guardarDoc(); return; }
-  if (act === 'print') { if (!D.ro) { leerForm(); if (!guardarDoc()) return; } imprimirDoc(D.pac, D.doc); return; }
+  if (act === 'print') { if (!D.ro) { leerForm(); if (!guardarDoc('imprimir')) return; } imprimirDoc(D.pac, D.doc); return; }
   if (act === 'restaurar') { restaurarDoc(D.pac.id, d.id); return; }
   if (act === 'copy') { const n = clone(d); Object.assign(n, { id: uid('d'), est: 'nuevo', fecha: hoyISO(), hora: ahoraHM(), firmadoTs: 0, autor: '', anul: null, ver: [], cita: null }); D.doc = n; D.ro = false; D.dirty = true; pintaEditor(); return; }
 }
@@ -1999,22 +2059,31 @@ async function cerrarEditor() {
   $('#dlgDoc').close();
   if ($('#dlgExp').open) pintaExp(); if ($('#dlgPac').open && H.pac && H.pac.id === D.pac.id) { H.pac.docs = clone(D.pac.docs); H.pac.hosp = clone(D.pac.hosp); H.pac.ingresos = clone(D.pac.ingresos || []); hjResumen(); }
 }
-function validar(d) {
-  if (!d.fecha) return 'Falta la fecha';
-  if (!d.hora && ['nota', 'postqx', 'indic'].includes(d.tipo)) return 'Falta la hora (NOM-004 5.10)';
-  const c = d.c || {}, vacio = t => !String(t || '').split('\n').some(l => l.replace(/^[^:]*:\s*/, '').trim() && !/^[A-ZÁÉÍÓÚÑ ,/()\-.]+:\s*$/.test(l.trim()));
-  if ((d.tipo === 'nota' || d.tipo === 'postqx') && vacio(c.txt)) return 'El documento no tiene contenido';
-  if (d.tipo === 'alta' && (!c.fEgr || !String(c.dxEgr || '').trim())) return 'Faltan la fecha de egreso o el diagnóstico de egreso';
-  if (d.tipo === 'receta' && !String(c.r1 || '').trim()) return 'La receta está vacía';
-  if ((d.tipo === 'lab' || d.tipo === 'gab') && !String(c.txt || '').trim()) return 'Escribe al menos un estudio';
-  if (d.tipo === 'consent' && !String(c.proc || '').trim()) return 'Escribe el procedimiento que se autoriza';
-  if (d.tipo === 'indic' && !INDIC_F.some(([k]) => String(c[k] || '').trim())) return 'Las indicaciones están vacías';
-  return '';
+/* Qué falta para poder guardar: [mensaje, campo] */
+function faltantes(d) {
+  const c = d.c || {}, f = [], vacio = t => !String(t || '').split('\n').some(l => l.replace(/^[^:]*:\s*/, '').trim() && !/^[A-ZÁÉÍÓÚÑ ,/()\-.]+:\s*$/.test(l.trim()));
+  if (!d.fecha) f.push(['La fecha del documento', '#dcFecha']);
+  if (!d.hora && ['nota', 'postqx', 'indic'].includes(d.tipo)) f.push(['La hora (la NOM-004 la pide en notas e indicaciones)', '#dcHora']);
+  if ((d.tipo === 'nota' || d.tipo === 'postqx') && vacio(c.txt)) f.push(['El contenido: escribe al menos un apartado (los títulos solos no cuentan)', '#dcTxt']);
+  if (d.tipo === 'alta') { if (!c.fEgr) f.push(['La fecha de egreso', '[data-c="fEgr"]']); if (!String(c.dxEgr || '').trim()) f.push(['El diagnóstico de egreso', '[data-c="dxEgr"]']); }
+  if (d.tipo === 'receta' && !String(c.r1 || '').trim()) f.push(['El texto de la receta (medicamento e indicaciones)', '[data-c="r1"]']);
+  if (d.tipo === 'receta' && c.modo === 'otro' && !String(c.r2 || '').trim()) f.push(['La segunda receta (mitad inferior) o cambia a «Una receta»', '[data-c="r2"]']);
+  if ((d.tipo === 'lab' || d.tipo === 'gab') && !String(c.txt || '').trim()) f.push(['Al menos un estudio solicitado (escríbelo o elige un predeterminado)', '#dcTxt']);
+  if (d.tipo === 'consent') { if (!String(c.proc || '').trim()) f.push(['El procedimiento que se autoriza', '[data-c="proc"]']); if (!String(c.dx || '').trim()) f.push(['El diagnóstico', '[data-c="dx"]']); if (!String(c.riesgos || '').trim()) f.push(['Los riesgos y posibles complicaciones', '[data-c="riesgos"]']); }
+  if (d.tipo === 'indic' && !INDIC_F.some(([k]) => String(c[k] || '').trim())) f.push(['Al menos una indicación (dieta, soluciones, medicamentos…)', '[data-c="dieta"]']);
+  return f;
+}
+function validar(d) { const f = faltantes(d); return f.length ? f[0][0] : ''; }
+function avisarFaltantes(f, accion) {
+  $$('#dcForm .falta').forEach(e => e.classList.remove('falta'));
+  f.forEach(([, sel]) => { const e = $('#dcForm ' + sel) || $(sel); if (e) e.classList.add('falta'); });
+  ask({ title: 'Falta información para ' + accion, icon: 'warn', html: `<p style="margin:0 0 10px">Completa lo siguiente y vuelve a intentarlo:</p><ul class="falta-l">${f.map(([m]) => `<li>${esc(m)}</li>`).join('')}</ul>`, ok: 'Ir al campo', cancel: '' })
+    .then(() => { const e = $('#dcForm .falta'); if (e) { e.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(() => e.focus(), 300); } });
 }
 /* Guarda al instante en pantalla; Drive se actualiza en segundo plano */
-function guardarDoc() {
-  const d = D.doc, err = validar(d);
-  if (err) { toast(err, 'warn'); return false; }
+function guardarDoc(accion) {
+  const d = D.doc, fl = faltantes(d);
+  if (fl.length) { avisarFaltantes(fl, accion || 'guardar'); return false; }
   if (!perfil().nombre) toast('Configura tu nombre y cédulas en Panel › Configuración para que aparezcan en el documento.', 'warn');
   const nuevo = d.est === 'nuevo';
   firmarMeta(d); d.mod = Date.now();
@@ -2054,17 +2123,20 @@ function verDoc(pac, d) {
   const r = $('#verRoot');
   r.innerHTML = `<div class="dlg-h"><div class="t"><span class="fcat">${esc(nombreDe(pac.datos))}</span><b>${esc(tituloDoc(d))} <span class="rstate ${d.est === 'anulado' ? 'bad' : 'ok'}">${dmy(d.fecha)} · ${esc(d.hora || '')}</span></b></div>
     <div class="acts">${d.tipo !== 'hc' && d.est !== 'anulado' ? `<button class="btn" data-ve>${ic('edit')}Editar</button>` : ''}<button class="btn dark" data-vp>${ic('print')}Imprimir</button></div><button class="x" data-vx>✕</button></div>
-    <div class="dlg-b ver-b"><iframe id="verF" title="Vista previa"></iframe></div>`;
-  const f = $('#verF');
-  f.srcdoc = `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><style>${PRINT_CSS}${html.page || ''}@media screen{html{background:#e6e6ee}body{background:#fff;width:8.5in;min-height:11in;margin:14px auto;box-shadow:0 6px 24px rgba(0,0,0,.18);position:relative;padding-bottom:1.1in;box-sizing:border-box}.hdfix{position:static!important}.wmfix{position:absolute!important;top:5.5in!important}.ftfix{position:absolute!important}.pg thead,.pg tfoot{display:none}.sello{position:absolute!important}}</style></head><body>${html.html}</body></html>`;
-  f.onload = () => { try { const b = f.contentDocument.documentElement; const ajusta = () => { const w = f.clientWidth, s = Math.min(1, (w - 16) / (8.5 * 96)); f.contentDocument.body.style.zoom = s; }; ajusta(); } catch (_) { } };
+    <div class="dlg-b ver-b" id="verB"><div class="ver-w" id="verW"><iframe id="verF" title="Vista previa" scrolling="no"></iframe></div></div>`;
+  const f = $('#verF'), W = 816;
+  f.srcdoc = `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=${W}"><style>${PRINT_CSS}${html.page || ''}@media screen{html,body{width:${W}px;margin:0;overflow:hidden;background:#fff}body{min-height:1056px;position:relative;padding-bottom:1.1in;box-sizing:border-box}.hdfix{position:static!important}.wmfix{position:absolute!important;top:5.5in!important}.ftfix{position:absolute!important}.pg thead,.pg tfoot{display:none}.sello{position:absolute!important}.half{border-bottom:1px dashed #c9c9e6}}</style></head><body>${html.html}</body></html>`;
+  const ajusta = () => { try { const B = $('#verB'), w = $('#verW'), h = f.contentDocument.documentElement.scrollHeight, sc = Math.min(1, (B.clientWidth - 20) / W);
+    f.style.height = h + 'px'; f.style.transform = `scale(${sc})`; w.style.width = Math.floor(W * sc) + 'px'; w.style.height = Math.ceil(h * sc) + 'px'; } catch (_) { } };
+  f.onload = async () => { try { await Promise.race([f.contentDocument.fonts.ready, sleep(1500)]); f.contentDocument.querySelectorAll('[data-fit]').forEach(el => { let fs = 10.5; while (el.scrollHeight > el.clientHeight + 1 && fs > 7) { fs -= .25; el.style.fontSize = fs + 'pt'; } }); } catch (_) { } ajusta(); };
+  window.onresize = () => { if ($('#dlgVer').open) ajusta(); };
   r.onclick = e => { if (e.target.closest('[data-vx]')) $('#dlgVer').close(); if (e.target.closest('[data-vp]')) imprimirDoc(pac, d); if (e.target.closest('[data-ve]')) { $('#dlgVer').close(); abrirDoc(pac.id, null, { docId: d.id, editar: true }); } };
   openDlg($('#dlgVer'));
 }
 
 /* ---------- Archivo clínico del paciente ---------- */
 const X = { pac: null, f: 'todo', q: '', orden: 'desc', vista: 'fecha' };
-const X_FILT = [['todo', 'Todo'], ['hc', 'Historia clínica'], ['nota', 'Notas'], ['indic', 'Indicaciones'], ['postqx', 'Postoperatorias'], ['alta', 'Altas'], ['receta', 'Recetas'], ['lab', 'Laboratorio'], ['gab', 'Gabinete'], ['consent', 'Consentimientos'], ['arch', 'Archivos subidos']];
+const X_FILT = [['todo', 'Todo'], ['hc', 'Historia clínica'], ['nota', 'Notas'], ['indic', 'Indicaciones'], ['postqx', 'Postoperatorias'], ['alta', 'Altas'], ['receta', 'Recetas'], ['lab', 'Laboratorio'], ['gab', 'Gabinete'], ['consent', 'Consentimientos informados'], ['arch', 'Archivos subidos']];
 async function abrirExpediente(id) {
   if (!esMedico()) return;
   let pac = PAC.has(id) ? PAC.get(id).pac : null;
@@ -2085,8 +2157,6 @@ async function pintaExp(primera) {
     ${h.activo ? `<span class="chip blue">Hospitalizado · <b>${esc(sedeNom(h.sede))} cama ${esc(h.cama || '—')}</b> desde ${dmy(h.fIngreso)}</span>` : '<span class="chip">Consulta externa</span>'}
     ${dd.alergias ? `<span class="chip bad">Alergias: <b>${esc(dd.alergias)}</b></span>` : ''}</div>
     ${(() => { const u = docs.filter(x => x.est !== 'anulado' && x.tipo !== 'hc').sort((a, b) => (b.fecha + b.hora).localeCompare(a.fecha + a.hora))[0]; return `<div class="x-res">${dd.dx ? `<div><small>Diagnóstico</small><b>${esc(dd.dx)}</b></div>` : ''}<div><small>Última atención</small><b>${u ? dmy(u.fecha) + ' · ' + esc(tituloDoc(u)) : 'Sin registros'}</b></div><div><small>Alergias</small><b class="${dd.alergias && !/^NEGAD/.test(dd.alergias) ? 'bad-t' : ''}">${esc(dd.alergias || 'Sin registro')}</b></div></div>`; })()}</div></div>
-    <div class="fmt-grid">${ED_TABS.map(t => `<button class="fmt-b" data-nd="${t}"><span class="ti">${ic(TIPOS[t].ic)}</span><span>${t === 'nota' ? 'Nota médica' : TIPOS[t].tab}</span><i>${ic('plus')}</i></button>`).join('')}
-      <button class="fmt-b g" data-xf="arch"><span class="ti">${ic('clip')}</span><span>Archivos subidos</span><i>${arch.length || ''}</i></button></div>
     <div class="tools"><label class="search">${ic('search')}<input type="search" id="xQ" placeholder="Buscar fecha, tipo o contenido…" value="${esc(X.q)}"></label>
       <label class="sel"><select id="xOrd"><option value="desc">Más recientes primero</option><option value="asc">Más antiguos primero</option></select></label>
       <div class="seg"><button data-vista="fecha" class="${X.vista === 'fecha' ? 'on' : ''}">Por fecha</button><button data-vista="tipo" class="${X.vista === 'tipo' ? 'on' : ''}">Por tipo</button></div></div>
@@ -2118,7 +2188,7 @@ function pintaXList() {
   let html;
   const arch = (p.archivos || []).filter(a => !a.borrado);
   const archAviso = X.f === 'todo' && arch.length && !w.length ? `<button class="xdoc xarch" data-xf="arch"><span class="ti">${ic('clip')}</span><div class="xd-t"><b>Archivos subidos</b><small>${arch.length} estudio(s) o archivo(s) externos · toca para verlos</small></div></button>` : '';
-  if (!l.length) html = `<div class="empty"><b>Sin documentos ${X.q ? 'que coincidan' : 'todavía'}</b>Usa los botones de arriba para crear el primero.</div>`;
+  if (!l.length) html = `<div class="empty"><b>Sin documentos ${X.q ? 'que coincidan' : 'todavía'}</b>Los documentos se crean desde la Hoja de datos del paciente.</div>`;
   else if (X.vista === 'tipo') html = X_FILT.slice(1, -1).map(([k, lab]) => { const g = l.filter(d => d.tipo === k); return g.length ? `<div class="sub" style="margin-top:14px">${lab} · ${g.length}</div>` + g.map(item).join('') : ''; }).join('');
   else html = l.map(item).join('');
   $('#xList').innerHTML = archAviso + html;
@@ -2440,8 +2510,9 @@ async function subirUno(f, prog) {
   return r;
 }
 async function agregarArchivos(lista) {
-  const pac = ARQ.pac; pac.archivos = (pac.archivos || []).concat(lista);
-  await guardarPac(pac, { accion: 'agregar archivo', detalle: lista.length + ' archivo(s)' });
+  const pac = ARQ.pac; lista.forEach(x => x.mod = Date.now());
+  const nv = mutarPac(pac.id, x => { x.archivos = (x.archivos || []).concat(clone(lista)); }, { accion: 'agregar archivo', detalle: lista.length + ' archivo(s)' }, pac);
+  pac.archivos = nv.archivos;
   if (ARQ.onSave) ARQ.onSave(pac);
   pintaArchivos(ARQ.cont, pac, ARQ.onSave);
 }
@@ -2461,12 +2532,15 @@ async function verArchivo(id) {
     if (b.dataset.v === 'dl' && blobUrl) { const l = document.createElement('a'); l.href = blobUrl; l.download = a.nombre || 'archivo'; l.click(); return; }
     if (b.dataset.v === 'edit') {
       const nd = await ask({ title: 'Descripción', input: 'Descripción', value: a.desc || '' }); if (nd === null) return;
-      a.desc = nd.toUpperCase(); await guardarPac(ARQ.pac, { accion: 'editar archivo' }); if (ARQ.onSave) ARQ.onSave(ARQ.pac); d.close(); pintaArchivos(ARQ.cont, ARQ.pac, ARQ.onSave); return;
+      a.desc = nd.toUpperCase(); a.mod = Date.now(); { const aid = a.id, ds = a.desc, nv = mutarPac(ARQ.pac.id, x => { const y = (x.archivos || []).find(z => z.id === aid); if (y) { y.desc = ds; y.mod = Date.now(); } }, { accion: 'editar archivo' }, ARQ.pac); ARQ.pac.archivos = nv.archivos; } if (ARQ.onSave) ARQ.onSave(ARQ.pac); d.close(); pintaArchivos(ARQ.cont, ARQ.pac, ARQ.onSave); return;
     }
     if (b.dataset.v === 'del') {
       if (!await ask({ title: 'Quitar archivo', text: 'Se quitará del expediente (queda en la papelera de Drive 30 días). ¿Continuar?', ok: 'Quitar', danger: true })) return;
       a.borrado = { ts: Date.now(), por: S.ses.email };
-      try { if (a.fid) await call('dcArchivoBorrar', ARQ.pac.id, a.fid); await guardarPac(ARQ.pac, { accion: 'quitar archivo' }); if (ARQ.onSave) ARQ.onSave(ARQ.pac); d.close(); pintaArchivos(ARQ.cont, ARQ.pac, ARQ.onSave); }
+      try { a.mod = Date.now(); const pid = ARQ.pac.id, fid = a.fid, aid = a.id, bor = a.borrado;
+        const nv = mutarPac(pid, x => { const y = (x.archivos || []).find(z => z.id === aid); if (y) { y.borrado = bor; y.mod = a.mod; } }, { accion: 'quitar archivo' }, ARQ.pac);
+        ARQ.pac.archivos = nv.archivos; if (ARQ.onSave) ARQ.onSave(ARQ.pac); d.close(); pintaArchivos(ARQ.cont, ARQ.pac, ARQ.onSave); toast('Archivo quitado', 'ok');
+        if (fid) call('dcArchivoBorrar', pid, fid).catch(() => { }); }
       catch (er) { delete a.borrado; toast(er.message, 'bad'); }
     }
   };
