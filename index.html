@@ -500,6 +500,7 @@ textarea.grow{overflow:hidden;resize:none}
 #dlgAsk .aviso{max-height:55vh;overflow:auto}
 @media (max-width:640px){.appft{padding-bottom:calc(86px + env(safe-area-inset-bottom));font-size:11px}body:not(.locked) main{padding-bottom:16px}}
 .appft[hidden]{display:none}
+#btnNew[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -795,7 +796,7 @@ function buildTabs() {
 function updCounts() { const c = $('#cntHosp'); if (c) { const n = S.lista.filter(p => p.m && p.m.h).length; c.textContent = n || ''; c.hidden = !n; } }
 const VIEWS = {};
 function go(t) {
-  S.tab = t; $$('#tabs [data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
+  S.tab = t; $$('#tabs [data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === t)); $('#btnNew').hidden = t === 'archivo' || !esMedico();
   const tt = TABS.find(x => x[0] === t) || []; $('#ttl').innerHTML = (tt[2] ? `<span class="ttl-ic">${ic(tt[2])}</span>` : '') + esc(tt[3] || '');
   (VIEWS[t] || (() => { }))();
 }
