@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="1.06">
+<meta name="application-version" content="1.07">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <title>Expediente Clínico</title>
@@ -591,7 +591,7 @@ textarea.grow{overflow:hidden;resize:none}
    Todo (nombre del médico, cédulas, sedes, pacientes, agenda) llega desde el
    servidor de Google Apps Script (Codigo.gs) después de iniciar sesión con Google.
    ===================================================================== */
-const APP_VERSION = '1.06';
+const APP_VERSION = '1.07';
 const API_URL   = 'https://script.google.com/macros/s/AKfycbx-HbaNR8wABXVLHHqcTswh-lwvzBegrviIMudE10e3NS7bDmQtydUYrlsqtp6022goyA/exec';   // enlace /exec del Apps Script
 const CLIENT_ID = '536887128333-fe75imrstc37jboajmq9lt8vum0ojq1v.apps.googleusercontent.com';   // ID de cliente OAuth (Google Cloud › Expediente Clinico)
 
@@ -2308,7 +2308,7 @@ function lineaPaciente(pac, d) {
 }
 function firmaBloque(d) {
   /* Nombre, especialidad y cédulas ya van en el membrete y el pie: aquí solo la firma */
-  return `<div class="fb"><div class="c"><i></i>Firma del médico</div></div>`;
+  return '';
 }
 function cuerpoDoc(pac, d) {
   let h = `<div class="dtit"><h1>${esc(tituloDoc(d))}</h1><span>${dmy(d.fecha)} · ${esc(d.hora || '')}</span></div>`;
