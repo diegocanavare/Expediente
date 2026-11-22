@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="1.07">
+<meta name="application-version" content="1.08">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <title>Expediente Clínico</title>
@@ -540,6 +540,16 @@ textarea.grow{overflow:hidden;resize:none}
   body:not(.locked) main{padding-bottom:70px}
 }
 @media (min-width:641px){#toasts{bottom:56px}}
+/* agenda: buscar paciente primero */
+.ci-bus{display:block;margin-bottom:4px}
+.ci-sug{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.ci-sug .it{display:flex;gap:10px;align-items:center;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 10px;width:100%}
+.ci-sug .it:hover{border-color:#b9b9e3;background:#F6F6FD}.ci-sug .it b{display:block;font-size:13.5px}.ci-sug .it small{color:var(--mute);font-size:12px}
+.ci-nuevo{align-self:flex-start;margin-top:4px}
+.ci-sel{display:flex;gap:12px;align-items:center;border:1px solid #d6d6f0;background:#F6F6FD;border-radius:14px;padding:10px 12px;margin-bottom:10px}
+.ci-sel b{display:block;font-size:14px}.ci-sel small{display:block;color:var(--mute);font-size:12px}
+.ci-sel[hidden],#ciBusW[hidden],#ciPacF[hidden]{display:none!important}
+#dlgCita #toasts,dialog #toasts{position:fixed}
 </style>
 </head>
 <body>
@@ -591,7 +601,7 @@ textarea.grow{overflow:hidden;resize:none}
    Todo (nombre del médico, cédulas, sedes, pacientes, agenda) llega desde el
    servidor de Google Apps Script (Codigo.gs) después de iniciar sesión con Google.
    ===================================================================== */
-const APP_VERSION = '1.07';
+const APP_VERSION = '1.08';
 const API_URL   = 'https://script.google.com/macros/s/AKfycbx-HbaNR8wABXVLHHqcTswh-lwvzBegrviIMudE10e3NS7bDmQtydUYrlsqtp6022goyA/exec';   // enlace /exec del Apps Script
 const CLIENT_ID = '536887128333-fe75imrstc37jboajmq9lt8vum0ojq1v.apps.googleusercontent.com';   // ID de cliente OAuth (Google Cloud › Expediente Clinico)
 
@@ -683,7 +693,10 @@ function paintLogos() { $$('[data-logo]').forEach(e => e.innerHTML = LOGO_SVG); 
 /* ---------- Avisos ---------- */
 function toast(msg, kind) {
   const t = document.createElement('div'); t.className = 'toast ' + (kind || ''); t.textContent = msg;
-  $('#toasts').appendChild(t); setTimeout(() => t.remove(), kind === 'bad' ? 6500 : 3200);
+  /* Si hay una ventana abierta, el aviso se muestra encima de ella (si no, quedaría oculto detrás) */
+  const box = $('#toasts'), host = [...document.querySelectorAll('dialog[open]')].pop() || document.body;
+  if (box.parentNode !== host) host.appendChild(box);
+  box.appendChild(t); setTimeout(() => t.remove(), kind === 'bad' ? 6500 : 3200);
 }
 /* Aviso de «cargando» que bloquea la pantalla y evita dobles clics */
 let CARG = 0;
@@ -1313,20 +1326,23 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden) refr
 /* ---------- Diálogo de cita / programación ---------- */
 async function abrirCita(tipo, e, pre = {}) {
   const T = AGT[tipo], nuevo = !e, med = esMedico();
-  e = e ? clone(e) : { id: uid(tipo === 'quirofano' ? 'q' : 'c'), est: T.estIni, fecha: pre.fecha || '', sede: pre.sede || '', sala: pre.sala || '', pac: pre.pac || '' };
+  e = e ? clone(e) : { id: uid(tipo === 'quirofano' ? 'q' : 'c'), est: T.estIni, fecha: pre.fecha || (tipo === 'consulta' ? ((AGS[tipo] || {}).sel || hoyISO()) : ''), sede: pre.sede || '', sala: pre.sala || '', pac: pre.pac || '' };
   if (pre.desde) Object.assign(e, pre.desde);
+  const conPac = !!(e.n || e.ap || e.pac);
   const estOpts = T.est.filter(x => med || x[0] !== T.estFin || e.est === T.estFin);
   const root = $('#citaRoot');
   root.innerHTML = `<div class="dlg-h"><div class="t"><b>${nuevo ? (tipo === 'quirofano' ? 'Programar cirugía' : 'Agendar consulta') : (tipo === 'quirofano' ? 'Editar programación' : 'Editar cita')}</b><small>${T.nombre}</small></div><button class="x" data-x>✕</button></div>
   <div class="dlg-b"><div class="box"><div class="sub">Paciente</div>
-    <div class="grid">
-      <div class="f s6" style="position:relative"><label>Buscar paciente registrado <span class="hint">(opcional)</span></label><input id="ciBus" placeholder="Escribe el nombre…" autocomplete="off"><div id="ciSug" class="lastdocs" style="position:absolute;top:100%;left:0;right:0;z-index:5;background:#fff;box-shadow:0 10px 24px -12px rgba(0,0,0,.4);border-radius:10px"></div></div>
+    <div id="ciBusW"${conPac ? ' hidden' : ''}><label class="search big ci-bus">${ic('search')}<input id="ciBus" placeholder="Busca al paciente por nombre…" autocomplete="off"></label>
+      <div id="ciSug" class="ci-sug"><p class="muted" style="margin:8px 2px 0;font-size:12.5px">Escribe al menos 3 letras. Si no está registrado, podrás agregarlo como nuevo.</p></div></div>
+    <div id="ciSel" class="ci-sel"${conPac ? '' : ' hidden'}><span class="hj-av sm" id="ciAv"></span><div style="flex:1;min-width:0"><b id="ciSelN"></b><small id="ciSelS"></small></div><button type="button" class="btn sm" id="ciCambiar">Cambiar</button></div>
+    <div class="grid" id="ciPacF"${conPac ? '' : ' hidden'}>
       <div class="f"><label>Apellido paterno</label><input id="ciAp" class="up" value="${esc(e.ap || '')}"></div>
       <div class="f"><label>Apellido materno</label><input id="ciAm" class="up" value="${esc(e.am || '')}"></div>
       <div class="f"><label>Nombre(s)</label><input id="ciNo" class="up" value="${esc(e.no || (!e.ap ? e.n || '' : ''))}"></div>
       <div class="f"><label>Fecha de nacimiento</label><input id="ciFn" placeholder="DD.MM.AA" value="${dmy(e.fn)}"></div>
       <div class="f"><label>Teléfono</label><input id="ciTel" inputmode="tel" maxlength="10" value="${esc(e.t || '')}"></div>
-      <div class="f"><label>Vínculo</label><div class="auto" id="ciVin">${e.pac ? 'Expediente vinculado' : 'Sin expediente (se crea al hacer la nota)'}</div></div>
+      <div class="f"><label>Vínculo</label><div class="auto" id="ciVin">${e.pac ? 'Expediente vinculado' : 'Paciente nuevo (el expediente se crea al hacer la nota)'}</div></div>
     </div>
     <div class="sub">${tipo === 'quirofano' ? 'Programación quirúrgica' : 'Cita'}</div>
     <div class="grid">
@@ -1354,27 +1370,39 @@ async function abrirCita(tipo, e, pre = {}) {
   const canc = () => { $('#ciCancW').hidden = !['cancelada', 'noasistio'].includes($('#ciEst').value); };
   $('#ciSede').onchange = salas; $('#ciEst').onchange = canc; salas(); canc();
   $$('[data-dd]', root).forEach(b => b.onclick = () => { const x = new Date(); x.setDate(x.getDate() + +b.dataset.dd); $('#ciF').value = dmy(isoOf(x)); });
-  // búsqueda de paciente
+  // búsqueda de paciente primero; los campos aparecen al elegir o al agregar uno nuevo
+  const pinSel = () => { const n = [$('#ciAp').value, $('#ciAm').value, $('#ciNo').value].filter(x => x.trim()).join(' ').toUpperCase();
+    $('#ciSelN').textContent = n || 'Paciente nuevo'; $('#ciAv').textContent = ((($('#ciNo').value || '')[0] || '') + (($('#ciAp').value || '')[0] || '')).toUpperCase();
+    $('#ciSelS').textContent = [$('#ciFn').value && 'FN ' + $('#ciFn').value, $('#ciTel').value].filter(Boolean).join(' · ') || (e.pac ? 'Expediente vinculado' : 'Completa sus datos abajo'); };
+  const muestra = (campos) => { $('#ciBusW').hidden = true; $('#ciSel').hidden = false; $('#ciPacF').hidden = !campos; pinSel(); };
+  if (conPac) { pinSel(); $('#ciPacF').hidden = !!e.pac && !!e.ap; if (!$('#ciPacF').hidden) $('#ciSel').hidden = true; }
+  $('#ciCambiar').onclick = () => { e.pac = ''; ['ciAp', 'ciAm', 'ciNo', 'ciFn', 'ciTel'].forEach(k => $('#' + k).value = ''); $('#ciVin').textContent = 'Paciente nuevo (el expediente se crea al hacer la nota)';
+    $('#ciSel').hidden = true; $('#ciPacF').hidden = true; $('#ciBusW').hidden = false; $('#ciBus').value = ''; $('#ciBus').focus(); };
+  $('#ciPacF').oninput = () => { if (!$('#ciSel').hidden) pinSel(); };
   let tmr;
   $('#ciBus').oninput = () => {
     clearTimeout(tmr); const q = $('#ciBus').value;
     tmr = setTimeout(async () => {
-      if (norm(q).length < 3) { $('#ciSug').innerHTML = ''; return; }
+      if (norm(q).length < 3) { $('#ciSug').innerHTML = '<p class="muted" style="margin:8px 2px 0;font-size:12.5px">Escribe al menos 3 letras.</p>'; return; }
       let r = [];
-      try { r = med ? buscarEn(S.lista, q).slice(0, 8).map(p => ({ id: p.id, n: p.m.n, fn: p.m.fn, t: p.m.t, ap: '', dx: p.m.dx })) : await call('dcBuscarMin', q); } catch (er) { toast(er.message, 'bad'); }
-      $('#ciSug').innerHTML = r.length ? r.map((p, i) => `<button class="it" data-i="${i}"><b>${esc(p.n)}</b><small>${p.fn ? 'FN ' + dmy(p.fn) + ' · ' : ''}${esc(p.t || '')}</small></button>`).join('') : '<div class="it muted">Sin coincidencias</div>';
-      $$('#ciSug [data-i]').forEach(b => b.onclick = async () => {
-        const p = r[+b.dataset.i]; e.pac = p.id; $('#ciSug').innerHTML = ''; $('#ciBus').value = '';
-        let dd = p.d;
-        if (!dd && med) { try { const pc = await leerPac(p.id); dd = pc.datos; } catch (_) { } }
-        dd = dd || {};
+      try { r = med ? buscarEn(S.lista, q).slice(0, 8).map(p => ({ id: p.id, n: p.m.n, fn: p.m.fn, t: p.m.t, dx: p.m.dx, d: { apPaterno: p.m.ap, apMaterno: p.m.am, nombres: p.m.no, fnac: p.m.fn, tel1: p.m.t, dx: p.m.dx } })) : await call('dcBuscarMin', q); } catch (er) { toast(er.message, 'bad'); }
+      $('#ciSug').innerHTML = (r.length ? r.map((p, i) => `<button type="button" class="it" data-i="${i}"><span class="hj-av sm">${esc((p.n || '?').slice(0, 1))}</span><span><b>${esc(p.n)}</b><small>${p.fn ? 'FN ' + dmy(p.fn) : ''}${p.t ? ' · ' + esc(p.t) : ''}</small></span></button>`).join('') : `<p class="muted" style="margin:8px 2px;font-size:13px">No encontré a «${esc(q.toUpperCase())}».</p>`)
+        + `<button type="button" class="btn pri ci-nuevo" data-nuevo>${ic('plus')}Agregar nuevo paciente${r.length ? '' : ': ' + esc(q.toUpperCase())}</button>`;
+      $$('#ciSug [data-i]').forEach(b => b.onclick = () => {
+        const p = r[+b.dataset.i], dd = p.d || {}; e.pac = p.id;
         $('#ciAp').value = dd.apPaterno || ''; $('#ciAm').value = dd.apMaterno || ''; $('#ciNo').value = dd.nombres || (!dd.apPaterno ? p.n : '');
         $('#ciFn').value = dmy(dd.fnac || p.fn || ''); $('#ciTel').value = dd.tel1 || p.t || '';
         if ($('#ciDx') && !$('#ciDx').value) $('#ciDx').value = dd.dx || p.dx || '';
-        $('#ciVin').textContent = 'Expediente vinculado';
+        $('#ciVin').textContent = 'Expediente vinculado'; muestra(false);
       });
-    }, 250);
+      $('#ciSug [data-nuevo]').onclick = () => { const pn = partirNombre(q); e.pac = '';
+        $('#ciAp').value = pn.apPaterno || ''; $('#ciAm').value = pn.apMaterno || ''; $('#ciNo').value = pn.nombres || ''; $('#ciFn').value = ''; $('#ciTel').value = '';
+        muestra(true); $('#ciSel').hidden = true; setTimeout(() => $(pn.apPaterno ? '#ciFn' : '#ciAp').focus(), 50); };
+    }, 200);
   };
+  if (!conPac) setTimeout(() => $('#ciBus').focus(), 80);
+  const falla = (sel, msg) => { const el = $(sel); if (el) { if (el.closest('[hidden]')) { $('#ciPacF').hidden = false; } el.classList.add('falta'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(() => el.focus(), 250); } toast(msg, 'warn'); };
+  root.addEventListener('input', ev => ev.target.classList && ev.target.classList.remove('falta'));
   root.onclick = async ev => {
     if (ev.target.closest('[data-x]')) { d.close(); return; }
     if (ev.target.closest('[data-del]')) {
@@ -1385,18 +1413,18 @@ async function abrirCita(tipo, e, pre = {}) {
     if (!ev.target.closest('[data-ok]')) return;
     const fecha = $('#ciF').value.trim() ? parseDMY($('#ciF').value) : '';
     const fn = $('#ciFn').value.trim() ? parseDMY($('#ciFn').value) : '';
-    if (fecha === null) { toast('Fecha no válida (DD.MM.AA)', 'warn'); return; }
-    if (fn === null) { toast('Fecha de nacimiento no válida', 'warn'); return; }
-    if (tipo === 'consulta' && !fecha) { toast('Escribe la fecha de la consulta', 'warn'); return; }
+    if (fecha === null) { falla('#ciF', 'Fecha no válida (DD.MM.AA)'); return; }
+    if (fn === null) { falla('#ciFn', 'Fecha de nacimiento no válida (DD.MM.AA)'); return; }
+    if (tipo === 'consulta' && !fecha) { falla('#ciF', 'Escribe la fecha de la consulta'); return; }
     const ap = $('#ciAp').value.trim().toUpperCase(), am = $('#ciAm').value.trim().toUpperCase(), no = $('#ciNo').value.trim().toUpperCase();
     const n = [ap, am, no].filter(Boolean).join(' ');
-    if (!n) { toast('Escribe el nombre del paciente', 'warn'); return; }
+    if (!n) { if (!$('#ciBusW').hidden) { falla('#ciBus', 'Busca al paciente o toca «Agregar nuevo paciente»'); } else falla('#ciAp', 'Escribe el nombre del paciente'); return; }
     const tel = $('#ciTel').value.replace(/\D/g, '');
-    if (tel && tel.length !== 10) { toast('El teléfono debe tener 10 dígitos', 'warn'); return; }
+    if (tel && tel.length !== 10) { falla('#ciTel', 'El teléfono debe tener 10 dígitos'); return; }
     const set = { n, ap, am, no, fn, t: tel, fecha, hora: $('#ciH').value, sede: $('#ciSede').value, sala: $('#ciSala').value.trim().toUpperCase(), est: $('#ciEst').value, notas: $('#ciNotas').value.trim(), pac: e.pac || '', motCanc: $('#ciCanc').value.trim() };
     if (tipo === 'quirofano') Object.assign(set, { cx: $('#ciCx').value.trim().toUpperCase(), dx: $('#ciDx').value.trim().toUpperCase(), tcx: $('#ciTcx').value, anest: $('#ciAn').value, dur: $('#ciDur').value.replace(/\D/g, ''), ayud: $('#ciAy').value.trim().toUpperCase() });
     else Object.assign(set, { tc: $('#ciTc').value, motivo: $('#ciMot').value.trim().toUpperCase() });
-    if (['cancelada', 'noasistio'].includes(set.est) && !set.motCanc && set.est !== e.est) { toast('Escribe el motivo', 'warn'); $('#ciCancW').hidden = false; return; }
+    if (['cancelada', 'noasistio'].includes(set.est) && !set.motCanc && set.est !== e.est) { $('#ciCancW').hidden = false; falla('#ciCanc', 'Escribe el motivo'); return; }
     if (fecha && set.hora && set.sede) {
       const choque = Object.values(S.ag[tipo].items).find(x => x.id !== e.id && x.fecha === fecha && x.hora === set.hora && x.sede === set.sede && (x.sala || '') === set.sala && !['cancelada', 'noasistio'].includes(x.est));
       if (choque && !await ask({ title: 'Horario ocupado', text: 'Ya hay una entrada a las ' + set.hora + ' en el mismo lugar: ' + choque.n + '. ¿Guardar de todos modos?', ok: 'Guardar' })) return;
