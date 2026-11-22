@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="1.05">
+<meta name="application-version" content="1.06">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <title>Expediente Clínico</title>
@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 :root{
   --navy:#3B3B8F;--navy2:#4B4BA0;--navy-d:#2e2e76;--ink:#1F2140;--mute:#64707E;--line:#E2E7EE;--line2:#D3DAE4;
   --bg:#F3F3FA;--card:#fff;--soft:#F3F6FA;--acc:#4545A6;--acc-l:#ECECF9;--ok:#1F8A4C;--okbg:#E6F4EC;
@@ -355,7 +356,7 @@ textarea.grow{overflow:hidden;resize:none}
 .xdoc .xd-t{flex:1;min-width:0}.xdoc .xd-t b{display:block;font-size:14px}.xdoc .xd-t small{color:var(--mute);font-size:12px}
 .xdoc .rec-a{margin:0;justify-content:flex-end}.xdoc.anul{background:#FBF7F7}.xdoc.anul .xd-t>b{text-decoration:line-through;color:#7a5050}.bad-t{color:#a12520}
 .xarch{background:#F4FBF6;border-color:#cfe9d8;color:inherit}
-#dlgVer .dlg{height:100%}.ver-b{padding:14px 10px!important;background:#e3e3ec;overflow:auto}.ver-w{margin:0 auto;box-shadow:0 8px 28px rgba(20,20,60,.22);background:#fff;overflow:hidden}.ver-w iframe{width:816px;border:0;display:block;background:#fff;transform-origin:top left}
+#dlgVer .dlg{height:100%}.ver-b{padding:14px 10px!important;background:#e3e3ec;overflow:auto}.ver-w{margin:0 auto;box-shadow:0 8px 28px rgba(20,20,60,.22);background:#fff;overflow:hidden}.ver-p{width:816px}
 .btn.ax{gap:6px}
 /* cargando */
 #cargando{position:fixed;inset:0;z-index:99999;background:rgba(30,30,70,.28);display:grid;place-items:center;backdrop-filter:blur(1.5px)}
@@ -532,6 +533,13 @@ textarea.grow{overflow:hidden;resize:none}
 .rx-half{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='28'%3E%3Cpath d='M0 27.5h10' stroke='%23ececf6'/%3E%3C/svg%3E");border:1px solid #d9d9ef;border-top:6px solid #3B3B8F;border-radius:12px;padding:12px 14px;margin-bottom:12px;box-shadow:0 6px 18px -14px rgba(40,40,120,.5)}
 .rx-half h6{color:#3B3B8F;font-family:var(--serif);font-size:16px;font-weight:400;letter-spacing:0;text-transform:none;margin:0 0 6px}
 .rx-half textarea{width:100%;border:0;background:transparent;font-family:"Libre Caslon Text",Georgia,serif;font-size:16px;line-height:28px;padding:0 4px;outline:none;box-shadow:none}
+.ask-h .aviso h2{display:none}
+/* pie de página fijo y compacto en computadora */
+@media (min-width:641px){
+  .appft{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:7px var(--gut);font-size:11px;box-shadow:0 -6px 18px -14px rgba(30,30,80,.35);background:rgba(255,255,255,.96);backdrop-filter:blur(6px)}
+  body:not(.locked) main{padding-bottom:70px}
+}
+@media (min-width:641px){#toasts{bottom:56px}}
 </style>
 </head>
 <body>
@@ -583,7 +591,7 @@ textarea.grow{overflow:hidden;resize:none}
    Todo (nombre del médico, cédulas, sedes, pacientes, agenda) llega desde el
    servidor de Google Apps Script (Codigo.gs) después de iniciar sesión con Google.
    ===================================================================== */
-const APP_VERSION = '1.05';
+const APP_VERSION = '1.06';
 const API_URL   = 'https://script.google.com/macros/s/AKfycbx-HbaNR8wABXVLHHqcTswh-lwvzBegrviIMudE10e3NS7bDmQtydUYrlsqtp6022goyA/exec';   // enlace /exec del Apps Script
 const CLIENT_ID = '536887128333-fe75imrstc37jboajmq9lt8vum0ojq1v.apps.googleusercontent.com';   // ID de cliente OAuth (Google Cloud › Expediente Clinico)
 
@@ -1528,7 +1536,6 @@ async function abrirHoja(id, opt = {}) {
     ident: `<div class="quick"><div class="quick-t">${ic('nota')}<div><b>Empezar a atender</b><span>Guarda la ficha y abre directamente el documento.</span></div></div>
       <div class="quick-b"><button class="btn pri" data-dtipo="nota">${ic('nota')}Hacer nota</button><button class="btn" data-dtipo="receta">${ic('receta')}Receta</button>
       <button class="btn" id="hjCons">${ic('cal')}Agendar consulta</button><button class="btn" id="hjProg2">${ic('qx')}Programar cirugía</button></div></div>`,
-    datos: `<div class="hj-acts" style="justify-content:flex-end;border-top:1px solid var(--line);padding-top:12px"><button class="btn sm danger" id="hjDel">Eliminar este paciente (duplicado o registro por error)</button></div>`,
     cx: `<div class="hj-acts"><button class="btn" id="hjProg">${ic('qx')}Programar en quirófano</button><button class="btn" data-dtipo="nota" data-dsub="preop">${ic('nota')}Nota preoperatoria</button></div>`,
     hc: `<div class="hj-acts"><button class="btn" id="hjHcPrev">${ic('print')}Vista previa / imprimir</button><button class="btn pri" id="hjHcFirm">${ic('save')}Guardar en el archivo clínico</button><span class="muted" id="hjHcUlt" style="align-self:center;font-size:12.5px"></span></div>`,
     hosp: `<div class="hj-acts"><button class="btn" data-dtipo="nota" data-dsub="ingreso">${ic('nota')}Nota de ingreso</button><button class="btn" data-dtipo="indic">${ic('indic')}Indicaciones</button><button class="btn" data-dtipo="alta">${ic('alta')}Nota de alta (egreso)</button></div><div id="hjIng"></div>`
@@ -1577,7 +1584,6 @@ async function abrirHoja(id, opt = {}) {
     if (t.closest('#hjCons')) { if (!await hjAsegurar()) return; const p = H.pac, dd = p.datos;
       abrirCita('consulta', null, { fecha: hoyISO(), desde: { pac: p.id, n: nombreDe(dd), ap: dd.apPaterno, am: dd.apMaterno, no: dd.nombres, fn: dd.fnac, t: dd.tel1 } }); return; }
     if (t.closest('#hjSave')) { await hjGuardar(); return; }
-    if (t.closest('#hjDel')) { await hjEliminar(); return; }
     if (t.closest('#hjProg') || t.closest('#hjProg2')) { if (!await hjAsegurar()) return; const p = H.pac, dd = p.datos;
       abrirCita('quirofano', null, { desde: { pac: p.id, n: nombreDe(dd), ap: dd.apPaterno, am: dd.apMaterno, no: dd.nombres, fn: dd.fnac, t: dd.tel1, cx: p.cx.planeada, dx: dd.dx, tcx: p.cx.tipo, fecha: p.cx.fecha || '', sede: p.cx.sede || '' } }); return; }
     if (t.closest('#hjHcPrev')) { imprimirDoc(H.pac, docHC(H.pac, 'borrador')); return; }
@@ -2069,7 +2075,7 @@ function faltantes(d) {
   if (d.tipo === 'receta' && !String(c.r1 || '').trim()) f.push(['El texto de la receta (medicamento e indicaciones)', '[data-c="r1"]']);
   if (d.tipo === 'receta' && c.modo === 'otro' && !String(c.r2 || '').trim()) f.push(['La segunda receta (mitad inferior) o cambia a «Una receta»', '[data-c="r2"]']);
   if ((d.tipo === 'lab' || d.tipo === 'gab') && !String(c.txt || '').trim()) f.push(['Al menos un estudio solicitado (escríbelo o elige un predeterminado)', '#dcTxt']);
-  if (d.tipo === 'consent') { if (!String(c.proc || '').trim()) f.push(['El procedimiento que se autoriza', '[data-c="proc"]']); if (!String(c.dx || '').trim()) f.push(['El diagnóstico', '[data-c="dx"]']); if (!String(c.riesgos || '').trim()) f.push(['Los riesgos y posibles complicaciones', '[data-c="riesgos"]']); }
+  if (d.tipo === 'consent') { if (!String(c.proc || '').trim()) f.push(['El procedimiento que se autoriza', '[data-c="proc"]']); if (!String(c.riesgos || '').trim()) f.push(['Los riesgos y posibles complicaciones', '[data-c="riesgos"]']); }
   if (d.tipo === 'indic' && !INDIC_F.some(([k]) => String(c[k] || '').trim())) f.push(['Al menos una indicación (dieta, soluciones, medicamentos…)', '[data-c="dieta"]']);
   return f;
 }
@@ -2123,12 +2129,18 @@ function verDoc(pac, d) {
   const r = $('#verRoot');
   r.innerHTML = `<div class="dlg-h"><div class="t"><span class="fcat">${esc(nombreDe(pac.datos))}</span><b>${esc(tituloDoc(d))} <span class="rstate ${d.est === 'anulado' ? 'bad' : 'ok'}">${dmy(d.fecha)} · ${esc(d.hora || '')}</span></b></div>
     <div class="acts">${d.tipo !== 'hc' && d.est !== 'anulado' ? `<button class="btn" data-ve>${ic('edit')}Editar</button>` : ''}<button class="btn dark" data-vp>${ic('print')}Imprimir</button></div><button class="x" data-vx>✕</button></div>
-    <div class="dlg-b ver-b" id="verB"><div class="ver-w" id="verW"><iframe id="verF" title="Vista previa" scrolling="no"></iframe></div></div>`;
-  const f = $('#verF'), W = 816;
-  f.srcdoc = `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=${W}"><style>${PRINT_CSS}${html.page || ''}@media screen{html,body{width:${W}px;margin:0;overflow:hidden;background:#fff}body{min-height:1056px;position:relative;padding-bottom:1.1in;box-sizing:border-box}.hdfix{position:static!important}.wmfix{position:absolute!important;top:5.5in!important}.ftfix{position:absolute!important}.pg thead,.pg tfoot{display:none}.sello{position:absolute!important}.half{border-bottom:1px dashed #c9c9e6}}</style></head><body>${html.html}</body></html>`;
-  const ajusta = () => { try { const B = $('#verB'), w = $('#verW'), h = f.contentDocument.documentElement.scrollHeight, sc = Math.min(1, (B.clientWidth - 20) / W);
-    f.style.height = h + 'px'; f.style.transform = `scale(${sc})`; w.style.width = Math.floor(W * sc) + 'px'; w.style.height = Math.ceil(h * sc) + 'px'; } catch (_) { } };
-  f.onload = async () => { try { await Promise.race([f.contentDocument.fonts.ready, sleep(1500)]); f.contentDocument.querySelectorAll('[data-fit]').forEach(el => { let fs = 10.5; while (el.scrollHeight > el.clientHeight + 1 && fs > 7) { fs -= .25; el.style.fontSize = fs + 'pt'; } }); } catch (_) { } ajusta(); };
+    <div class="dlg-b ver-b" id="verB"><div class="ver-w" id="verW"><div class="ver-p" id="verP"></div></div></div>`;
+  /* Se dibuja la hoja real (8.5 in de ancho) y se escala completa a la pantalla: igual en PC y celular */
+  const W = 816, host = $('#verP'), sr = host.shadowRoot || host.attachShadow({ mode: 'open' });
+  sr.innerHTML = `<style>${PRINT_CSS}${html.page ? '' : ''}
+    :host{display:block;width:${W}px;background:#fff;color:#1d1d3a;font-family:Inter,Arial,sans-serif;font-size:16px;line-height:normal;-webkit-text-size-adjust:100%;text-size-adjust:100%;transform-origin:top left}
+    .page{position:relative;width:${W}px;min-height:1056px;padding-bottom:1.1in;overflow:hidden;background:#fff}
+    .hdfix{position:static!important}.wmfix{position:absolute!important;top:5.5in!important}.ftfix{position:absolute!important}.pg thead,.pg tfoot{display:none}.sello{position:absolute!important}
+    .page.rx{padding-bottom:0}.half+.half{border-top:1px dashed #c9c9e6}</style><div class="page${d.tipo === 'receta' ? ' rx' : ''}">${html.html}</div>`;
+  const ajusta = () => { const B = $('#verB'), w = $('#verW'); if (!B || !w) return; const h = host.offsetHeight, sc = Math.min(1, (B.clientWidth - 20) / W);
+    host.style.transform = `scale(${sc})`; w.style.width = Math.floor(W * sc) + 'px'; w.style.height = Math.ceil(h * sc) + 'px'; };
+  const ajustaTexto = () => { sr.querySelectorAll('[data-fit]').forEach(el => { el.style.fontSize = ''; let fs = 10.5; while (el.scrollHeight > el.clientHeight + 1 && fs > 7) { fs -= .25; el.style.fontSize = fs + 'pt'; } }); ajusta(); };
+  ajustaTexto(); (document.fonts ? Promise.race([document.fonts.ready, sleep(1500)]) : sleep(300)).then(() => setTimeout(ajustaTexto, 120));
   window.onresize = () => { if ($('#dlgVer').open) ajusta(); };
   r.onclick = e => { if (e.target.closest('[data-vx]')) $('#dlgVer').close(); if (e.target.closest('[data-vp]')) imprimirDoc(pac, d); if (e.target.closest('[data-ve]')) { $('#dlgVer').close(); abrirDoc(pac.id, null, { docId: d.id, editar: true }); } };
   openDlg($('#dlgVer'));
@@ -2211,8 +2223,8 @@ html,body{margin:0;padding:0;background:#fff;color:#1d1d3a;font-family:Inter,Ari
 .mb-logo{flex:none;width:.62in;display:flex;align-items:center}.mb-logo svg{width:100%;height:auto;max-height:.82in}.mb-l{flex:1.7;min-width:0}.mb-n{font-size:15.5pt;letter-spacing:.3px;line-height:1.05;margin-bottom:4px;padding-left:4px;white-space:nowrap}
 .mb-e{font-size:7.6pt;line-height:1.4;text-transform:uppercase;white-space:nowrap}
 .mb-sep{width:1.3px;background:${INK};margin:2px 0}
-.mb-r{flex:1;display:flex;flex-direction:column;justify-content:center;font-size:8.6pt;line-height:1.5}
-.mb-r b{font-weight:700}.mb-r .sn{font-size:9.4pt;text-transform:uppercase;letter-spacing:.2px}.mb-r .ley{font-size:10pt;font-weight:700}
+.mb-r{flex:1.05;min-width:0;display:flex;flex-direction:column;justify-content:center;font-size:8pt;line-height:1.55}.mb-r>div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mb-r>div:last-child:not(:first-child){font-size:7.2pt;letter-spacing:-.1px}
+.mb-r b{font-weight:700}.mb-r .sn{font-size:8.6pt;text-transform:uppercase;letter-spacing:.2px}.mb-r .ley{font-size:10pt;font-weight:700}
 .pt{color:${INK};font-family:"Libre Caslon Text",Georgia,serif;font-size:9.2pt;margin-top:12px}
 .pt .r{display:flex;gap:10px;align-items:flex-end;margin-top:6px}
 .pt .r span{white-space:nowrap}.pt .r u{flex:1;text-decoration:none;border-bottom:1px solid ${INK};min-height:14px;padding:0 4px 1px;color:#1d1d3a;font-family:Inter,Arial,sans-serif;font-size:8.8pt;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -2226,7 +2238,8 @@ html,body{margin:0;padding:0;background:#fff;color:#1d1d3a;font-family:Inter,Ari
 /* hojas de receta (mitad de carta) */
 .half{position:relative;width:8.5in;height:5.5in;overflow:hidden;padding:.32in .45in 0}
 .half+.half{border-top:1px dashed #c8c8e0}
-.rxb{position:relative;z-index:1;margin-top:12px;font-size:10.5pt;line-height:1.45;white-space:pre-wrap;height:2.45in;overflow:hidden;padding:0 .25in}
+.rx-pt{padding:0 .3in}
+.rxb{position:relative;z-index:1;margin-top:14px;font-size:10.5pt;line-height:1.45;white-space:pre-wrap;height:2.6in;overflow:hidden;padding:0 .25in}
 .rxdx{position:relative;z-index:1;font-size:8.5pt;color:#45456e;padding:0 .25in;margin-top:4px}
 .firma{position:absolute;right:.6in;bottom:.98in;text-align:center;font-size:7.6pt;color:${INK};z-index:2;font-family:"Libre Caslon Text",Georgia,serif}
 .firma i{display:block;width:2.2in;border-top:1px solid ${INK};margin-bottom:3px}
@@ -2252,17 +2265,17 @@ table.t{width:100%;border-collapse:collapse;font-size:9pt;margin:2px 0 8px}
 table.t th{text-align:left;color:${INK};font-size:8pt;text-transform:uppercase;border-bottom:1px solid ${INK};padding:3px 4px}
 table.t td{border-bottom:1px solid #e3e3f0;padding:4px;vertical-align:top}
 .cols{columns:2;column-gap:24px;font-size:9.2pt}.cols div{break-inside:avoid;padding:1px 0}
-.fb{margin-top:34px;display:flex;justify-content:flex-end;break-inside:avoid}
+.fb{margin-top:22px;display:flex;justify-content:flex-end;break-inside:avoid}
 .fb .c{text-align:center;width:3.2in;color:${INK};font-size:8.6pt;font-family:"Libre Caslon Text",Georgia,serif}
 .fb .c i{display:block;border-top:1px solid ${INK};margin-bottom:4px}
 .ad{border-left:3px solid ${INK};padding:3px 8px;margin:8px 0;background:#F6F6FC;font-size:9pt}
 /* contenido único, solicitudes y consentimiento */
-.txt{white-space:pre-wrap;font-size:10pt;line-height:1.5}.txt b{color:${INK}}
+.txt{white-space:pre-wrap;font-size:9.8pt;line-height:1.42}.txt b{color:${INK}}
 .sec.ind ul{margin:2px 0 0 16px;padding:0}.sec.ind li{margin:1px 0}
 .sol{white-space:pre-wrap;font-size:13pt;line-height:1.65;min-height:3in;padding:6px 2px}
 .alta-kv{grid-template-columns:1fr 1fr}
-.cons p{font-size:9.6pt;line-height:1.5;text-align:justify;margin:6px 0}.cons .nom{font-size:7.6pt;color:#555}
-.cfs{display:grid;grid-template-columns:1fr 1fr;gap:.5in .6in;margin-top:.55in;break-inside:avoid}
+.cons p{font-size:9.2pt;line-height:1.42;text-align:justify;margin:6px 0}.cons .nom{font-size:7.6pt;color:#555}
+.cfs{display:grid;grid-template-columns:1fr 1fr;gap:.42in .6in;margin-top:.42in;break-inside:avoid}
 .cf{text-align:center;font-size:8.4pt;color:${INK}}.cf i{display:block;border-top:1px solid ${INK};margin-bottom:4px}.cf b{display:block;font-size:9pt}.cf span{color:#444}
 /* aviso */
 .ft .conf{font-size:5.6pt;color:#7a7aa8;margin-top:1px;letter-spacing:.02em}
@@ -2286,13 +2299,16 @@ function lineaPaciente(pac, d) {
   const dd = d.dsnap || pac.datos, sv = d.sv || {};
   const signos = [sv.ta && 'TA ' + sv.ta, sv.fc && 'FC ' + sv.fc, sv.fr && 'FR ' + sv.fr, sv.temp && 'T ' + sv.temp + '°', sv.sat && 'SpO₂ ' + sv.sat + '%', sv.glu && 'Gluc ' + sv.glu].filter(Boolean).join('  ');
   const lugar = d.amb === 'hosp' ? 'Cama: ' + (d.cama || '—') : 'Consulta externa';
-  return `<div class="pt"><div class="r"><span>Nombre del Paciente:</span>${u(nombreDe(dd))}<span>Edad:</span>${u(edad(dd.fnac, d.fecha), 'm')}<span>Sexo:</span>${u(dd.sexo === 'F' ? 'F' : dd.sexo === 'M' ? 'M' : '', 's')}<span>Fecha:</span>${u(dmy(d.fecha), 'm')}</div>
+  const r1 = `<div class="r"><span>Nombre del Paciente:</span>${u(nombreDe(dd))}<span>Edad:</span>${u(edad(dd.fnac, d.fecha), 'm')}<span>Sexo:</span>${u(dd.sexo === 'F' ? 'F' : dd.sexo === 'M' ? 'M' : '', 's')}<span>Fecha:</span>${u(dmy(d.fecha), 'm')}</div>`;
+  /* Receta: igual que el diseño original (sin fecha de nacimiento ni línea de lugar) */
+  if (d.tipo === 'receta') return `<div class="pt rx-pt">${r1}<div class="r"><span>Peso:</span>${u(sv.peso ? sv.peso + ' kg' : '', 'm')}<span>Estatura:</span>${u(sv.talla ? sv.talla + ' m' : '', 'm')}<span>Signos:</span>${u(signos)}</div></div>`;
+  return `<div class="pt">${r1}
     <div class="r"><span>F. Nac.:</span>${u(dmy(dd.fnac), 'm')}<span>Peso:</span>${u(sv.peso ? sv.peso + ' kg' : '', 'm')}<span>Estatura:</span>${u(sv.talla ? sv.talla + ' m' : '', 'm')}<span>Signos:</span>${u(signos)}</div>
-    ${d.tipo === 'receta' ? '' : `<div class="r"><span>${esc(lugar)}</span><span style="margin-left:auto">Hora:</span>${u(d.hora, 'm')}</div>`}</div>`;
+    <div class="r"><span>${esc(lugar)}</span><span style="margin-left:auto">Hora:</span>${u(d.hora, 'm')}</div></div>`;
 }
 function firmaBloque(d) {
-  const p = perfil();
-  return `<div class="fb"><div class="c"><i></i><b>${esc(d.autor || p.nombre || '')}</b><br>${esc(p.especialidad || '')}<br>${esc(d.ced || p.cedulas || '')}<br>Nombre completo y firma</div></div>`;
+  /* Nombre, especialidad y cédulas ya van en el membrete y el pie: aquí solo la firma */
+  return `<div class="fb"><div class="c"><i></i>Firma del médico</div></div>`;
 }
 function cuerpoDoc(pac, d) {
   let h = `<div class="dtit"><h1>${esc(tituloDoc(d))}</h1><span>${dmy(d.fecha)} · ${esc(d.hora || '')}</span></div>`;
@@ -2311,7 +2327,7 @@ function cuerpoDoc(pac, d) {
     });
     flush();
   } else {
-    if (d.sv && Object.keys(d.sv).length && d.tipo !== 'receta') h += `<div class="sv"><b>Signos vitales:</b> ${esc(svTxt(d.sv))}${d.sv.peso && d.sv.talla ? '   IMC ' + imcDe(d.sv.peso, d.sv.talla) : ''}</div>`;
+    if (d.sv && Object.keys(d.sv).length && !['receta', 'lab', 'gab', 'consent', 'indic'].includes(d.tipo)) h += `<div class="sv"><b>Signos vitales:</b> ${esc(svTxt(d.sv))}${d.sv.peso && d.sv.talla ? '   IMC ' + imcDe(d.sv.peso, d.sv.talla) : ''}</div>`;
     const c = d.c || {};
     if ((d.tipo === 'nota' || d.tipo === 'postqx') && c.txt != null) h += `<div class="txt">${fmtTxt(c.txt)}</div>`;
     else if (d.tipo === 'indic') {
@@ -2342,7 +2358,7 @@ function cuerpoDoc(pac, d) {
         ${c.alt ? `<div class="sec"><h3>Alternativas de tratamiento</h3><div>${esc(c.alt)}</div></div>` : ''}
         <p>Por lo anterior, <b>otorgo mi consentimiento</b> para que se realice el procedimiento señalado y <b>autorizo</b> al médico tratante y a su equipo para atender las contingencias y urgencias que se deriven del acto autorizado, atendiendo al principio de libertad prescriptiva. Sé que puedo revocar este consentimiento en cualquier momento antes del procedimiento.</p>
         <p class="nom">Con fundamento en la NOM-004-SSA3-2012, Del expediente clínico (numeral 10.1), y en el Reglamento de la Ley General de Salud en materia de prestación de servicios de atención médica (artículos 80 a 83).</p>
-        <div class="cfs">${firma(c.rep ? 'Representante legal o familiar (' + esc(c.parent || '') + ')' : 'Paciente · nombre completo y firma', c.rep || nombreDe(dd))}${firma('Médico que informa · ' + esc(d.ced || p.cedulas || ''), d.autor || p.nombre)}${firma('Testigo', c.t1)}${firma('Testigo', c.t2)}</div></div>`;
+        <div class="cfs">${firma(c.rep ? 'Representante legal o familiar (' + esc(c.parent || '') + ')' : 'Paciente · nombre completo y firma', c.rep || nombreDe(dd))}${firma('Firma del médico que informa', '')}${firma('Testigo', c.t1)}${firma('Testigo', c.t2)}</div></div>`;
       return h + adendasHTML(d);
     } else camposDoc(d).forEach(([l, v]) => { h += `<div class="sec"><h3>${esc(l)}</h3><div>${esc(v)}</div></div>`; });
   }
@@ -2368,7 +2384,7 @@ function mitadReceta(pac, d, texto, sedeId) {
   const sello = d.est === 'anulado' ? 'CANCELADO' : d.est !== 'firmado' ? 'VISTA PREVIA' : '';
   return `<div class="half"><div class="wm">${WM_SVG}</div>${sello ? `<div class="sello" style="font-size:34pt">${sello}</div>` : ''}${membrete(sedeId)}${lineaPaciente(pac, Object.assign({}, d, { tipo: 'receta' }))}
     ${d.c.dx ? `<div class="rxdx">Dx: ${esc(d.c.dx)}</div>` : ''}<div class="rxb serif" data-fit>${esc(texto || '')}</div>
-    <div class="firma"><i></i>Firma</div><div class="wave">${WAVE_SVG}</div>${piePagina()}</div>`;
+    <div class="wave">${WAVE_SVG}</div>${piePagina()}</div>`;
 }
 function htmlReceta(pac, d) {
   const c = d.c, papel = (S.ses.prefs || {}).rxPapel || 'carta';
