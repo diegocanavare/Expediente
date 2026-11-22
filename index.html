@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="1.03">
+<meta name="application-version" content="1.04">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <title>Expediente Clínico</title>
@@ -313,6 +313,50 @@ table.tb td{padding:8px;border-bottom:1px solid #EEF1F5;vertical-align:top}
 .quick-t{display:flex;gap:12px;align-items:center}.quick-t .ic{width:28px;height:28px}
 .quick-t b{display:block;font-size:15.5px}.quick-t span{font-size:12.5px;opacity:.85}
 .quick-b{display:flex;gap:8px;flex-wrap:wrap}.quick .btn{background:#fff;color:#2e2e76;border-color:#fff}.quick .btn.pri{background:#F2B705;border-color:#F2B705;color:#2a1f00;box-shadow:none}
+/* encabezado de documentos (como el index original): título a la izquierda, acciones a la derecha */
+.dlg-h .fcat{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dlg-h .acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.rstate{display:inline-flex;align-items:center;padding:3px 8px;border:1px solid #D4D7DB;border-radius:7px;font-size:11px;font-weight:650;background:#ECEDEE;color:#4F5051}
+.rstate.ok{background:#E9F6EE;border-color:#bfe3cc;color:#1f6b3d}.rstate.warn{background:#FFF6E0;border-color:#f0d9a0;color:#7a5600}.rstate.bad{background:#FDECEA;border-color:#efc6c1;color:#a12520}
+.btn.save{background:#636465;border-color:#636465;color:#fff;border-radius:99px}.btn.save:hover{background:#525354}
+.dtabs-w{background:#fff;padding:10px 0 12px;border-bottom:1px solid var(--line)}
+/* botones de registro: Ver · Editar · Imprimir · Cancelar */
+.rb{display:inline-flex;align-items:center;gap:5px;min-height:28px;padding:4px 9px;border-radius:8px;border:1px solid;font:800 11.5px/1 var(--ui,system-ui);white-space:nowrap;cursor:pointer}
+.rb .ic{width:14px;height:14px}
+.rb-view,.rb-edit{background:#F3F4F4;border-color:rgba(99,100,101,.32);color:#393A3B}.rb-view:hover,.rb-edit:hover{background:#E5E6E8}
+.rb-print{background:#3D3F3F;border-color:#3D3F3F;color:#fff}.rb-print:hover{background:#303232}
+.rb-del{background:#FFF8F7;border-color:#EFC7C4;color:#A12520}.rb-res{background:#EEF6FF;border-color:#bcd3ef;color:#1d4f8f}
+.side-card{padding:14px;margin-bottom:12px}.side-card h4{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-size:14px}.side-card h4 .ic{width:18px;height:18px;color:var(--navy)}
+.sm-t{font-size:12px;margin:0 0 10px}
+.recs{display:flex;flex-direction:column;gap:8px;max-height:60vh;overflow:auto}
+.rec{border:1px solid var(--line);border-radius:12px;padding:9px 10px;background:#fff}.rec.cur{border-color:#9c9cd6;background:#F6F6FD}.rec.anul{opacity:.65}.rec.anul .rec-t b{text-decoration:line-through}
+.rec-t b{display:block;font-size:13px}.rec-t small{color:var(--mute);font-size:11.5px}
+.rec-a{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.halfopt{display:flex;flex-direction:column;gap:6px}
+.halfopt button{display:flex;gap:10px;align-items:center;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 10px;color:var(--ink)}
+.halfopt button.on{border-color:var(--navy);background:#EDEDF8;box-shadow:inset 0 0 0 1px var(--navy)}
+.halfopt b{display:block;font-size:13px}.halfopt small{color:var(--mute);font-size:11.5px}
+.hico{width:26px;height:32px;flex:none;color:#7a7aa8}
+.chips-sel{display:flex;flex-wrap:wrap;gap:6px}
+.chips-sel button{border:1px solid var(--line2);background:#fff;border-radius:99px;padding:7px 13px;font-weight:600;font-size:13px;color:var(--ink)}
+.chips-sel button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.big-txt{width:100%;font-size:14.5px;line-height:1.55;padding:14px 16px;border:1px solid var(--line2);border-radius:12px;resize:vertical;font-family:inherit}
+textarea.grow{overflow:hidden;resize:none}
+.grid.svg{grid-template-columns:repeat(8,minmax(0,1fr))}
+.sub-f{display:flex;align-items:center;gap:8px}.sub-h{text-transform:none;font-weight:500;color:var(--mute);letter-spacing:0}
+.ro-box textarea:disabled,.ro-box input:disabled,.ro-box select:disabled{background:#fafafe;color:#222;opacity:1;-webkit-text-fill-color:#222}
+.ro{justify-content:space-between}.ro.bad-ro{background:#FDECEA;border-color:#efc6c1;color:#8c1d18}
+.fmt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin:14px 0 16px}
+.fmt-b{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:#F7F7FC;border-radius:12px;padding:10px 12px;text-align:left;font-weight:600;font-size:13px;color:#33335f}
+.fmt-b:hover{background:#EFEFFA;border-color:#d6d6f0}.fmt-b span:nth-child(2){flex:1}.fmt-b i{font-style:normal;color:var(--navy);display:inline-flex}.fmt-b i .ic{width:16px;height:16px}
+.fmt-b .ti,.xdoc .ti{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--navy);flex:none}
+.fmt-b.g{background:#EEF8F1;border-color:#cfe9d8;color:#1f5b36}
+.xdoc{display:flex;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;margin-bottom:8px;width:100%;text-align:left}
+.xdoc .xd-t{flex:1;min-width:0}.xdoc .xd-t b{display:block;font-size:14px}.xdoc .xd-t small{color:var(--mute);font-size:12px}
+.xdoc .rec-a{margin:0;justify-content:flex-end}.xdoc.anul{background:#FBF7F7}.xdoc.anul .xd-t>b{text-decoration:line-through;color:#7a5050}.bad-t{color:#a12520}
+.xarch{background:#F4FBF6;border-color:#cfe9d8;color:inherit}
+#dlgVer .dlg{height:100%}.ver-b{padding:0!important;background:#e6e6ee}.ver-b iframe{width:100%;height:100%;min-height:70vh;border:0;display:block}
+.btn.ax{gap:6px}
 /* cargando */
 #cargando{position:fixed;inset:0;z-index:99999;background:rgba(30,30,70,.28);display:grid;place-items:center;backdrop-filter:blur(1.5px)}
 #cargando>div{background:#fff;border-radius:16px;padding:18px 24px;display:flex;gap:14px;align-items:center;font-weight:600;color:var(--navy);box-shadow:0 20px 50px -20px rgba(0,0,0,.5)}
@@ -408,6 +452,10 @@ table.tb td{padding:8px;border-bottom:1px solid #EEF1F5;vertical-align:top}
   .grid[style*="repeat(8"]{grid-template-columns:repeat(4,minmax(0,1fr))!important}
   .secnav{border-radius:14px;top:-12px}.secnav button{padding:6px 9px;font-size:12px}
   .quick-b .btn{flex:1 1 45%}
+  .dlg-h .acts{width:100%;order:3}.dlg-h .acts .btn{flex:1}
+  .grid.svg{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .xdoc{flex-wrap:wrap}.xdoc .rec-a{width:100%;justify-content:flex-start}
+  .fmt-grid{grid-template-columns:1fr 1fr}
   .bigsearch{flex-direction:column;align-items:stretch}.search.big input{font-size:15px}
   .arq-add{gap:8px}.arq-big{padding:14px 6px}.arq-big span{display:none}.arq-big b{font-size:13px}
   .arq-grid{grid-template-columns:1fr}
@@ -432,6 +480,26 @@ table.tb td{padding:8px;border-bottom:1px solid #EEF1F5;vertical-align:top}
 .rx-half{border:1px dashed #c9c9e6;border-radius:12px;padding:12px;background:#fff;margin-bottom:12px}
 .rx-half h6{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--navy2)}
 .rx-half textarea{width:100%;min-height:150px;border:1px solid var(--line2);border-radius:10px;padding:10px;outline:none;line-height:1.5;resize:vertical}
+/* panel · pacientes */
+.pp-l{display:flex;flex-direction:column;gap:8px}
+.pp-r{display:grid;grid-template-columns:minmax(0,2fr) 1fr 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+.pp-r.dup{background:#FFFBF0;border-color:#f0dca8}
+.pp-n b{font-size:13.5px}.pp-n small,.pp-f small{display:block;color:var(--mute);font-size:11.5px}.pp-f b{font-size:12.5px;font-weight:600}
+.pp-r .rec-a{margin:0}
+.tile.g{background:#EEF8F1;border-color:#cfe9d8}.tile.w{grid-column:1/-1;justify-content:center;background:#EDEDF8;color:var(--navy)}
+@media (max-width:640px){.pp-r{grid-template-columns:1fr 1fr}.pp-n{grid-column:1/-1}.pp-r .rec-a{grid-column:1/-1}}
+.inst{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.45}
+.x-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:12px}
+.x-res>div{background:#F7F7FC;border:1px solid var(--line);border-radius:12px;padding:8px 12px;min-width:0}.x-res small{display:block;color:var(--mute);font-size:11px;text-transform:uppercase;letter-spacing:.04em}.x-res b{font-size:13px;display:block;overflow-wrap:anywhere}
+@media (max-width:640px){.fmt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fmt-b{padding:9px 10px;font-size:12.5px;gap:8px}.fmt-b i{display:none}.dlg-h .t b{flex-wrap:wrap;row-gap:4px}.dlg-h .t{padding-right:46px}}
+@media (max-width:640px){.tools .sel{flex:1 1 150px;min-width:0}.tools .sel select{min-width:0;flex:1}}
+.appft{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:center;padding:14px var(--gut) 22px;font-size:11.5px;color:var(--mute);border-top:1px solid var(--line);background:#fff}
+.appft span{display:inline-flex;align-items:center;gap:6px}.appft .ic{width:14px;height:14px}
+.lnk{background:none;border:0;padding:0;color:var(--navy);font-weight:600;text-decoration:underline;font-size:inherit;cursor:pointer}
+.aviso h2{font-family:var(--serif);font-weight:400;color:var(--navy);font-size:22px;margin:0 0 8px}.aviso p{font-size:13px;line-height:1.5;margin:6px 0}.aviso-f{display:none}
+#dlgAsk .aviso{max-height:55vh;overflow:auto}
+@media (max-width:640px){.appft{padding-bottom:calc(86px + env(safe-area-inset-bottom));font-size:11px}body:not(.locked) main{padding-bottom:16px}}
+.appft[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -451,6 +519,7 @@ table.tb td{padding:8px;border-bottom:1px solid #EEF1F5;vertical-align:top}
   <div class="seal" data-logo></div>
   <div class="brand"><h1 id="hName">Expediente Clínico</h1><p id="hEsp"></p></div>
   <div class="who"><div class="n" id="hWho"></div><div class="av" id="hAv"></div>
+    <button class="out-btn" id="btnInst" title="Instalar como aplicación" aria-label="Instalar como aplicación" hidden><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></button>
     <button class="out-btn" id="btnOut" title="Cerrar sesión" aria-label="Cerrar sesión"><svg class="ic" viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11"/></svg></button></div>
 </header>
 <nav class="tabs" id="tabs"></nav>
@@ -461,12 +530,14 @@ table.tb td{padding:8px;border-bottom:1px solid #EEF1F5;vertical-align:top}
   <button class="btn icon" id="btnPanel" type="button" title="Panel de control" aria-label="Panel de control"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
 </div>
 <main id="view"></main>
+<footer class="appft" id="appFt" hidden></footer>
 
 <dialog id="dlgPac"><div class="dlg" id="pacRoot"></div></dialog>
 <dialog id="dlgExp"><div class="dlg" id="expRoot"></div></dialog>
 <dialog id="dlgDoc"><div class="dlg" id="docRoot"></div></dialog>
 <dialog id="dlgCita" class="md"><div class="dlg" id="citaRoot"></div></dialog>
 <dialog id="dlgPanel"><div class="dlg" id="panelRoot"></div></dialog>
+<dialog id="dlgVer"><div class="dlg" id="verRoot"></div></dialog>
 <dialog id="dlgVis"><div class="dlg" id="visRoot"></div></dialog>
 <dialog id="dlgAsk" class="sm"><div class="dlg" id="askRoot"></div></dialog>
 <div id="cargando" hidden><div><i></i><span id="cargTxt">Abriendo…</span></div></div>
@@ -480,7 +551,7 @@ table.tb td{padding:8px;border-bottom:1px solid #EEF1F5;vertical-align:top}
    Todo (nombre del médico, cédulas, sedes, pacientes, agenda) llega desde el
    servidor de Google Apps Script (Codigo.gs) después de iniciar sesión con Google.
    ===================================================================== */
-const APP_VERSION = '1.03';
+const APP_VERSION = '1.04';
 const API_URL   = 'https://script.google.com/macros/s/AKfycbx-HbaNR8wABXVLHHqcTswh-lwvzBegrviIMudE10e3NS7bDmQtydUYrlsqtp6022goyA/exec';   // enlace /exec del Apps Script
 const CLIENT_ID = '536887128333-fe75imrstc37jboajmq9lt8vum0ojq1v.apps.googleusercontent.com';   // ID de cliente OAuth (Google Cloud › Expediente Clinico)
 
@@ -526,7 +597,7 @@ const largo = iso => { const d = dISO(iso); return d ? DIAS[d.getDay()] + ' ' + 
 
 /* ---------- Íconos (SVG en línea, sin imágenes) ---------- */
 const P = {
-  qx: '<path d="M4 20l7-7M8 10l6 6M12 12l7-9 3 3-9 7"/>',
+  qx: '<path d="M2.9 19.3l6.3-6.3 1.8 1.8-6.3 6.3a1.27 1.27 0 0 1-1.8-1.8z"/><path d="M11 14.8l1.6-1.6L20.6 3.4c1 3.4-.3 7.4-3.4 10l-3.1 2.6"/><path d="M12.6 13.2l1.5 2.8"/>',
   cons: '<path d="M6 3v6a4 4 0 0 0 8 0V3M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/>',
   hosp: '<path d="M3 19V6M3 15h18v4M21 15v-2.5A2.5 2.5 0 0 0 18.5 10H11v5"/><circle cx="7" cy="12" r="1.7"/>',
   arch: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
@@ -550,7 +621,10 @@ const P = {
   edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/>',
   save: '<path d="M5 3h11l3 3v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M7 3v6h8V3M7 21v-7h10v7"/>',
   sign: '<path d="M3 17c3 0 4-6 7-6s1 7 4 7 3-4 7-4"/><path d="M3 21h18"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
   user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>',
+  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M15.5 4.8a3.4 3.4 0 0 1 0 6.4M18 14.8c2 .7 3.2 2.5 3.6 5.2"/>',
+  pin: '<path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
   bed: '<path d="M3 19V6M3 15h18v4M21 15v-2.5A2.5 2.5 0 0 0 18.5 10H11v5"/><circle cx="7" cy="12" r="1.7"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
   copy: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>',
@@ -575,11 +649,11 @@ let CARG = 0;
 function cargando(on, msg) { CARG = Math.max(0, CARG + (on ? 1 : -1)); const el = $('#cargando'); if (!el) return; if (msg) $('#cargTxt').textContent = msg; el.hidden = !CARG; }
 async function conCarga(msg, fn) { if (CARG) return; cargando(true, msg); try { return await fn(); } finally { cargando(false); } }
 /* Diálogo de confirmación / captura simple */
-function ask({ title, text, input, ok = 'Aceptar', cancel = 'Cancelar', danger, value = '', area }) {
+function ask({ title, text, html, input, ok = 'Aceptar', cancel = 'Cancelar', danger, value = '', area }) {
   return new Promise(res => {
     const d = $('#dlgAsk');
     $('#askRoot').innerHTML = `<div class="dlg-h"><div class="t"><b>${esc(title || '')}</b></div></div>
-      <div class="dlg-b" style="background:#fff">${text ? `<p style="margin:0 0 12px;white-space:pre-wrap">${esc(text)}</p>` : ''}
+      <div class="dlg-b" style="background:#fff">${text ? `<p style="margin:0 0 12px;white-space:pre-wrap">${esc(text)}</p>` : ''}${html || ''}
       ${input ? `<div class="f s6"><label>${esc(input)}</label>${area ? `<textarea id="askIn" rows="4">${esc(value)}</textarea>` : `<input id="askIn" value="${esc(value)}">`}</div>` : ''}</div>
       <div class="dlg-f">${cancel ? `<button class="btn" data-a="0">${esc(cancel)}</button>` : ''}<button class="btn ${danger ? 'danger' : 'pri'}" data-a="1">${esc(ok)}</button></div>`;
     const done = v => { d.close(); res(v); };
@@ -596,7 +670,7 @@ const S = {
   ses: null,            // { rol, email, nombre, perfil, sedes, prefs, presets, asistentes }
   lista: [],            // metadatos de pacientes
   ag: { quirofano: { items: {}, sello: -1 }, consulta: { items: {}, sello: -1 } },
-  tab: 'consulta', busy: 0, net: true
+  tab: 'archivo', busy: 0, net: true
 };
 const esMedico = () => !!(S.ses && S.ses.rol === 'medico');
 const perfil = () => (S.ses && S.ses.perfil) || {};
@@ -679,19 +753,19 @@ async function enter() {
     S.lista = d.lista || [];
     ['quirofano', 'consulta'].forEach(t => { if (d.ag && d.ag[t]) S.ag[t] = d.ag[t]; });
     hideGate(); buildTabs(); go(S.tab);
-    setInterval(refrescarAgendas, 90000);
+    setInterval(refrescarAgendas, 60000);
   } catch (e) {
     if (e.code === 'token' || e.code === 'noautorizado') return;
     showGate(e.message, true);
   }
 }
 function aplicarSesion(s) {
-  S.ses = s;
+  S.ses = s; setTimeout(() => { try { pintaPie(); } catch (_) { } }, 0);
   if (s.pase && s.paseExp) tokSet(s.pase, s.paseExp);
   const p = s.perfil || {};
   $('#hName').textContent = p.nombreCorto || p.nombre || 'Expediente Clínico';
   $('#hEsp').textContent = p.especialidad || '';
-  $('#hWho').innerHTML = `<b>${esc(s.nombre || s.email)}</b>${s.rol === 'medico' ? 'Médico titular' : 'Asistente de programación'}`;
+  $('#hWho').innerHTML = `<b>${esc(s.nombre || s.email)}</b>${s.rol === 'medico' ? '' : 'Asistente de programación'}`;
   $('#hAv').innerHTML = s.foto ? `<img src="${esc(s.foto)}" alt="" referrerpolicy="no-referrer">` : esc(norm(s.nombre || s.email).split(' ').map(w => w[0]).slice(0, 2).join(''));
   document.title = (p.nombreCorto || 'Expediente Clínico') + ' · Expediente';
   $('#btnNew').hidden = !esMedico(); $('#btnPanel').hidden = !esMedico();
@@ -704,15 +778,16 @@ async function salir() {
 
 /* ---------- Pestañas ---------- */
 const TABS = [
-  ['quirofano', 'Agenda Quirófano', 'qx', 'Agenda de Quirófano'],
-  ['consulta', 'Agenda Consulta', 'cons', 'Agenda de Consulta'],
+  ['archivo', 'Archivo Clínico', 'arch', 'Archivo Clínico'],
   ['sep'],
-  ['hosp', 'Hospitalizados', 'hosp', 'Hospitalizados'],
-  ['archivo', 'Archivo Clínico', 'arch', 'Archivo Clínico']
+  ['consulta', 'Agenda Consulta', 'cons', 'Agenda de Consulta'],
+  ['quirofano', 'Agenda Quirófano', 'qx', 'Agenda de Quirófano'],
+  ['hosp', 'Hospitalizados', 'hosp', 'Pacientes hospitalizados']
 ];
 function buildTabs() {
   const ok = t => esMedico() || t === 'quirofano' || t === 'consulta';
   if (!ok(S.tab)) S.tab = 'consulta';
+  if (!esMedico() && S.tab === 'archivo') S.tab = 'consulta';
   $('#tabs').innerHTML = TABS.filter(t => t[0] === 'sep' ? esMedico() : ok(t[0])).map(t => t[0] === 'sep' ? '<span class="sep"></span>' :
     `<button type="button" data-tab="${t[0]}">${ic(t[2])}<span class="tl">${t[1]}</span>${t[0] === 'hosp' ? '<span class="cnt" id="cntHosp"></span>' : ''}</button>`).join('');
   updCounts();
@@ -753,30 +828,94 @@ function metaDe(p) {
     ig: (p.ingresos || []).slice(-12).map(x => [x.fIngreso || '', x.fEgreso || '', x.sede || '']).concat(h.activo ? [[h.fIngreso || '', '', h.sede || '']] : []),
     cr: (p.creado && p.creado.ts) || 0, nd: docs.length, ud: ult };
 }
-const PAC = new Map(); // id → { pac, mod }
+const PAC = new Map(); // id → { pac, mod (versión de Drive), t }
+/* Lectura: si ya está en memoria se usa al instante; si es «fresco» y viejo se actualiza en segundo plano. */
 async function leerPac(id, fresco) {
   const c = PAC.get(id);
-  if (c && (!fresco || Date.now() - (c.t || 0) < 45000)) return c.pac;
+  if (c) {
+    if (fresco && !COLA.has(id) && Date.now() - (c.t || 0) > 60000) refrescarPac(id);
+    return c.pac;
+  }
   const r = await call('dcLeer', id);
   const pac = JSON.parse(r.content); PAC.set(id, { pac, mod: r.mod, t: Date.now() });
   return pac;
 }
-/* Guarda en Drive. Si alguien más (otra pestaña/equipo) lo cambió, avisa en lugar de sobrescribir. */
-async function guardarPac(pac, opt = {}) {
-  pac.mod = Date.now();
-  const base = PAC.has(pac.id) ? PAC.get(pac.id).mod : '';
-  const meta = metaDe(pac);
-  let r = await call('dcGuardar', pac.id, JSON.stringify(pac), meta, opt.forzar ? '' : base, opt.accion || 'guardar', opt.detalle || '');
-  if (r && r.conflicto) {
-    const ok = await ask({ title: 'Cambios en otro equipo', text: 'Este expediente se modificó en otro equipo o pestaña después de abrirlo (' + new Date(r.mod).toLocaleString('es-MX') + ').\n¿Sobrescribir con tu versión? Si eliges Cancelar se recargará la versión de Drive.', ok: 'Sobrescribir', cancel: 'Cancelar', danger: true });
-    if (!ok) { await leerPac(pac.id, true); throw Object.assign(new Error('Se recargó la versión guardada en Drive.'), { code: 'conflicto' }); }
-    r = await call('dcGuardar', pac.id, JSON.stringify(pac), meta, '', opt.accion || 'guardar', opt.detalle || '');
-  }
-  PAC.set(pac.id, { pac, mod: r.mod, t: Date.now() });
-  const i = S.lista.findIndex(x => x.id === pac.id), it = { id: pac.id, mod: r.mod, m: meta };
+async function refrescarPac(id) {
+  try { const r = await call('dcLeer', id); if (COLA.has(id)) return; const c = PAC.get(id); if (c && c.mod === r.mod) { c.t = Date.now(); return; }
+    PAC.set(id, { pac: JSON.parse(r.content), mod: r.mod, t: Date.now() }); } catch (_) { }
+}
+/* ---------- Guardado en segundo plano ----------
+   La pantalla se actualiza al instante; Drive se actualiza detrás, en orden, con reintentos.
+   Si otro equipo cambió el expediente, se combinan los documentos y archivos de ambos. */
+const COLA = new Map();      // id → promesa en curso
+let PENDIENTES = 0;
+function syncPill() {
+  const s = $('#sync'); if (!s) return;
+  s.className = 'pill' + (PENDIENTES ? ' warn' : ''); s.textContent = PENDIENTES ? 'Guardando…' : 'Guardado';
+}
+window.addEventListener('beforeunload', e => { if (PENDIENTES) { e.preventDefault(); e.returnValue = ''; } });
+function upsertLista(pac, mod) {
+  const meta = metaDe(pac), i = S.lista.findIndex(x => x.id === pac.id), it = { id: pac.id, mod: mod || new Date().toISOString(), m: meta };
   if (i >= 0) S.lista[i] = it; else S.lista.unshift(it);
   updCounts();
-  return r;
+}
+function guardarPac(pac, opt = {}) {
+  pac.mod = Date.now();
+  const prev = PAC.get(pac.id), copia = clone(pac);
+  PAC.set(pac.id, { pac: copia, mod: prev ? prev.mod : '', t: Date.now() });
+  upsertLista(copia, prev && prev.mod);
+  const p = (COLA.get(pac.id) || Promise.resolve()).catch(() => { }).then(() => enviarPac(pac.id, opt));
+  COLA.set(pac.id, p);
+  p.finally(() => { if (COLA.get(pac.id) === p) COLA.delete(pac.id); }).catch(() => { });
+  return p;
+}
+/* Aplica un cambio sobre la versión más reciente en memoria y la guarda */
+function mutarPac(id, fn, opt, base) {
+  const c = PAC.get(id); const pac = clone(c ? c.pac : base);
+  fn(pac); guardarPac(pac, opt).catch(() => { });
+  return clone(pac);
+}
+function fusionarPac(loc, srv) {
+  const out = clone(loc), por = (a, b, k) => { const m = new Map(); (b || []).forEach(x => m.set(x[k], x)); (a || []).forEach(x => { const y = m.get(x[k]); if (!y || (x.mod || 0) >= (y.mod || 0)) m.set(x[k], x); }); return [...m.values()]; };
+  out.docs = por(loc.docs, srv.docs, 'id'); out.archivos = por(loc.archivos, srv.archivos, 'id');
+  return out;
+}
+async function enviarPac(id, opt) {
+  PENDIENTES++; syncPill();
+  try {
+    for (let n = 0; ; n++) {
+      const c = PAC.get(id); if (!c) return;
+      const pac = c.pac, meta = metaDe(pac);
+      try {
+        const r = await call('dcGuardar', id, JSON.stringify(pac), meta, c.mod || '', opt.accion || 'guardar', opt.detalle || '');
+        if (r && r.conflicto) {
+          const s = await call('dcLeer', id), srv = JSON.parse(s.content), mezcla = fusionarPac(PAC.get(id).pac, srv);
+          PAC.set(id, { pac: mezcla, mod: s.mod, t: Date.now() }); continue;
+        }
+        const cur = PAC.get(id); if (cur) { cur.mod = r.mod; cur.t = Date.now(); }
+        const i = S.lista.findIndex(x => x.id === id); if (i >= 0) S.lista[i].mod = r.mod;
+        return r;
+      } catch (e) {
+        if (n >= 4 || /permiso|token|noautorizado/.test(e.code || '')) { toast('No se pudo guardar en Drive: ' + e.message + '. Revisa tu conexión; no cierres la página.', 'bad'); setTimeout(() => guardarPac(clone(PAC.get(id).pac), opt), 30000); throw e; }
+        await sleep(1500 * (n + 1));
+      }
+    }
+  } finally { PENDIENTES--; syncPill(); }
+}
+/* Paciente ya registrado con el mismo nombre (y fecha de nacimiento compatible) */
+function duplicadoDe(d, nombreLibre) {
+  const n = norm(nombreDe(d) || nombreLibre || ''); if (!n) return null;
+  return S.lista.find(x => x.m && norm(x.m.n) === n && (!d.fnac || !x.m.fn || x.m.fn === d.fnac)) || null;
+}
+/* Elimina un expediente (va a la papelera de Drive 30 días) y lo desvincula de las agendas */
+async function eliminarPaciente(id) {
+  const it = S.lista.find(x => x.id === id), n = (it && it.m && it.m.n) || 'este paciente', nd = (it && it.m && it.m.nd) || 0;
+  const ok = await ask({ title: 'Eliminar paciente', text: '¿Eliminar a ' + n + '?' + (nd ? ' Tiene ' + nd + ' documento(s) en su archivo clínico.' : '') + ' Se envía a la papelera de Drive, donde puede recuperarse durante 30 días.', ok: 'Eliminar', danger: true });
+  if (!ok) return false;
+  try { await call('dcPacienteBorrar', id, true); PAC.delete(id); S.lista = S.lista.filter(x => x.id !== id);
+    for (const t of ['consulta', 'quirofano']) { const ls = Object.values(S.ag[t].items).filter(e => e.pac === id); if (ls.length) cambiarAg(t, ls.map(e => ({ id: e.id, set: { pac: '' }, a: 'Expediente eliminado' }))).catch(() => { }); }
+    updCounts(); if (VIEWS[S.tab] && !$('#dlgPanel').open) go(S.tab); toast('Paciente eliminado', 'ok'); return true; }
+  catch (e) { toast(e.message, 'bad'); return false; }
 }
 async function recargarLista() { S.lista = await call('dcLista'); updCounts(); }
 function buscarEn(lista, q) {
@@ -785,9 +924,7 @@ function buscarEn(lista, q) {
 }
 function tagFn(m) { return m.fn ? `<span>FN. ${dmy(m.fn)}</span><span>${edad(m.fn)}</span>` : ''; }
 function actBtns(id) {
-  return `<span class="pact"><button class="sq" data-hoja="${id}" title="Hoja de datos">${ic('grid')}</button>
-  <button class="sq y" data-exp="${id}" title="Archivo clínico del paciente">${ic('arch')}</button>
-  <button class="sq g" data-arqp="${id}" title="Estudios y archivos (foto, PDF, enlace)">${ic('clip')}</button></span>`;
+  return `<span class="pact"><button class="btn sm ax" data-exp="${id}" title="Abrir archivo clínico">${ic('arch')}Archivo clínico</button></span>`;
 }
 document.addEventListener('click', e => {
   const h = e.target.closest('[data-hoja]'); if (h) { abrirHoja(h.dataset.hoja); return; }
@@ -807,7 +944,7 @@ VIEWS.archivo = function () {
   <div class="plist" id="arList"></div><div style="text-align:center;margin-top:12px"><button class="btn" id="arMas" hidden>Ver más</button></div>`;
   $('#arOrd').value = AR.orden;
   $('#arQ').oninput = e => { AR.q = e.target.value; AR.n = 60; pintaArchivo(); };
-  $('#arQ').onkeydown = e => { if (e.key === 'Enter') { const l = buscarEn(S.lista, AR.q); if (l.length === 1) abrirHoja(l[0].id); else if (!l.length && AR.q.trim()) nuevoPaciente(AR.q); } };
+  $('#arQ').onkeydown = e => { if (e.key === 'Enter') { const l = buscarEn(S.lista, AR.q); if (l.length === 1) abrirExpediente(l[0].id); else if (!l.length && AR.q.trim()) nuevoPaciente(AR.q); } };
   $('#arOrd').onchange = e => { AR.orden = e.target.value; pintaArchivo(); };
   $('#arRef').onclick = async () => { await recargarLista(); pintaArchivo(); toast('Lista actualizada'); };
   $('#arMas').onclick = () => { AR.n += 60; pintaArchivo(); };
@@ -833,7 +970,7 @@ function pintaArchivo() {
       : (l.length ? '' : `<div class="empty"><b>Aún no hay pacientes</b>Usa «Nuevo paciente» para registrar el primero.</div>`));
   const b = $('#arList [data-nuevo]'); if (b) b.onclick = () => nuevoPaciente(q);
 }
-document.addEventListener('click', e => { const r = e.target.closest('.prow-click'); if (r && !e.target.closest('button,textarea,a,input')) abrirHoja(r.dataset.row); });
+document.addEventListener('click', e => { const r = e.target.closest('.prow-click'); if (r && !e.target.closest('button,textarea,a,input')) abrirExpediente(r.dataset.row); });
 
 /* ---------- Alta rápida: solo datos esenciales ---------- */
 function partirNombre(q) {
@@ -872,7 +1009,9 @@ function nuevoPaciente(q) {
     if (tel && tel.length !== 10) { toast('El teléfono debe tener 10 dígitos', 'warn'); return; }
     const pac = pacVacio(); Object.assign(pac.datos, { apPaterno: ap, apMaterno: $('#npAm').value.trim().toUpperCase(), nombres: no, fnac: fn || '', sexo, tel1: tel });
     a.disabled = true;
-    try { await guardarPac(pac, { accion: 'crear paciente' }); d.close(); toast('Paciente registrado', 'ok'); AR.q = ''; if (S.tab === 'archivo') VIEWS.archivo();
+    const dup = duplicadoDe(pac.datos);
+    if (dup) { a.disabled = false; d.close(); if (await ask({ title: 'Este paciente ya existe', text: 'Ya hay un expediente de ' + dup.m.n + (dup.m.fn ? ' (FN ' + dmy(dup.m.fn) + ')' : '') + '. Para no duplicarlo se abrirá el existente.', ok: 'Abrir el existente', cancel: 'Crear otro de todos modos' })) { abrirExpediente(dup.id); return; } }
+    try { guardarPac(pac, { accion: 'crear paciente' }).catch(() => { }); if (d.open) d.close(); toast('Paciente registrado', 'ok'); AR.q = ''; if (S.tab === 'archivo') VIEWS.archivo();
       if (a.dataset.a === 'nota') abrirDoc(pac.id, 'nota'); else abrirHoja(pac.id); }
     catch (er) { a.disabled = false; toast(er.message, 'bad'); }
   };
@@ -917,7 +1056,7 @@ function pintaHosp() {
 document.addEventListener('click', e => { const b = e.target.closest('[data-nota]'); if (b) abrirDoc(b.dataset.nota, 'nota', { sub: 'evol' }); });
 document.addEventListener('change', async e => {
   const t = e.target.closest('[data-pend]'); if (!t) return;
-  try { const pac = await leerPac(t.dataset.pend); pac.hosp = pac.hosp || {}; pac.hosp.pend = t.value.trim(); await guardarPac(pac, { accion: 'pendientes' }); toast('Pendientes guardados', 'ok'); }
+  try { const pac = await leerPac(t.dataset.pend); pac.hosp = pac.hosp || {}; pac.hosp.pend = t.value.trim(); mutarPac(pac.id, x => { x.hosp = x.hosp || {}; x.hosp.pend = pac.hosp.pend; }, { accion: 'pendientes' }, pac); toast('Pendientes guardados', 'ok'); }
   catch (er) { toast(er.message, 'bad'); }
 });
 async function ingresarPaciente() {
@@ -1052,27 +1191,31 @@ document.addEventListener('click', e => {
   const pr = e.target.closest('[data-agpre]'); if (pr) { citaADoc('quirofano', agItem('quirofano', pr.dataset.agpre), 'nota', 'preop'); return; }
 });
 /* De la agenda a la nota: si el paciente no tiene expediente se crea con los datos de la cita */
+/* Abre la nota desde la agenda. El expediente se vincula una sola vez: si ya existe un paciente
+   con el mismo nombre (y fecha de nacimiento compatible) se usa ese; nunca se crean duplicados. */
+const CITA_LIGANDO = new Set();
 async function citaADoc(tipo, e, docTipo, sub) {
-  if (!e || CARG) return;
-  cargando(true, 'Abriendo la nota…');
+  if (!e || CARG || CITA_LIGANDO.has(e.id)) return;
+  CITA_LIGANDO.add(e.id);
   try {
     let pid = e.pac;
     if (pid && !S.lista.some(x => x.id === pid)) pid = '';
     if (!pid) {
-      const parecidos = S.lista.filter(x => x.m && norm(x.m.n) === norm(e.n) && (!e.fn || !x.m.fn || x.m.fn === e.fn));
-      if (parecidos.length === 1 && await askLibre({ title: 'Paciente existente', text: 'Ya existe un expediente de ' + parecidos[0].m.n + (parecidos[0].m.fn ? ' (FN ' + dmy(parecidos[0].m.fn) + ')' : '') + '. ¿Usar ese expediente?', ok: 'Usar expediente', cancel: 'Crear uno nuevo' })) pid = parecidos[0].id;
-      if (!pid) {
+      const dup = duplicadoDe({ apPaterno: e.ap, apMaterno: e.am, nombres: e.no || (!e.ap ? e.n : ''), fnac: e.fn }, e.n);
+      if (dup) pid = dup.id;
+      else {
         const pac = pacVacio(); Object.assign(pac.datos, { apPaterno: e.ap || '', apMaterno: e.am || '', nombres: e.no || (!e.ap ? e.n : ''), fnac: e.fn || '', tel1: e.t || '', dx: e.dx || '' });
         if (tipo === 'quirofano') pac.cx = { planeada: e.cx || '', tipo: e.tcx || '', fecha: e.fecha || '', sede: e.sede || '' };
-        await guardarPac(pac, { accion: 'crear paciente desde agenda' }); pid = pac.id;
+        guardarPac(pac, { accion: 'crear paciente desde agenda' }).catch(() => { }); pid = pac.id;
       }
-      await cambiarAg(tipo, [{ id: e.id, set: { pac: pid }, a: 'Vinculado a expediente' }]);
+      e.pac = pid;
+      cambiarAg(tipo, [{ id: e.id, set: { pac: pid }, a: 'Vinculado a expediente' }]).catch(er => toast('No se pudo vincular la cita: ' + er.message, 'warn'));
     }
     const ligado = docTipo === 'postqx' ? e.postqx : docTipo === 'nota' && tipo === 'consulta' ? e.nota : '';
-    abrirDoc(pid, docTipo, { sub: sub || (tipo === 'consulta' ? (e.tc === 'PRIMERA VEZ' ? 'cons1' : e.tc === 'POSTOPERATORIO' ? 'postcons' : 'cons2') : ''), cita: { tipo, id: e.id }, docId: ligado || '',
-      pre: { fecha: e.fecha || hoyISO(), hora: tipo === 'consulta' ? (e.hora || '') : '', sede: e.sede || '', motivo: e.motivo || '', cx: e.cx || '', dx: e.dx || '' } }, true);
+    await abrirDoc(pid, docTipo, { sub: sub || (tipo === 'consulta' && e.tc === 'POSTOPERATORIO' ? 'postcons' : ''), cita: { tipo, id: e.id }, docId: ligado || '',
+      pre: { fecha: e.fecha || hoyISO(), hora: tipo === 'consulta' ? (e.hora || '') : '', sede: e.sede || '', motivo: e.motivo || '', cx: e.cx || '', dx: e.dx || '', anest: e.anest || '', ayud: e.ayud || '' } });
   } catch (er) { toast(er.message, 'bad'); }
-  finally { cargando(false); }
+  finally { CITA_LIGANDO.delete(e.id); }
 }
 async function cambiarAg(tipo, cambios) {
   const r = await call('dcAgendaCambiar', tipo, cambios);
@@ -1082,9 +1225,19 @@ async function cambiarAg(tipo, cambios) {
 async function refrescarAgendas() {
   if (!S.ses || document.hidden) return;
   for (const t of ['quirofano', 'consulta']) {
-    try { const r = await call('dcAgendaLeer', t, S.ag[t].sello); if (r && !r.igual) { S.ag[t] = r; if (S.tab === t) pintaAgenda(t); } } catch (_) { }
+    try { const r = await call('dcAgendaLeer', t, S.ag[t].sello); if (r && !r.igual) { S.ag[t] = r; if (S.tab === t && !ocupado()) pintaAgenda(t); } } catch (_) { }
+  }
+  /* Relee la lista de pacientes en segundo plano (cambios hechos en otro equipo) */
+  if (esMedico() && !PENDIENTES) {
+    try { const l = await call('dcLista'); if (PENDIENTES) return;
+      const viejo = new Map(S.lista.map(x => [x.id, x.mod])), cambio = l.length !== S.lista.length || l.some(x => viejo.get(x.id) !== x.mod);
+      if (!cambio) return;
+      l.forEach(x => { const c = PAC.get(x.id); if (c && c.mod && c.mod !== x.mod && !COLA.has(x.id)) PAC.delete(x.id); });
+      S.lista = l; updCounts(); if ((S.tab === 'archivo' || S.tab === 'hosp') && !ocupado()) VIEWS[S.tab](); } catch (_) { }
   }
 }
+/* No repintar mientras se escribe o hay una ventana abierta */
+function ocupado() { const a = document.activeElement; return !!document.querySelector('dialog[open]') || (a && /INPUT|TEXTAREA|SELECT/.test(a.tagName)); }
 document.addEventListener('visibilitychange', () => { if (!document.hidden) refrescarAgendas(); });
 
 /* ---------- Diálogo de cita / programación ---------- */
@@ -1222,7 +1375,7 @@ const HOJA = {
     ['datos.dx', 'Diagnóstico principal', 'ta', 6]
   ] },
   arch: { t: 'Estudios y archivos', tc: 'Archivos', ic: 'clip', f: [] },
-  datos: { t: 'Datos complementarios', tc: 'Más datos', ic: 'list', f: [
+  datos: { t: 'Datos personales', tc: 'Datos personales', ic: 'list', f: [
     ['datos.curp', 'CURP (opcional)', 'up'], ['datos.estadoCivil', 'Estado civil', 'sel', 2, 'civil'], ['datos.ocupacion', 'Ocupación', 'up'],
     ['datos.escolaridad', 'Escolaridad', 'sel', 2, 'esc'], ['datos.religion', 'Religión', 'up'], ['datos.grupoEtnico', 'Grupo étnico / lengua indígena', 'up'],
     ['datos.lugarNac', 'Lugar de nacimiento', 'up'], ['datos.domicilio', 'Domicilio', 'up', 4],
@@ -1297,6 +1450,7 @@ function seccionHTML(key, pac) {
   });
   return h + cerrar();
 }
+const HOJA_ORD = ['ident', 'datos', 'hc', 'arch', 'cx', 'hosp'];
 const H = { pac: null, dirty: false, t: null, nuevo: false };
 async function abrirHoja(id, opt = {}) {
   if (!esMedico()) return;
@@ -1313,13 +1467,13 @@ async function abrirHoja(id, opt = {}) {
       <div class="quick-b"><button class="btn pri" data-dtipo="nota">${ic('nota')}Hacer nota</button><button class="btn" data-dtipo="receta">${ic('receta')}Receta</button>
       <button class="btn" id="hjCons">${ic('cal')}Agendar consulta</button><button class="btn" id="hjProg2">${ic('qx')}Programar cirugía</button></div></div>`,
     datos: `<div class="hj-acts" style="justify-content:flex-end;border-top:1px solid var(--line);padding-top:12px"><button class="btn sm danger" id="hjDel">Eliminar este paciente (duplicado o registro por error)</button></div>`,
-    cx: `<div class="hj-acts"><button class="btn" id="hjProg">${ic('cal')}Programar en quirófano</button><button class="btn" data-dtipo="nota" data-dsub="preop">${ic('nota')}Nota preoperatoria</button></div>`,
-    hc: `<div class="hj-acts"><button class="btn" id="hjHcPrev">${ic('print')}Vista previa / imprimir</button><button class="btn pri" id="hjHcFirm">${ic('sign')}Firmar y archivar historia clínica</button><span class="muted" id="hjHcUlt" style="align-self:center;font-size:12.5px"></span></div>`,
+    cx: `<div class="hj-acts"><button class="btn" id="hjProg">${ic('qx')}Programar en quirófano</button><button class="btn" data-dtipo="nota" data-dsub="preop">${ic('nota')}Nota preoperatoria</button></div>`,
+    hc: `<div class="hj-acts"><button class="btn" id="hjHcPrev">${ic('print')}Vista previa / imprimir</button><button class="btn pri" id="hjHcFirm">${ic('save')}Guardar en el archivo clínico</button><span class="muted" id="hjHcUlt" style="align-self:center;font-size:12.5px"></span></div>`,
     hosp: `<div class="hj-acts"><button class="btn" data-dtipo="nota" data-dsub="ingreso">${ic('nota')}Nota de ingreso</button><button class="btn" data-dtipo="indic">${ic('indic')}Indicaciones</button><button class="btn" data-dtipo="alta">${ic('alta')}Nota de alta (egreso)</button></div><div id="hjIng"></div>`
   };
   const intro = {
     ident: 'Para empezar solo necesitas <b>nombre, fecha de nacimiento y sexo</b>. Lo demás puedes completarlo después.',
-    datos: 'Datos opcionales del paciente. Llénalos cuando tengas tiempo.',
+    datos: 'Datos personales del paciente (opcionales). Llénalos cuando tengas tiempo.',
     cx: 'Datos de la cirugía planeada. Se usan en la nota preoperatoria y en la programación.',
     arch: 'Estudios que trae el paciente: toma una foto, sube el PDF o pega el enlace del laboratorio. Quedan guardados en su expediente.',
     hc: 'Historia clínica (NOM-004-SSA3-2012). Avanza por las pestañas; se guarda sola mientras escribes.',
@@ -1327,25 +1481,18 @@ async function abrirHoja(id, opt = {}) {
   };
   r.innerHTML = `<div class="dlg-h"><div class="t"><b>Hoja de datos</b><small id="hjSub">${esc(nombreDe(pac.datos) || 'Paciente nuevo')}</small></div>
     <span class="pill" id="hjSt">Al día</span><button class="btn dark" id="hjSave">${ic('save')}Guardar</button><button class="x" data-x>✕</button></div>
-  <div style="background:#fff;padding:10px 0 12px;border-bottom:1px solid var(--line)"><div class="dtabs" id="hjTabs">${Object.keys(HOJA).map(k => `<button type="button" data-sec="${k}">${ic(HOJA[k].ic)}${HOJA[k].tc}${k === 'arch' ? '<span class="cnt" id="hjArchN"></span>' : `<i class="hjdot" data-dot="${k}"></i>`}</button>`).join('')}</div></div>
+  <div style="background:#fff;padding:10px 0 12px;border-bottom:1px solid var(--line)"><div class="dtabs" id="hjTabs">${HOJA_ORD.map(k => `<button type="button" data-sec="${k}">${ic(HOJA[k].ic)}${HOJA[k].tc}${k === 'arch' ? '<span class="cnt" id="hjArchN"></span>' : `<i class="hjdot" data-dot="${k}"></i>`}</button>`).join('')}</div></div>
   <div class="dlg-b"><div class="hj-head" id="hjHead"></div><div class="two"><div>
-    ${Object.keys(HOJA).map(k => `<section class="hjsec" id="sec_${k}" hidden><p class="hj-intro">${intro[k]}</p>
+    ${HOJA_ORD.map(k => `<section class="hjsec" id="sec_${k}" hidden><p class="hj-intro">${intro[k]}</p>
       ${k === 'hc' ? `<div class="seg hcseg" id="hcSeg">${HC_PAGS.map(p => `<button type="button" data-hcp-b="${p[0]}">${p[1]}<i class="hjdot" data-hcdot="${p[0]}"></i></button>`).join('')}</div>` : ''}
       ${k === 'arch' ? '<div id="hjArch"></div>' : `<div class="box">${seccionHTML(k, pac)}${extra[k] && k !== 'ident' ? extra[k] : ''}</div>`}
       ${k === 'hc' ? `<div class="hc-nav"><button class="btn" data-hcmov="-1">‹ Anterior</button><span class="grow"></span><button class="btn pri" data-hcmov="1">Siguiente ›</button></div>` : ''}
       ${k === 'ident' ? extra.ident : ''}</section>`).join('')}
   </div>
-  <aside class="side"><div class="card" style="padding:14px"><h4>Archivo Clínico</h4>
-    <div class="tiles">
-      <button class="tile" data-dtipo="nota"><span class="ti">${ic('nota')}</span>Notas médicas</button>
-      <button class="tile" data-dtipo="indic"><span class="ti">${ic('indic')}</span>Indicaciones</button>
-      <button class="tile" data-dtipo="postqx"><span class="ti">${ic('postqx')}</span>Nota postoperatoria</button>
-      <button class="tile" data-dtipo="alta"><span class="ti">${ic('alta')}</span>Nota de alta</button>
-      <button class="tile" data-dtipo="receta"><span class="ti">${ic('receta')}</span>Receta</button>
-      <button class="tile" data-dtipo="lab"><span class="ti">${ic('lab')}</span>Laboratorio</button>
-      <button class="tile" data-dtipo="gab"><span class="ti">${ic('gab')}</span>Gabinete</button>
-      <button class="tile" data-sec="arch"><span class="ti">${ic('clip')}</span>Estudios y archivos</button>
-      <button class="tile" data-verexp><span class="ti">${ic('arch')}</span>Ver todo el archivo</button>
+  <aside class="side"><div class="card side-card"><h4>${ic('arch')} Formatos</h4><p class="muted sm-t">Se abren al instante con los datos de este paciente.</p>
+    <div class="tiles">${ED_TABS.map(t => `<button class="tile" data-dtipo="${t}"><span class="ti">${ic(TIPOS[t].ic)}</span>${t === 'nota' ? 'Nota médica' : TIPOS[t].tab}</button>`).join('')}
+      <button class="tile g" data-sec="arch"><span class="ti">${ic('clip')}</span>Archivos subidos</button>
+      <button class="tile w" data-verexp><span class="ti">${ic('arch')}</span>Ver todo el archivo clínico</button>
     </div></div>
     <div class="card" style="padding:14px" id="hjRes"></div>
   </aside></div></div>`;
@@ -1374,7 +1521,7 @@ async function abrirHoja(id, opt = {}) {
       abrirCita('quirofano', null, { desde: { pac: p.id, n: nombreDe(dd), ap: dd.apPaterno, am: dd.apMaterno, no: dd.nombres, fn: dd.fnac, t: dd.tel1, cx: p.cx.planeada, dx: dd.dx, tcx: p.cx.tipo, fecha: p.cx.fecha || '', sede: p.cx.sede || '' } }); return; }
     if (t.closest('#hjHcPrev')) { imprimirDoc(H.pac, docHC(H.pac, 'borrador')); return; }
     if (t.closest('#hjHcFirm')) { await hjFirmarHC(); return; }
-    const dt = t.closest('[data-dtipo]'); if (dt) { if (!await hjAsegurar()) return; abrirDoc(H.pac.id, dt.dataset.dtipo, { sub: dt.dataset.dsub || '' }); return; }
+    const dt = t.closest('[data-dtipo]'); if (dt) { if (!await hjAsegurar()) return; abrirDoc(H.pac.id, dt.dataset.dtipo, { sub: dt.dataset.dsub || '' }, true); return; }
     if (t.closest('[data-verexp]')) { if (!await hjAsegurar()) return; abrirExpediente(H.pac.id); return; }
   };
   d.oncancel = e => { e.preventDefault(); cerrarHoja(); };
@@ -1409,14 +1556,14 @@ function hjCambio() {
   H.dirty = true; hjEstado(); hjAutos(); hjDots(); hjHead();
   $('#hjSub').textContent = nombreDe(H.pac.datos) || 'Paciente nuevo';
   clearTimeout(H.t);
-  if (!H.nuevo) H.t = setTimeout(() => { if (H.dirty && $('#dlgPac').open) hjGuardar(true); }, 4000);
+  if (!H.nuevo) H.t = setTimeout(() => { if (H.dirty && $('#dlgPac').open) hjGuardar(true); }, 2500);
 }
 function hjHead() {
   const d = H.pac.datos, n = nombreDe(d), el = $('#hjHead'); if (!el) return;
   const na = (H.pac.archivos || []).filter(a => !a.borrado).length, c = $('#hjArchN'); if (c) { c.textContent = na || ''; c.hidden = !na; }
   el.innerHTML = n ? `<span class="hj-av">${esc(((d.nombres || '')[0] || '') + ((d.apPaterno || '')[0] || ''))}</span><div><b>${esc(n)}</b><div class="hj-ch">${d.fnac ? `<span class="chip"><b>${edad(d.fnac)}</b> · ${dmy(d.fnac)}</span>` : ''}${d.sexo ? `<span class="chip">${SEXO[d.sexo]}</span>` : ''}${d.tel1 ? `<span class="chip">${ic('phone')} ${esc(d.tel1)}</span>` : ''}${H.pac.hosp && H.pac.hosp.activo ? `<span class="chip blue">Cama ${esc(H.pac.hosp.cama || '—')} · ${esc(sedeNom(H.pac.hosp.sede))}</span>` : ''}${d.alergias && !/^NEGAD/.test(d.alergias) ? `<span class="chip bad">Alergias: ${esc(d.alergias)}</span>` : ''}</div></div>` : '<div class="muted">Paciente nuevo · empieza por la ficha</div>';
 }
-function hjEstado() { const s = $('#hjSt'); if (!s) return; s.className = 'pill' + (H.dirty ? ' warn' : ''); s.textContent = H.dirty ? 'Sin guardar' : 'Al día en Drive'; }
+function hjEstado() { const s = $('#hjSt'); if (!s) return; s.className = 'pill' + (H.dirty ? ' warn' : ''); s.textContent = H.dirty ? 'Sin guardar' : 'Guardado'; }
 function hjAutos() {
   const p = H.pac, set = (k, v) => { const e = $(`[data-auto="${k}"]`); if (e) e.textContent = v || '—'; };
   set('=edad', edad(p.datos.fnac)); set('=imc', imcDe(p.hc.peso, p.hc.talla)); set('=imcD', imcDe(p.datos.peso, p.datos.talla));
@@ -1439,7 +1586,7 @@ function hjResumen() {
   const p = H.pac, docs = (p.docs || []).filter(d => d.est !== 'anulado');
   const ult = docs.slice().sort((a, b) => (b.fecha + b.hora).localeCompare(a.fecha + a.hora)).slice(0, 6);
   $('#hjRes').innerHTML = `<b style="font-size:14px">Últimos documentos</b><div class="lastdocs" style="margin-top:10px">${ult.length ? ult.map(d => `<button class="it" data-abrirdoc="${d.id}"><b>${esc(tituloDoc(d))}${d.est === 'borrador' ? ' · BORRADOR' : ''}</b><small>${dmy(d.fecha)} ${esc(d.hora || '')}</small></button>`).join('') : '<p class="muted" style="font-size:13px">Todavía no hay documentos.</p>'}</div>`;
-  const hc = docs.filter(d => d.tipo === 'hc' && d.est === 'firmado').pop(); const u = $('#hjHcUlt'); if (u) u.textContent = hc ? 'Última HC firmada: ' + dmy(hc.fecha) : '';
+  const hc = docs.filter(d => d.tipo === 'hc' && d.est === 'firmado').pop(); const u = $('#hjHcUlt'); if (u) u.textContent = hc ? 'Última HC archivada: ' + dmy(hc.fecha) : '';
 }
 document.addEventListener('click', e => { const b = e.target.closest('#hjRes [data-abrirdoc]'); if (b) abrirDoc(H.pac.id, null, { docId: b.dataset.abrirdoc }); });
 function hjIngresos() {
@@ -1463,24 +1610,28 @@ function egresar(pac, fecha, motivo) {
 }
 async function hjAsegurar() {
   if (!nombreDe(H.pac.datos)) { toast('Primero escribe el nombre del paciente', 'warn'); return false; }
-  if (H.dirty || H.nuevo) return await hjGuardar();
+  if (H.dirty || H.nuevo) return await hjGuardar(true);
   return true;
 }
+/* Guarda la hoja de datos: la pantalla sigue al instante y Drive se actualiza en segundo plano */
 async function hjGuardar(auto) {
   const p = H.pac;
   if (!nombreDe(p.datos)) { if (!auto) toast('Escribe al menos el nombre del paciente', 'warn'); return false; }
   if (p.hosp.activo && !auto && (!p.hosp.sede || !p.hosp.cama)) toast('Falta el hospital o la cama del paciente hospitalizado', 'warn');
   if (H.nuevo) {
-    const dup = S.lista.find(x => x.m && x.m.n === nombreDe(p.datos) && (!p.datos.fnac || x.m.fn === p.datos.fnac));
-    if (dup && !await ask({ title: 'Posible duplicado', text: 'Ya existe ' + dup.m.n + (dup.m.fn ? ' (FN ' + dmy(dup.m.fn) + ')' : '') + '. ¿Crear otro expediente de todos modos?', ok: 'Crear', cancel: 'Abrir el existente' })) { $('#dlgPac').close(); abrirHoja(dup.id); return false; }
+    const dup = duplicadoDe(p.datos);
+    if (dup) { const ok = await ask({ title: 'Este paciente ya existe', text: 'Ya hay un expediente de ' + dup.m.n + (dup.m.fn ? ' (FN ' + dmy(dup.m.fn) + ')' : '') + '. Para no duplicarlo, abre el existente.', ok: 'Abrir el existente', cancel: 'Crear otro de todos modos' });
+      if (ok) { H.dirty = false; $('#dlgPac').close(); abrirExpediente(dup.id); return false; } }
+    guardarPac(p, { accion: 'crear paciente' }).catch(() => { });
+  } else {
+    const k = ['datos', 'cx', 'hc', 'hosp', 'ingresos'], src = clone(p);
+    const nv = mutarPac(p.id, x => k.forEach(f => x[f] = src[f]), { accion: 'editar hoja de datos' }, src);
+    H.pac.docs = nv.docs; H.pac.archivos = nv.archivos;
   }
-  try {
-    await guardarPac(p, { accion: H.nuevo ? 'crear paciente' : 'editar hoja de datos' });
-    H.nuevo = false; H.dirty = false; hjEstado();
-    if (!auto) toast('Guardado en Drive', 'ok');
-    if (S.tab === 'archivo') pintaArchivo(); if (S.tab === 'hosp') pintaHosp();
-    return true;
-  } catch (e) { if (e.code === 'conflicto') { $('#dlgPac').close(); abrirHoja(p.id); } toast(e.message, 'bad'); return false; }
+  H.nuevo = false; H.dirty = false; hjEstado();
+  if (!auto) toast('Guardado', 'ok');
+  if (S.tab === 'archivo') pintaArchivo(); if (S.tab === 'hosp') pintaHosp();
+  return true;
 }
 async function cerrarHoja() {
   clearTimeout(H.t);
@@ -1488,34 +1639,29 @@ async function cerrarHoja() {
   $('#dlgPac').close();
 }
 async function hjEliminar() {
-  const p = H.pac;
-  if (H.nuevo) { $('#dlgPac').close(); return; }
-  if ((p.docs || []).some(d => d.est === 'firmado')) { toast('Este paciente tiene documentos firmados: por la NOM-004 su expediente debe conservarse.', 'warn'); return; }
-  if (!await ask({ title: 'Eliminar paciente', text: '¿Eliminar a ' + nombreDe(p.datos) + '? Úsalo solo para duplicados o registros hechos por error. El archivo se va a la papelera de Drive (30 días).', ok: 'Eliminar', danger: true })) return;
-  try { await call('dcPacienteBorrar', p.id); PAC.delete(p.id); S.lista = S.lista.filter(x => x.id !== p.id);
-    for (const t of ['consulta', 'quirofano']) { const ls = Object.values(S.ag[t].items).filter(e => e.pac === p.id); if (ls.length) await cambiarAg(t, ls.map(e => ({ id: e.id, set: { pac: '' }, a: 'Expediente eliminado' }))); }
-    H.dirty = false; $('#dlgPac').close(); updCounts(); if (VIEWS[S.tab]) go(S.tab); toast('Paciente eliminado', 'ok'); }
-  catch (e) { toast(e.message, 'bad'); }
+  if (H.nuevo) { H.dirty = false; $('#dlgPac').close(); return; }
+  if (await eliminarPaciente(H.pac.id)) { H.dirty = false; $('#dlgPac').close(); }
 }
 function docHC(p, est) {
   return { id: uid('d'), tipo: 'hc', fecha: p.hc.fecha || hoyISO(), hora: ahoraHM(), sede: '', est, c: clone(p.hc), dsnap: clone(p.datos) };
 }
 async function hjFirmarHC() {
-  if (!hjCompleto.hc(H.pac) && !await ask({ title: 'Historia clínica incompleta', text: 'Faltan padecimiento actual, exploración física o diagnósticos. ¿Firmar de todos modos?', ok: 'Firmar' })) return;
+  if (!hjCompleto.hc(H.pac) && !await ask({ title: 'Historia clínica incompleta', text: 'Faltan padecimiento actual, exploración física o diagnósticos. ¿Guardarla de todos modos?', ok: 'Guardar' })) return;
   if (!await hjAsegurar()) return;
-  if (!await ask({ title: 'Firmar historia clínica', text: 'Se archivará una copia firmada (no editable) de la historia clínica con fecha ' + dmy(H.pac.hc.fecha || hoyISO()) + '. Los cambios posteriores requieren una nueva versión.', ok: 'Firmar y archivar' })) return;
-  const d = docHC(H.pac, 'firmado'); firmarMeta(d);
-  H.pac.docs.push(d);
-  try { await guardarPac(H.pac, { accion: 'firmar documento', detalle: 'hc' }); H.dirty = false; hjEstado(); hjResumen(); toast('Historia clínica firmada y archivada', 'ok'); imprimirDoc(H.pac, d); }
-  catch (e) { H.pac.docs.pop(); toast(e.message, 'bad'); }
+  
+  const d = docHC(H.pac, 'firmado'); firmarMeta(d); d.mod = Date.now();
+  const nv = mutarPac(H.pac.id, x => { x.docs = x.docs || []; x.docs.push(clone(d)); }, { accion: 'guardar documento', detalle: 'hc' }, H.pac);
+  H.pac.docs = nv.docs; hjResumen(); toast('Historia clínica archivada', 'ok'); imprimirDoc(H.pac, d);
 }
 $('#btnNew').onclick = () => nuevoPaciente('');
 
 /* =====================================================================
    DOCUMENTOS DEL ARCHIVO CLÍNICO
-   Notas médicas · Indicaciones · Nota postoperatoria · Nota de alta · Receta · Laboratorio · Gabinete
-   Contenido mínimo conforme a NOM-004-SSA3-2012 (6.2, 7.1, 8.1, 8.5, 8.8, 8.9).
-   Un documento firmado ya no se edita (5.11): se corrige con adenda o se anula con motivo.
+   Notas médicas · Indicaciones · Nota postoperatoria · Nota de alta · Receta ·
+   Laboratorio · Gabinete · Consentimiento informado
+   Contenido conforme a NOM-004-SSA3-2012 (5.10, 6.2, 7.1, 8.5, 8.8, 8.9, 10.1).
+   Forma de trabajo: Guardar · Imprimir (imprime y guarda) · Ver · Editar · Cancelar.
+   Cada edición conserva la versión anterior y la cancelación guarda el motivo (trazabilidad).
    ===================================================================== */
 const TIPOS = {
   nota: { l: 'Notas médicas', ic: 'nota', tab: 'Notas Médicas' },
@@ -1524,223 +1670,255 @@ const TIPOS = {
   alta: { l: 'Nota de alta', ic: 'alta', tab: 'Nota de Alta' },
   receta: { l: 'Receta médica', ic: 'receta', tab: 'Receta' },
   lab: { l: 'Solicitud de laboratorio', ic: 'lab', tab: 'Laboratorio' },
-  gab: { l: 'Solicitud de estudios de gabinete', ic: 'gab', tab: 'Gabinete' },
+  gab: { l: 'Solicitud de gabinete', ic: 'gab', tab: 'Gabinete' },
+  consent: { l: 'Consentimiento informado', ic: 'sign', tab: 'Consentimiento' },
   hc: { l: 'Historia clínica', ic: 'hc' }
 };
-const ED_TABS = ['nota', 'indic', 'postqx', 'alta', 'receta', 'lab', 'gab'];
-/* Catálogo de campos: clave → [etiqueta, renglones] */
-const FC = {
-  motivo: ['Motivo de la consulta / atención', 2], pa: ['Padecimiento actual / resumen del interrogatorio', 5], evol: ['Evolución y actualización del cuadro clínico', 5],
-  ef: ['Exploración física', 5], edoMental: ['Estado mental', 1], estudios: ['Resultados relevantes de estudios de laboratorio y gabinete', 3],
-  dx: ['Diagnósticos o problemas clínicos', 2], pron: ['Pronóstico', 1], plan: ['Tratamiento e indicaciones (medicamento, dosis, vía y periodicidad)', 4], tx: ['Tratamiento', 4],
-  cxPrev: ['Cirugía realizada y fecha', 1], herida: ['Herida quirúrgica / drenajes / estomas', 2], histo: ['Reporte histopatológico', 3],
-  fechaCx: ['Fecha de la cirugía', 1], planQx: ['Plan quirúrgico', 2], tipoInt: ['Tipo de intervención quirúrgica', 1], riesgoQx: ['Riesgo quirúrgico', 2], cuidados: ['Cuidados y plan terapéutico preoperatorios', 3],
-  solicita: ['Médico / servicio que solicita', 1], criterios: ['Criterios diagnósticos', 3], planEst: ['Plan de estudios', 2], sugerencias: ['Sugerencias diagnósticas y tratamiento', 4],
-  envia: ['Establecimiento que envía', 1], receptor: ['Establecimiento receptor', 1], motEnvio: ['Motivo de envío', 2], impresion: ['Impresión diagnóstica (incluye tabaco, alcohol y otras sustancias)', 2], terapeutica: ['Terapéutica empleada', 3],
-  texto: ['Contenido', 12]
-};
+const ED_TABS = ['nota', 'indic', 'postqx', 'alta', 'receta', 'lab', 'gab', 'consent'];
+
+/* ---------- Plantillas: un solo cuadro de contenido con los títulos ya escritos ---------- */
 const NOTAS = {
-  cons1: { l: 'Nota de consulta · primera vez', f: ['motivo', 'pa', 'ef', 'estudios', 'dx', 'pron', 'plan'] },
-  cons2: { l: 'Nota de consulta subsecuente', f: ['evol', 'ef', 'estudios', 'dx', 'pron', 'plan'] },
-  postcons: { l: 'Nota de consulta postoperatoria', f: ['cxPrev', 'evol', 'herida', 'ef', 'histo', 'estudios', 'dx', 'pron', 'plan'] },
-  evol: { l: 'Nota de evolución', f: ['evol', 'ef', 'estudios', 'dx', 'pron', 'plan'] },
-  ingreso: { l: 'Nota de ingreso', f: ['motivo', 'pa', 'ef', 'edoMental', 'estudios', 'dx', 'tx', 'pron'] },
-  preop: { l: 'Nota preoperatoria', f: ['fechaCx', 'dx', 'planQx', 'tipoInt', 'riesgoQx', 'cuidados', 'pron'] },
-  urg: { l: 'Nota de urgencias', f: ['motivo', 'pa', 'edoMental', 'estudios', 'dx', 'tx', 'pron'] },
-  interc: { l: 'Nota de interconsulta', f: ['solicita', 'motivo', 'criterios', 'planEst', 'sugerencias', 'pron'] },
-  ref: { l: 'Nota de referencia / traslado', f: ['envia', 'receptor', 'motEnvio', 'pa', 'impresion', 'terapeutica'] },
-  libre: { l: 'Nota médica', f: ['texto'] }
+  cons1: { l: 'Nota de consulta · primera vez', t: 'MOTIVO DE CONSULTA:\n\nPADECIMIENTO ACTUAL:\n\nANTECEDENTES DE IMPORTANCIA:\n\nEXPLORACIÓN FÍSICA:\n\nESTUDIOS DE LABORATORIO Y GABINETE:\n\nDIAGNÓSTICO:\n\nPLAN Y TRATAMIENTO:\n\nPRONÓSTICO:\n' },
+  cons2: { l: 'Nota de consulta subsecuente', t: 'EVOLUCIÓN Y ACTUALIZACIÓN DEL CUADRO CLÍNICO:\n\nEXPLORACIÓN FÍSICA:\n\nESTUDIOS DE LABORATORIO Y GABINETE:\n\nDIAGNÓSTICO:\n\nPLAN Y TRATAMIENTO:\n\nPRONÓSTICO:\n' },
+  postcons: { l: 'Nota de consulta postoperatoria', t: 'CIRUGÍA REALIZADA Y FECHA:\n\nEVOLUCIÓN:\n\nHERIDA QUIRÚRGICA / DRENAJES:\n\nEXPLORACIÓN FÍSICA:\n\nREPORTE HISTOPATOLÓGICO:\n\nDIAGNÓSTICO:\n\nPLAN Y TRATAMIENTO:\n\nPRONÓSTICO:\n' },
+  evol: { l: 'Nota de evolución', t: 'EVOLUCIÓN Y ACTUALIZACIÓN DEL CUADRO CLÍNICO:\n\nEXPLORACIÓN FÍSICA:\n\nESTUDIOS DE LABORATORIO Y GABINETE:\n\nDIAGNÓSTICO:\n\nPLAN:\n\nPRONÓSTICO:\n' },
+  ingreso: { l: 'Nota de ingreso', t: 'MOTIVO DE INGRESO:\n\nPADECIMIENTO ACTUAL:\n\nEXPLORACIÓN FÍSICA:\n\nESTADO MENTAL:\n\nESTUDIOS DE LABORATORIO Y GABINETE:\n\nDIAGNÓSTICO:\n\nTRATAMIENTO Y PLAN:\n\nPRONÓSTICO:\n' },
+  preop: { l: 'Nota preoperatoria', t: 'FECHA DE LA CIRUGÍA:\nDIAGNÓSTICO PREOPERATORIO:\nPROCEDIMIENTO PLANEADO:\nTIPO DE INTERVENCIÓN: ELECTIVA\nCIRUJANO:\nAYUDANTES:\nANESTESIA PLANEADA:\nANTIBIÓTICO PROFILÁCTICO:\nTIEMPO QUIRÚRGICO ESTIMADO:\nSANGRADO ESTIMADO:\n\nRIESGO QUIRÚRGICO:\nPaciente no exento de complicaciones generales como: hemorragia, infección de sitio quirúrgico, sepsis, trombosis venosa profunda, tromboembolia pulmonar, complicaciones anestésicas, paro cardiorrespiratorio y muerte.\n\nPLAN PREOPERATORIO:\nConsentimiento informado firmado y agregado al expediente clínico, ayuno, profilaxis antibiótica intravenosa, marcaje de sitio quirúrgico, tromboprofilaxis mecánica y farmacológica según escala de Caprini y valoración preanestésica.\n\nPRONÓSTICO:\n' },
+  urg: { l: 'Nota de urgencias', t: 'MOTIVO DE ATENCIÓN:\n\nPADECIMIENTO ACTUAL:\n\nEXPLORACIÓN FÍSICA:\n\nESTADO MENTAL:\n\nESTUDIOS DE LABORATORIO Y GABINETE:\n\nDIAGNÓSTICO:\n\nTRATAMIENTO Y PLAN:\n\nPRONÓSTICO:\n' },
+  interc: { l: 'Nota de interconsulta', t: 'SERVICIO / MÉDICO QUE SOLICITA:\n\nMOTIVO DE LA INTERCONSULTA:\n\nRESUMEN CLÍNICO:\n\nEXPLORACIÓN FÍSICA:\n\nCRITERIOS DIAGNÓSTICOS:\n\nPLAN DE ESTUDIOS:\n\nSUGERENCIAS DIAGNÓSTICAS Y DE TRATAMIENTO:\n\nPRONÓSTICO:\n' },
+  ref: { l: 'Nota de referencia / traslado', t: 'ESTABLECIMIENTO QUE ENVÍA:\n\nESTABLECIMIENTO RECEPTOR:\n\nMOTIVO DE ENVÍO:\n\nRESUMEN CLÍNICO:\n\nIMPRESIÓN DIAGNÓSTICA:\n\nTERAPÉUTICA EMPLEADA:\n' },
+  agregada: { l: 'Nota agregada', t: '' }
 };
-const INDIC_F = [['dieta', 'Dieta', 2], ['sol', 'Soluciones parenterales', 3], ['meds', 'Medicamentos', 'meds'], ['cuid', 'Cuidados generales y de enfermería', 4], ['vig', 'Vigilancia y signos de alarma (avisar a médico)', 2], ['est', 'Laboratorio y gabinete', 2], ['interc', 'Interconsultas', 1], ['otros', 'Otros', 2]];
-const POSTQX_F = [['fechaCx', 'Fecha de la cirugía', 'date'], ['hIni', 'Hora de inicio', 'time'], ['hFin', 'Hora de término', 'time'],
-  ['dxPre', 'Diagnóstico preoperatorio', 2], ['opPlan', 'Operación planeada', 2], ['opReal', 'Operación realizada', 2], ['dxPost', 'Diagnóstico postoperatorio', 2],
-  ['tecnica', 'Descripción de la técnica quirúrgica', 9], ['hallazgos', 'Hallazgos transoperatorios', 4], ['conteo', 'Conteo de gasas, compresas e instrumental', 1, 'COMPLETO Y CORRECTO'],
-  ['incid', 'Incidentes y accidentes', 1, 'NINGUNO'], ['sangrado', 'Sangrado (ml) y, en su caso, transfusiones', 1], ['estTrans', 'Estudios transoperatorios', 1, 'NINGUNO'],
-  ['ayud', 'Ayudante(s)', 1], ['anest', 'Anestesiólogo · tipo de anestesia', 1], ['instr', 'Instrumentista', 1], ['circ', 'Circulante', 1],
-  ['edoPost', 'Estado postquirúrgico inmediato', 2], ['plan', 'Plan de manejo y tratamiento postoperatorio inmediato', 4], ['pron', 'Pronóstico', 1],
-  ['piezas', 'Envío de piezas o biopsias a estudio histopatológico', 2], ['otros', 'Otros hallazgos de importancia', 2]];
-const MOT_EGR = ['MEJORÍA', 'CURACIÓN', 'MÁXIMO BENEFICIO', 'ALTA VOLUNTARIA', 'TRASLADO A OTRA UNIDAD', 'DEFUNCIÓN'];
-const ALTA_F = [['fIng', 'Fecha de ingreso', 'date'], ['fEgr', 'Fecha de egreso', 'date'], ['motEgr', 'Motivo del egreso', 'motegr'],
-  ['dxIng', 'Diagnóstico de ingreso', 2], ['dxFin', 'Diagnósticos finales', 2], ['resumen', 'Resumen de la evolución y estado actual', 6], ['manejo', 'Manejo durante la estancia hospitalaria (incluye procedimientos)', 4],
-  ['pendientes', 'Problemas clínicos pendientes', 2], ['plan', 'Plan de manejo y tratamiento', 4], ['recom', 'Recomendaciones para vigilancia ambulatoria y signos de alarma', 4],
-  ['riesgo', 'Atención de factores de riesgo (tabaco, alcohol y otras sustancias)', 2], ['pron', 'Pronóstico', 1], ['cita', 'Próxima cita', 1],
-  ['defCausa', 'Causas de la muerte (según certificado de defunción)', 3, '', 'def'], ['necropsia', 'Necropsia hospitalaria (solicitada / realizada)', 1, '', 'def']];
-const LAB_CAT = [
-  ['Hematología', ['Biometría hemática completa', 'Tiempos de coagulación (TP, TPT, INR)', 'Fibrinógeno', 'Grupo sanguíneo y Rh', 'VSG', 'Frotis de sangre periférica']],
-  ['Química clínica', ['Química sanguínea (glucosa, urea, creatinina)', 'Electrolitos séricos (Na, K, Cl)', 'Calcio, fósforo y magnesio', 'Pruebas de función hepática', 'Perfil de lípidos', 'Amilasa', 'Lipasa', 'Albúmina y proteínas totales', 'Prealbúmina', 'Deshidrogenasa láctica (DHL)', 'Ácido úrico', 'Hemoglobina glucosilada (HbA1c)', 'Proteína C reactiva', 'Procalcitonina', 'Lactato sérico', 'Gasometría arterial']],
-  ['Marcadores tumorales', ['Antígeno carcinoembrionario (ACE)', 'CA 19-9', 'CA 125', 'Alfafetoproteína', 'CA 15-3', 'Antígeno prostático específico', 'Cromogranina A']],
-  ['Endocrinología', ['Perfil tiroideo (TSH, T4L)', 'Gonadotropina coriónica (β-hCG)', 'Cortisol', 'Paratohormona (PTH)', 'Gastrina']],
-  ['Orina y heces', ['Examen general de orina', 'Urocultivo', 'Coproparasitoscópico seriado', 'Sangre oculta en heces', 'Antígeno de H. pylori en heces', 'Calprotectina fecal', 'Coprocultivo']],
-  ['Infecciosos', ['VIH (prueba rápida / ELISA)', 'Antígeno de superficie hepatitis B', 'Anticuerpos hepatitis C', 'VDRL', 'Hemocultivo', 'Cultivo de secreción']],
-  ['Preoperatorios', ['Paquete preoperatorio (BH, QS, ES, TP/TPT, grupo y Rh, EGO)']]
+const NOTAS_CONS = ['cons1', 'cons2', 'postcons', 'evol', 'ingreso', 'urg', 'interc'];
+const POSTQX_T = 'DIAGNÓSTICO PREOPERATORIO:\nDIAGNÓSTICO POSTOPERATORIO:\nCIRUGÍA PROGRAMADA:\nCIRUGÍA REALIZADA:\nCIRUJANO:\nAYUDANTES:\nANESTESIÓLOGO:\nTIPO DE ANESTESIA:\nINSTRUMENTISTA:\nCIRCULANTE:\nHORA DE INICIO Y TÉRMINO:\nANTIBIÓTICO PROFILÁCTICO:\nSANGRADO:\nTRANSFUSIONES: NINGUNA\nTIPO DE HERIDA: LIMPIA-CONTAMINADA\nCUENTA DE GASAS, COMPRESAS E INSTRUMENTAL: COMPLETA Y CORRECTA\nENVÍO DE PIEZAS A PATOLOGÍA:\nESTUDIOS TRANSOPERATORIOS: NINGUNO\n\nHALLAZGOS TRANSOPERATORIOS:\n\nTÉCNICA QUIRÚRGICA:\n\nINCIDENTES Y ACCIDENTES:\nNINGUNO\n\nESTADO POSTQUIRÚRGICO INMEDIATO:\n\nPLAN DE MANEJO, TRATAMIENTO POSTOPERATORIO Y PRONÓSTICO:\nAyuno hasta nueva orden, con inicio de vía oral progresiva según tolerancia y presencia de peristalsis.\nLíquidos parenterales a requerimiento basal.\nAnalgesia multimodal.\nProfilaxis antitrombótica según escala de Caprini.\nVigilancia de signos vitales, diuresis y gasto de drenajes.\nMovilización temprana asistida y fisioterapia pulmonar incentiva.\nPronóstico reservado a evolución postquirúrgica inmediata.\n';
+const INDIC_F = [['dieta', 'Dieta', 'NORMAL'], ['sol', 'Soluciones', 'SOL. HARTMANN 1000 CC PARA 24 HORAS IV'], ['meds', 'Medicamentos', 'OMEPRAZOL 40 MG IV CADA 24 HORAS\nPARACETAMOL 1 G IV CADA 8 HORAS'],
+  ['cuid', 'Cuidados generales', 'CUIDADOS GENERALES DE ENFERMERÍA Y SIGNOS VITALES POR TURNO\nCUANTIFICACIÓN ESTRICTA DE DIURESIS\nGLUCOSA CAPILAR CADA 8 HORAS Y REPORTAR SI <80 O >180 MG/DL\nSEMIFOWLER\nREPORTAR EVENTUALIDADES'], ['pend', 'Pendientes / laboratorios / otros', '']];
+const MOT_EGR = ['MEJORÍA', 'MÁXIMO BENEFICIO', 'ALTA VOLUNTARIA', 'TRASLADO', 'DEFUNCIÓN'];
+const ALTA_F = [['dxIng', 'Diagnóstico de ingreso', 2], ['dxEgr', 'Diagnóstico de egreso', 2], ['resumen', 'Resumen', 7], ['indic', 'Indicaciones al egreso', 7], ['cita', 'Próxima cita', 1]];
+const ALTA_RES = 'MOTIVO DE INGRESO:\n\nEVOLUCIÓN Y MANEJO DURANTE LA ESTANCIA (incluye procedimientos):\n\nESTADO ACTUAL:\n\nPROBLEMAS CLÍNICOS PENDIENTES:\n\nPRONÓSTICO:\n';
+const ALTA_IND = 'DIETA:\n\nMEDICAMENTOS:\n\nCUIDADOS DE HERIDA / DRENAJES:\n\nACTIVIDAD FÍSICA:\n\nACUDIR A URGENCIAS EN CASO DE: fiebre, dolor abdominal intenso, vómito persistente, sangrado, salida de material purulento por la herida o dificultad para respirar.\n';
+const LAB_PRE = [
+  ['Preoperatorios', 'BIOMETRÍA HEMÁTICA COMPLETA\nQUÍMICA SANGUÍNEA DE 6 ELEMENTOS\nELECTROLITOS SÉRICOS (NA, K, CL)\nTIEMPOS DE COAGULACIÓN (TP, TTP, INR)\nGRUPO SANGUÍNEO Y RH\nEXAMEN GENERAL DE ORINA'],
+  ['Biometría hemática', 'BIOMETRÍA HEMÁTICA COMPLETA'], ['Química sanguínea', 'QUÍMICA SANGUÍNEA DE 6 ELEMENTOS'], ['Electrolitos', 'ELECTROLITOS SÉRICOS (NA, K, CL, CA, MG, P)'],
+  ['Función hepática', 'PRUEBAS DE FUNCIÓN HEPÁTICA'], ['Tiempos de coagulación', 'TIEMPOS DE COAGULACIÓN (TP, TTP, INR)'], ['Amilasa y lipasa', 'AMILASA Y LIPASA SÉRICAS'],
+  ['Perfil de lípidos', 'PERFIL DE LÍPIDOS'], ['Marcadores tumorales', 'ANTÍGENO CARCINOEMBRIONARIO (ACE)\nCA 19-9'], ['Alfafetoproteína', 'ALFAFETOPROTEÍNA'],
+  ['PCR y procalcitonina', 'PROTEÍNA C REACTIVA\nPROCALCITONINA'], ['Albúmina / prealbúmina', 'ALBÚMINA Y PROTEÍNAS TOTALES\nPREALBÚMINA'], ['HbA1c', 'HEMOGLOBINA GLUCOSILADA (HBA1C)'],
+  ['Perfil tiroideo', 'PERFIL TIROIDEO (TSH, T4 LIBRE)'], ['Examen de orina', 'EXAMEN GENERAL DE ORINA'], ['Prueba de embarazo', 'GONADOTROPINA CORIÓNICA HUMANA (FRACCIÓN BETA)'],
+  ['Panel viral', 'VIH (PRUEBA RÁPIDA)\nANTÍGENO DE SUPERFICIE HEPATITIS B\nANTICUERPOS CONTRA HEPATITIS C'], ['H. pylori', 'ANTÍGENO DE H. PYLORI EN HECES'], ['Sangre oculta en heces', 'SANGRE OCULTA EN HECES']
 ];
-const GAB_MOD = ['RADIOGRAFÍA', 'ULTRASONIDO', 'TOMOGRAFÍA', 'RESONANCIA MAGNÉTICA', 'PET-CT', 'ENDOSCOPIA SUPERIOR', 'COLONOSCOPIA', 'CPRE', 'ULTRASONIDO ENDOSCÓPICO', 'SERIE ESOFAGOGASTRODUODENAL', 'COLON POR ENEMA', 'TRÁNSITO INTESTINAL', 'FISTULOGRAFÍA', 'COLANGIOGRAFÍA', 'MANOMETRÍA / pH-METRÍA', 'ELECTROCARDIOGRAMA', 'ECOCARDIOGRAMA', 'GAMMAGRAMA', 'MASTOGRAFÍA', 'OTRO'];
-const GAB_CONTR = ['SIN CONTRASTE', 'CONTRASTE IV', 'CONTRASTE ORAL', 'IV Y ORAL', 'IV, ORAL Y RECTAL', 'SIMPLE Y CONTRASTADA', 'GADOLINIO'];
-const GAB_F = [['datos', 'Datos clínicos relevantes / pregunta clínica que debe responder el estudio', 3], ['dx', 'Diagnóstico de presunción', 2],
-  ['creat', 'Creatinina sérica (mg/dL) y fecha', 1], ['tfg', 'TFG estimada (ml/min/1.73m²)', 1], ['alergia', 'Alergia a medio de contraste', 'sino'], ['dm', 'Diabetes / uso de metformina', 'sino'],
-  ['emb', 'Embarazo / lactancia', 'sino', 'F'], ['impl', 'Marcapasos, implantes o material metálico', 'sino'], ['prio', 'Prioridad', 'prio'], ['obs', 'Preparación / observaciones', 2]];
-const LAB_F = [['otros', 'Otros estudios', 2], ['datos', 'Datos clínicos', 2], ['dx', 'Diagnóstico de presunción', 2], ['ayuno', 'Ayuno', 'ayuno'], ['prio', 'Prioridad', 'prio'], ['obs', 'Observaciones / indicaciones al paciente', 2]];
+const GAB_PRE = [
+  ['Tele de tórax', 'TELERRADIOGRAFÍA DE TÓRAX PA'], ['Rx de abdomen', 'RADIOGRAFÍA DE ABDOMEN DE PIE Y DECÚBITO'], ['USG hígado y vías biliares', 'ULTRASONIDO DE HÍGADO Y VÍAS BILIARES'],
+  ['USG abdominal', 'ULTRASONIDO ABDOMINAL COMPLETO'], ['USG pared abdominal', 'ULTRASONIDO DE PARED ABDOMINAL (HERNIAS)'], ['TAC abdomen y pelvis', 'TOMOGRAFÍA DE ABDOMEN Y PELVIS SIMPLE Y CONTRASTADA (CONTRASTE ORAL E INTRAVENOSO)'],
+  ['TAC tórax, abdomen y pelvis', 'TOMOGRAFÍA DE TÓRAX, ABDOMEN Y PELVIS SIMPLE Y CONTRASTADA'], ['Colangiorresonancia', 'COLANGIORRESONANCIA MAGNÉTICA'], ['RM de hígado', 'RESONANCIA MAGNÉTICA DE HÍGADO CON GADOLINIO'],
+  ['SEGD', 'SERIE ESÓFAGO-GASTRO-DUODENAL'], ['Endoscopia superior', 'PANENDOSCOPIA (ENDOSCOPIA SUPERIOR)'], ['Colonoscopia', 'COLONOSCOPIA'], ['CPRE', 'COLANGIOPANCREATOGRAFÍA RETRÓGRADA ENDOSCÓPICA (CPRE)'],
+  ['Electrocardiograma', 'ELECTROCARDIOGRAMA DE 12 DERIVACIONES'], ['PET-CT', 'PET-CT CON 18F-FDG']
+];
+const CONS_RIESGOS = 'Riesgos generales: sangrado, infección de la herida o de la cavidad, dolor, cicatrización anormal, hernia de la herida, trombosis venosa profunda, tromboembolia pulmonar, reacciones a medicamentos o a la anestesia, complicaciones cardiopulmonares y, excepcionalmente, la muerte.\nRiesgos específicos del procedimiento: lesión de órganos o estructuras vecinas (intestino, vía biliar, vasos sanguíneos), fuga o dehiscencia de suturas o anastomosis, colecciones o abscesos, íleo prolongado, necesidad de convertir a cirugía abierta o de una nueva intervención.';
+const CONS_BEN = 'Diagnóstico y/o tratamiento de la enfermedad, alivio de los síntomas y mejoría de la calidad de vida.';
 const SV = [['ta', 'T.A.'], ['fc', 'F.C.'], ['fr', 'F.R.'], ['temp', 'Temp.'], ['sat', 'SpO₂'], ['glu', 'Glucosa'], ['peso', 'Peso (kg)'], ['talla', 'Talla (m)']];
 const SV_U = { ta: ' mmHg', fc: ' lpm', fr: ' rpm', temp: ' °C', sat: ' %', glu: ' mg/dL', peso: ' kg', talla: ' m' };
+const svTxt = sv => SV.filter(([k]) => sv && sv[k]).map(([k, l]) => l + ' ' + sv[k] + SV_U[k]).join('   ');
+const medsTxt = l => (l || []).filter(m => m.med).map((m, i) => (i + 1) + '. ' + [m.med, m.dosis, m.via, m.frec, m.dur].filter(Boolean).join(' · ')).join('\n');
 
 function tituloDoc(d) {
-  if (d.tipo === 'nota') return (NOTAS[d.sub] || NOTAS.libre).l;
+  if (d.tipo === 'nota') return (NOTAS[d.sub] || {}).l || 'Nota médica';
   return (TIPOS[d.tipo] || {}).l || 'Documento';
 }
 function firmarMeta(d) {
   const p = perfil();
-  d.est = 'firmado'; d.autor = p.nombre || (S.ses && S.ses.nombre) || ''; d.ced = p.cedulas || ''; d.firmadoTs = Date.now(); d.por = S.ses.email;
+  if (!d.firmadoTs) { d.firmadoTs = Date.now(); d.autor = p.nombre || (S.ses && S.ses.nombre) || ''; d.ced = p.cedulas || ''; d.por = S.ses.email; }
+  d.est = 'firmado';
 }
-/* Texto plano de los campos de un documento: se usa en el expediente y en la impresión */
+/* Contenido como [etiqueta, texto] para el archivo clínico y la búsqueda (incluye formatos anteriores) */
 function camposDoc(d) {
   const c = d.c || {}, out = [], add = (l, v) => { v = String(v == null ? '' : v).trim(); if (v) out.push([l, v]); };
-  if (d.tipo === 'nota') (NOTAS[d.sub] || NOTAS.libre).f.forEach(k => add(FC[k][0], k === 'fechaCx' ? dmy(c[k]) || c[k] : c[k]));
-  else if (d.tipo === 'indic') INDIC_F.forEach(([k, l, t]) => t === 'meds' ? add(l, medsTxt(d.meds)) : add(l, c[k]));
-  else if (d.tipo === 'postqx') POSTQX_F.forEach(([k, l, t]) => add(l, t === 'date' ? dmy(c[k]) : c[k]));
-  else if (d.tipo === 'alta') ALTA_F.forEach(([k, l, t, , g]) => { if (g === 'def' && c.motEgr !== 'DEFUNCIÓN') return; add(l, t === 'date' ? dmy(c[k]) : c[k]); });
+  if (d.tipo === 'nota' || d.tipo === 'postqx') { if (c.txt != null) add('Contenido', c.txt); else Object.keys(c).forEach(k => add(k, c[k])); }
+  else if (d.tipo === 'indic') { INDIC_F.forEach(([k, l]) => add(l, k === 'meds' && d.meds && !c.meds ? medsTxt(d.meds) : c[k])); }
+  else if (d.tipo === 'alta') { add('Fechas', [c.fIng && 'Ingreso ' + dmy(c.fIng), c.fEgr && 'Egreso ' + dmy(c.fEgr)].filter(Boolean).join(' · ')); add('Tratamiento', (c.trat || []).join(', ')); ALTA_F.forEach(([k, l]) => add(l, c[k] || (k === 'dxEgr' ? c.dxFin : ''))); add('Egreso por', c.motEgr); }
   else if (d.tipo === 'receta') { add('Receta', c.r1); if (c.modo === 'otro') add('Segunda receta', c.r2); }
-  else if (d.tipo === 'lab') { add('Estudios solicitados', (c.sel || []).join('\n')); LAB_F.forEach(([k, l]) => add(l, c[k])); }
-  else if (d.tipo === 'gab') { add('Estudios solicitados', (d.est2 || []).filter(x => x.mod || x.reg).map(x => [x.mod, x.reg, x.con].filter(Boolean).join(' · ')).join('\n')); GAB_F.forEach(([k, l]) => add(l, c[k])); }
+  else if (d.tipo === 'lab' || d.tipo === 'gab') { add('Estudios solicitados', c.txt || (c.sel || []).join('\n')); add('Diagnóstico', c.dx); add('Indicaciones', c.obs); }
+  else if (d.tipo === 'consent') { add('Procedimiento autorizado', c.proc); add('Diagnóstico', c.dx); add('Anestesia', c.anest); add('En qué consiste', c.desc); add('Beneficios', c.benef); add('Riesgos', c.riesgos); add('Alternativas', c.alt); add('Representante legal', [c.rep, c.parent].filter(Boolean).join(' · ')); add('Testigos', [c.t1, c.t2].filter(Boolean).join(' · ')); }
   else if (d.tipo === 'hc') HOJA.hc.f.forEach(f => { if (f[0][0] === '#' || f[0][0] === '=' || f[0] === '_' || f[0] === 'hc.fecha') return; add(f[1], c[f[0].slice(3)]); });
   return out;
 }
-const medsTxt = l => (l || []).filter(m => m.med).map((m, i) => (i + 1) + '. ' + [m.med, m.dosis, m.via, m.frec, m.dur].filter(Boolean).join(' · ')).join('\n');
-const svTxt = sv => SV.filter(([k]) => sv && sv[k]).map(([k, l]) => l + ' ' + sv[k] + SV_U[k]).join('   ');
+/* Primera vez o subsecuente según el historial del paciente */
+function notaSugerida(pac, opt) {
+  if (opt.sub) return opt.sub;
+  const h = pac.hosp || {};
+  if (h.activo && !opt.cita) return 'evol';
+  const prev = (pac.docs || []).some(x => x.est !== 'anulado' && x.est !== 'nuevo' && (x.tipo === 'nota' || x.tipo === 'hc' || x.tipo === 'postqx' || x.tipo === 'receta'));
+  const citas = Object.values((S.ag.consulta || {}).items || {}).some(e => e.pac === pac.id && e.est === 'atendida' && (!opt.cita || e.id !== opt.cita.id));
+  return prev || citas ? 'cons2' : 'cons1';
+}
+function plantillaNota(sub, pac, pre) {
+  let t = (NOTAS[sub] || NOTAS.agregada).t;
+  const dx = (pre && pre.dx) || pac.datos.dx || '';
+  const put = (k, v) => { if (v) t = t.replace(k + ':\n', k + ': ' + v + '\n'); };
+  if (sub === 'cons1') { put('MOTIVO DE CONSULTA', (pre && pre.motivo) || ''); if (pac.hc && pac.hc.pa) t = t.replace('PADECIMIENTO ACTUAL:\n', 'PADECIMIENTO ACTUAL:\n' + pac.hc.pa + '\n'); }
+  if (sub === 'preop') { const cx = pac.cx || {}; put('FECHA DE LA CIRUGÍA', cx.fecha ? dmy(cx.fecha) : ''); put('PROCEDIMIENTO PLANEADO', cx.planeada || (pre && pre.cx) || ''); put('DIAGNÓSTICO PREOPERATORIO', dx); if (cx.tipo) t = t.replace('TIPO DE INTERVENCIÓN: ELECTIVA', 'TIPO DE INTERVENCIÓN: ' + cx.tipo); put('CIRUJANO', perfil().nombre || ''); }
+  else if (dx && /DIAGNÓSTICO:\n/.test(t)) t = t.replace('DIAGNÓSTICO:\n', 'DIAGNÓSTICO:\n' + dx + '\n');
+  return t;
+}
 
-/* ---------- Editor de documentos ---------- */
+/* ---------- Editor ---------- */
 const D = { pac: null, doc: null, ro: false, opt: {}, dirty: false };
 function docNuevo(tipo, opt, pac) {
-  const h = pac.hosp || {}, pre = opt.pre || {};
-  const d = { id: uid('d'), tipo, sub: tipo === 'nota' ? (opt.sub || (h.activo ? 'evol' : (pac.docs || []).some(x => x.tipo === 'nota' && x.est !== 'anulado') ? 'cons2' : 'cons1')) : '', fecha: pre.fecha || hoyISO(), hora: pre.hora || ahoraHM(),
-    amb: h.activo && !opt.cita ? 'hosp' : 'cext', sede: pre.sede || (h.activo && !opt.cita ? h.sede : '') || '', cama: h.activo && !opt.cita ? h.cama || '' : '', sv: {}, c: {}, est: 'nuevo', meds: [], est2: [] };
+  const h = pac.hosp || {}, pre = opt.pre || {}, dx = pre.dx || pac.datos.dx || '';
+  const d = { id: uid('d'), tipo, sub: '', fecha: pre.fecha || hoyISO(), hora: pre.hora || (tipo === 'indic' ? '07:00' : ahoraHM()),
+    amb: h.activo && !opt.cita ? 'hosp' : 'cext', sede: pre.sede || (h.activo && !opt.cita ? h.sede : '') || '', cama: h.activo && !opt.cita ? h.cama || '' : '', sv: {}, c: {}, est: 'nuevo' };
   if (opt.cita) d.cita = opt.cita;
-  const dx = pac.datos.dx || '';
-  if (tipo === 'nota') { d.c.dx = pre.dx || dx; if (pre.motivo) d.c.motivo = pre.motivo; if (d.sub === 'preop') Object.assign(d.c, { fechaCx: pac.cx.fecha || '', planQx: pac.cx.planeada || pre.cx || '', tipoInt: pac.cx.tipo || '', riesgoQx: [pac.cx.asa, pac.cx.riesgo].filter(Boolean).join(' · '), cuidados: pac.cx.cuidados || '' });
-    if (d.sub === 'cons1' && pac.hc.pa) d.c.pa = pac.hc.pa; }
-  if (tipo === 'postqx') Object.assign(d.c, { fechaCx: pre.fecha || hoyISO(), dxPre: pre.dx || dx, opPlan: pre.cx || pac.cx.planeada || '', conteo: 'COMPLETO Y CORRECTO', incid: 'NINGUNO', estTrans: 'NINGUNO' });
-  if (tipo === 'alta') Object.assign(d.c, { fIng: h.fIngreso || '', fEgr: hoyISO(), motEgr: 'MEJORÍA', dxIng: h.motivo || dx, dxFin: dx });
+  if (tipo === 'nota') { d.sub = notaSugerida(pac, opt); d.c.txt = plantillaNota(d.sub, pac, pre); }
+  if (tipo === 'indic') { const u = ultimoDoc(pac, 'indic'); INDIC_F.forEach(([k, , def]) => d.c[k] = u ? (u.c[k] != null ? u.c[k] : (k === 'meds' ? medsTxt(u.meds) : '')) : def); }
+  if (tipo === 'postqx') { const cx = pac.cx || {}; let t = POSTQX_T; const put = (k, v) => { if (v) t = t.replace(k + ':\n', k + ': ' + v + '\n'); };
+    put('DIAGNÓSTICO PREOPERATORIO', dx); put('CIRUGÍA PROGRAMADA', pre.cx || cx.planeada || ''); put('CIRUJANO', perfil().nombre || ''); put('TIPO DE ANESTESIA', pre.anest || ''); put('AYUDANTES', pre.ayud || ''); d.c.txt = t; }
+  if (tipo === 'alta') Object.assign(d.c, { fIng: h.fIngreso || '', fEgr: hoyISO(), trat: [], motEgr: 'MEJORÍA', dxIng: h.motivo || dx, dxEgr: dx, resumen: ALTA_RES, indic: ALTA_IND, cita: '' });
   if (tipo === 'receta') Object.assign(d.c, { modo: 'solo', r1: '', r2: '' });
-  if (tipo === 'lab' || tipo === 'gab') Object.assign(d.c, { dx, prio: 'RUTINA' });
-  if (tipo === 'lab') d.c.sel = [];
-  if (tipo === 'gab') d.est2 = [{ mod: '', reg: '', con: '' }];
-  if (tipo === 'indic') d.meds = [{}];
+  if (tipo === 'lab' || tipo === 'gab') Object.assign(d.c, { txt: '', dx, obs: tipo === 'lab' ? 'AYUNO DE 8 HORAS' : '' });
+  if (tipo === 'consent') { const cx = pac.cx || {}; Object.assign(d.c, { proc: cx.planeada || pre.cx || '', dx, anest: '', desc: '', benef: CONS_BEN, riesgos: CONS_RIESGOS, alt: '', rep: '', parent: '', t1: '', t2: '' }); }
   return d;
 }
+const ultimoDoc = (pac, tipo, sin) => (pac.docs || []).filter(x => x.tipo === tipo && x.est === 'firmado' && x.id !== sin).sort((a, b) => (b.fecha + b.hora).localeCompare(a.fecha + a.hora))[0];
+/* Abre el editor al instante con lo que ya está en memoria */
 async function abrirDoc(pacId, tipo, opt = {}, yaCargando) {
   if (!esMedico()) return;
-  let pac;
-  if (!yaCargando) cargando(true, 'Abriendo…');
-  try { pac = clone(await leerPac(pacId, true)); } catch (e) { toast(e.message, 'bad'); return; } finally { if (!yaCargando) cargando(false); }
+  let pac = PAC.has(pacId) ? PAC.get(pacId).pac : null;
+  if (!pac) { if (!yaCargando) cargando(true, 'Abriendo…'); try { pac = await leerPac(pacId); } catch (e) { toast(e.message, 'bad'); return; } finally { if (!yaCargando) cargando(false); } }
+  pac = clone(pac);
   D.pac = pac; D.opt = opt; D.dirty = false;
   let doc = opt.docId ? pac.docs.find(x => x.id === opt.docId) : null;
-  if (doc) { doc = clone(doc); tipo = doc.tipo; } else doc = docNuevo(tipo || 'nota', opt, pac);
-  if (doc.tipo === 'hc') { abrirExpediente(pacId); return; }
-  D.doc = doc; D.ro = doc.est === 'firmado' || doc.est === 'anulado';
-  pintaEditor(); openDlg($('#dlgDoc'));
+  if (doc && doc.tipo === 'hc') { verDoc(pac, doc); return; }
+  if (doc) { doc = clone(doc); D.ro = opt.editar ? doc.est === 'anulado' : true; } else { doc = docNuevo(tipo || 'nota', opt, pac); D.ro = false; }
+  D.doc = doc;
+  pintaEditor(); if (!$('#dlgDoc').open) openDlg($('#dlgDoc'));
+}
+function estadoDoc(d) {
+  if (d.est === 'anulado') return ['Cancelado', 'bad'];
+  if (d.est === 'nuevo') return ['Nuevo · sin guardar', 'warn'];
+  if (D.dirty) return ['Editando · sin guardar', 'warn'];
+  return [D.ro ? 'Guardado' : 'Editando', 'ok'];
 }
 function pintaEditor() {
-  const d = D.doc, pac = D.pac, T = TIPOS[d.tipo], ro = D.ro;
-  const est = d.est === 'nuevo' ? 'Nuevo' : d.est === 'borrador' ? 'Borrador' : d.est === 'firmado' ? 'Firmado' : 'Anulado';
-  $('#docRoot').innerHTML = `<div class="dlg-h"><div class="t"><b>${esc(T.l)} <span class="tag">${est}</span></b><small>${esc(nombreDe(pac.datos))}</small></div>
-    <span class="pill${D.dirty ? ' warn' : ''}" id="dcSt">${D.dirty ? 'Sin guardar' : d.est === 'nuevo' ? 'Sin guardar' : 'Guardado'}</span>
-    ${ro ? `<button class="btn dark" data-a="print">${ic('print')}Imprimir</button>` : `<button class="btn" data-a="draft" title="Guarda sin firmar para terminar después">${ic('save')}Borrador</button><button class="btn" data-a="sign">${ic('sign')}Firmar y guardar</button><button class="btn dark" data-a="signprint">${ic('print')}Guardar e imprimir</button><button class="btn icon" data-a="preview" title="Vista previa sin guardar">${ic('eye')}</button>`}
-    <button class="x" data-a="close" title="Cerrar" aria-label="Cerrar">✕</button></div>
-  <div style="background:#fff;padding:10px 0 12px;border-bottom:1px solid var(--line)"><div class="dtabs">${ED_TABS.map(t => `<button data-tt="${t}" class="${t === d.tipo ? 'on' : ''}">${ic(TIPOS[t].ic)}${TIPOS[t].tab}</button>`).join('')}</div></div>
-  <div class="dlg-b"><div class="two"><div>${ro ? roBanner(d) : ''}<div class="box" id="dcForm">${formDoc(d)}</div></div>
-  <aside class="side"><div class="card" style="padding:0;overflow:hidden"><div style="background:#EDEDF8;padding:14px 16px;border-bottom:1px solid var(--line)"><b style="font-family:var(--serif);font-size:22px;font-weight:400">Últimas · ${esc(T.tab)}</b></div>
-    <div class="lastdocs" style="padding:12px" id="dcUlt">${ultimosHTML(d.tipo)}</div></div>
-    ${d.tipo === 'receta' ? `<div class="card" style="padding:14px"><b style="font-size:13.5px">Recetas predeterminadas</b><p class="muted" style="font-size:12px;margin:4px 0 8px">Se configuran en Panel › Configuración. La 1.ª va arriba y la 2.ª abajo.</p><div class="presets" id="rxPre">${presetsHTML()}</div></div>` : ''}
-  </aside></div></div>`;
+  const d = D.doc, pac = D.pac, T = TIPOS[d.tipo], ro = D.ro, [st, stc] = estadoDoc(d);
+  const btns = d.est === 'anulado' ? `<button class="btn" data-a="restaurar">${ic('refresh')}Restaurar</button><button class="btn dark" data-a="print">${ic('print')}Imprimir</button>`
+    : ro ? `<button class="btn" data-a="editar">${ic('edit')}Editar</button><button class="btn dark" data-a="print">${ic('print')}Imprimir</button>`
+    : `${d.est === 'nuevo' ? `<button class="btn ghost" data-a="reset" title="Vuelve a la plantilla inicial">${ic('refresh')}Restablecer</button>` : ''}<button class="btn save" data-a="save">${ic('save')}Guardar</button><button class="btn dark" data-a="print" title="Guarda e imprime">${ic('print')}Imprimir</button>`;
+  $('#docRoot').innerHTML = `<div class="dlg-h"><div class="t"><span class="fcat">${esc(nombreDe(pac.datos))}</span><b>${esc(T.l)} <span class="rstate ${stc}" id="dcSt">${st}</span></b></div>
+    <div class="acts">${btns}</div><button class="x" data-a="close" title="Cerrar" aria-label="Cerrar">✕</button></div>
+  <div class="dtabs-w"><div class="dtabs">${ED_TABS.map(t => `<button data-tt="${t}" class="${t === d.tipo ? 'on' : ''}">${ic(TIPOS[t].ic)}${TIPOS[t].tab}</button>`).join('')}</div></div>
+  <div class="dlg-b"><div class="two"><div>${banner(d)}<div class="box${ro ? ' ro-box' : ''}" id="dcForm">${formDoc(d)}</div></div>
+  <aside class="side">${ladoDoc(d)}</aside></div></div>`;
   const root = $('#docRoot');
   if (ro) $$('input,select,textarea', $('#dcForm')).forEach(e => e.disabled = true);
-  root.oninput = ev => { if (ev.target.closest('#dcForm')) { leerForm(); marcar(); } };
+  $$('textarea.grow', root).forEach(autoAlto);
+  root.oninput = ev => { if (ev.target.closest('#dcForm')) { if (ev.target.classList.contains('grow')) autoAlto(ev.target); leerForm(); marcar(); } };
   root.onchange = ev => { const el = ev.target;
     if (el.dataset.date !== undefined && el.value.trim()) { const v = parseDMY(el.value); if (v === null) { toast('Fecha no válida (DD.MM.AA)', 'warn'); return; } el.value = dmy(v); }
+    if (el.id === 'dcSub') { const ant = D.doc.sub, txt = $('#dcTxt'); leerForm(); D.doc.sub = el.value;
+      if (txt && (!txt.value.trim() || txt.value === plantillaNota(ant, D.pac, {}) || txt.value === (NOTAS[ant] || {}).t)) { D.doc.c.txt = plantillaNota(el.value, D.pac, {}); txt.value = D.doc.c.txt; autoAlto(txt); } }
     leerForm(); marcar();
-    if (el.id === 'dcSub' || el.id === 'dcAmb' || el.id === 'rxModo' || el.id === 'altaMot') { const sc = $('#docRoot .dlg-b').scrollTop; $('#dcForm').innerHTML = formDoc(D.doc); $('#docRoot .dlg-b').scrollTop = sc; }
+    if (['dcAmb', 'altaMot'].includes(el.id)) refrescaForm();
   };
   root.onclick = onEditorClick;
   $('#dlgDoc').oncancel = e => { e.preventDefault(); cerrarEditor(); };
 }
-function marcar() { D.dirty = true; const s = $('#dcSt'); if (s) { s.className = 'pill warn'; s.textContent = 'Sin guardar'; } }
-function roBanner(d) {
-  return `<div class="ro">${d.est === 'anulado' ? `<b>Documento anulado</b> el ${new Date(d.anul.ts).toLocaleString('es-MX')} · Motivo: ${esc(d.anul.motivo)}` : `<b>Documento firmado</b> el ${new Date(d.firmadoTs).toLocaleString('es-MX')} por ${esc(d.autor)}. No se modifica; para corregir agrega una adenda.`}
-    <span class="grow"></span><button class="btn sm" data-a="copy">${ic('copy')}Nuevo a partir de este</button>${d.est === 'firmado' ? `<button class="btn sm" data-a="adenda">Agregar adenda</button><button class="btn sm danger" data-a="anular">Anular</button>` : ''}</div>
-    ${(d.adendas || []).map(a => `<div class="ro" style="background:#F4F4FC;border-color:#d6d6f0;color:#36366e;display:block"><b>Adenda · ${new Date(a.ts).toLocaleString('es-MX')} · ${esc(a.autor)}</b><div style="white-space:pre-wrap;margin-top:4px">${esc(a.txt)}</div></div>`).join('')}`;
+function autoAlto(t) { t.style.height = 'auto'; t.style.height = Math.max(+t.dataset.min || 120, t.scrollHeight + 4) + 'px'; }
+function refrescaForm() { const b = $('#docRoot .dlg-b'), sc = b ? b.scrollTop : 0; $('#dcForm').innerHTML = formDoc(D.doc); $$('#dcForm textarea.grow').forEach(autoAlto); if (D.ro) $$('input,select,textarea', $('#dcForm')).forEach(e => e.disabled = true); if (b) b.scrollTop = sc; }
+function marcar() { D.dirty = true; const s = $('#dcSt'); if (s) { const [t, c] = estadoDoc(D.doc); s.className = 'rstate ' + c; s.textContent = t; } }
+function banner(d) {
+  if (d.est === 'anulado') return `<div class="ro bad-ro"><b>Documento cancelado</b> el ${new Date(d.anul.ts).toLocaleString('es-MX')} · Motivo: ${esc(d.anul.motivo)}. Se conserva en el archivo clínico.</div>`;
+  if (d.est === 'firmado') return `<div class="ro"><span>Guardado por <b>${esc(d.autor || '')}</b> · ${new Date(d.firmadoTs).toLocaleString('es-MX')}${(d.ver || []).length ? ` · editado ${d.ver.length} ${d.ver.length === 1 ? 'vez' : 'veces'}` : ''}</span>${D.ro ? `<span class="grow"></span><button class="btn sm" data-a="copy">${ic('copy')}Usar como base para uno nuevo</button>` : ''}</div>`;
+  return '';
+}
+/* Lista de registros previos con Ver · Editar · Imprimir · Cancelar */
+const RB = (k, l, a) => `<button type="button" class="rb rb-${k}" ${a}>${ic(k === 'view' ? 'eye' : k === 'edit' ? 'edit' : k === 'print' ? 'print' : k === 'del' ? 'x' : 'refresh')}<span>${l}</span></button>`;
+function accionesDoc(d) {
+  return d.est === 'anulado' ? RB('view', 'Ver', `data-rv="${d.id}"`) + RB('res', 'Restaurar', `data-rr="${d.id}"`)
+    : RB('view', 'Ver', `data-rv="${d.id}"`) + (d.tipo !== 'hc' ? RB('edit', 'Editar', `data-re="${d.id}"`) : '') + RB('print', 'Imprimir', `data-rp="${d.id}"`) + RB('del', 'Cancelar', `data-rc="${d.id}"`);
 }
 function ultimosHTML(tipo) {
-  const l = (D.pac.docs || []).filter(x => x.tipo === tipo).sort((a, b) => (b.fecha + b.hora).localeCompare(a.fecha + a.hora)).slice(0, 12);
-  return l.length ? l.map(x => `<button class="it" data-open="${x.id}"${x.id === D.doc.id ? ' style="border-color:#9c9cd6;background:#F4F4FC"' : ''}><b>${esc(tituloDoc(x))}</b><small>${dmy(x.fecha)} ${esc(x.hora || '')} · ${x.est === 'borrador' ? 'BORRADOR' : x.est === 'anulado' ? 'ANULADO' : esc(sedeNom(x.sede) || (x.amb === 'hosp' ? 'Hospitalización' : 'Consulta externa'))}</small></button>`).join('')
-    : '<p class="muted" style="text-align:center;font-size:13px;padding:14px 0">Todavía no hay registros para este paciente.</p>';
+  const l = (D.pac.docs || []).filter(x => x.tipo === tipo && x.est !== 'nuevo').sort((a, b) => (b.fecha + b.hora).localeCompare(a.fecha + a.hora)).slice(0, 15);
+  return l.length ? l.map(x => `<div class="rec${x.id === D.doc.id ? ' cur' : ''}${x.est === 'anulado' ? ' anul' : ''}"><div class="rec-t"><b>${esc(tituloDoc(x))}</b><small>${dmy(x.fecha)} · ${esc(x.hora || '')}${x.est === 'anulado' ? ' · CANCELADO' : ''}</small></div><div class="rec-a">${accionesDoc(x)}</div></div>`).join('')
+    : '<p class="muted" style="text-align:center;font-size:13px;padding:14px 0;margin:0">Todavía no hay registros de este tipo.</p>';
+}
+const HALF_IC = {
+  solo: '<svg viewBox="0 0 18 22" class="hico"><rect x=".75" y=".75" width="16.5" height="20.5" rx="2" fill="#fff" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="2" width="14" height="8" rx="1" fill="#3B3B8F"/><rect x="2.5" y="12.5" width="13" height="7" rx="1" fill="none" stroke="currentColor" stroke-dasharray="2 1.5" opacity=".55"/></svg>',
+  copia: '<svg viewBox="0 0 18 22" class="hico"><rect x=".75" y=".75" width="16.5" height="20.5" rx="2" fill="#fff" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="2" width="14" height="8" rx="1" fill="#3B3B8F"/><rect x="2" y="12" width="14" height="8" rx="1" fill="#3B3B8F" opacity=".35"/><rect x="6.5" y="13.6" width="5" height="4.6" rx=".7" fill="#3B3B8F" stroke="#fff" stroke-width="1"/></svg>',
+  otro: '<svg viewBox="0 0 18 22" class="hico"><rect x=".75" y=".75" width="16.5" height="20.5" rx="2" fill="#fff" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="2" width="14" height="8" rx="1" fill="#3B3B8F"/><rect x="2" y="12" width="14" height="8" rx="1" fill="#8C8CD0"/></svg>'
+};
+function ladoDoc(d) {
+  let h = '';
+  if (d.tipo === 'receta') {
+    const c = d.c;
+    h += `<div class="card side-card"><h4>${ic('print')} Hoja de receta</h4><p class="muted sm-t">Hoja carta en dos mitades.</p><div class="halfopt">${[['solo', 'Una receta', 'Solo la mitad de arriba'], ['copia', 'Dos copias', 'La misma receta arriba y abajo'], ['otro', 'Dos recetas', 'Una distinta en cada mitad']].map(([v, l, s]) => `<button type="button" data-modo="${v}" class="${c.modo === v ? 'on' : ''}"${D.ro ? ' disabled' : ''}>${HALF_IC[v]}<span><b>${l}</b><small>${s}</small></span></button>`).join('')}</div></div>
+    <div class="card side-card"><h4>${ic('list')} Recetas predeterminadas</h4><p class="muted sm-t">La 1.ª va arriba y la 2.ª abajo. Se configuran en Panel › Recetas.</p><div class="presets" id="rxPre">${presetsHTML()}</div></div>`;
+  }
+  if (d.tipo === 'lab' || d.tipo === 'gab') {
+    const L = d.tipo === 'lab' ? LAB_PRE : GAB_PRE, cur = norm(d.c.txt || '');
+    h += `<div class="card side-card"><h4>${ic(TIPOS[d.tipo].ic)} Predeterminados</h4><p class="muted sm-t">Toca para agregar o quitar de la solicitud.</p><div class="presets">${L.map(([n, t], i) => { const on = cur.includes(norm(t)); return `<button data-spre="${i}" class="${on ? 'on' : ''}"${D.ro ? ' disabled' : ''}>${on ? '✓ ' : ''}${esc(n)}</button>`; }).join('')}</div></div>`;
+  }
+  h += `<div class="card side-card rec-card"><h4>${ic('arch')} ${esc(TIPOS[d.tipo].tab)} previas</h4><div class="recs" id="dcUlt">${ultimosHTML(d.tipo)}</div></div>`;
+  return h;
 }
 function presetsHTML() {
   const ps = (S.ses.presets || []), c = D.doc.c, used = [c.r1, c.r2].map(norm);
-  return ps.length ? ps.map((p, i) => `<button data-pre="${i}" class="${used.includes(norm(p.txt)) ? 'on' : ''}">${used.includes(norm(p.txt)) ? '✓ ' : ''}${esc(p.nombre)}</button>`).join('') : '<span class="muted" style="font-size:12.5px">Sin predeterminados.</span>';
+  return ps.length ? ps.map((p, i) => `<button data-pre="${i}" class="${used.includes(norm(p.txt)) ? 'on' : ''}"${D.ro ? ' disabled' : ''}>${used.includes(norm(p.txt)) ? '✓ ' : ''}${esc(p.nombre)}</button>`).join('') : '<span class="muted" style="font-size:12.5px">Sin predeterminados todavía.</span>';
 }
 const fld = (id, l, v, rows, extra = '') => rows === 1 ? `<div class="f s6"><label>${esc(l)}</label><input data-c="${id}" class="up" value="${esc(v || '')}"${extra}></div>`
-  : `<div class="f s6"><label>${esc(l)}</label><textarea data-c="${id}" class="up" rows="${rows || 3}">${esc(v || '')}</textarea></div>`;
+  : `<div class="f s6"><label>${esc(l)}</label><textarea data-c="${id}" class="grow" data-min="${(rows || 3) * 24}" rows="${rows || 3}"${extra}>${esc(v || '')}</textarea></div>`;
 function cabeceraDoc(d) {
-  const h = D.pac.hosp || {};
+  const h = D.pac.hosp || {}, hrs = d.tipo === 'indic' ? ['07:00', '08:00', '17:00'] : [];
   return `<div class="grid">
-    <div class="f"><label>Fecha <span class="mini" data-hoy="dcFecha">Hoy</span></label><input id="dcFecha" data-date value="${dmy(d.fecha)}" placeholder="DD.MM.AA"></div>
-    <div class="f s1"><label>Hora <span class="mini" data-ahora>Ahora</span></label><input id="dcHora" type="time" value="${esc(d.hora || '')}"></div>
-    <div class="f s3"><label>Lugar de atención</label><select id="dcSede">${sedeOpts(d.sede)}</select></div>
-    ${d.tipo === 'nota' ? `<div class="f s4"><label>Tipo de nota</label><select id="dcSub">${Object.keys(NOTAS).map(k => `<option value="${k}"${k === d.sub ? ' selected' : ''}>${NOTAS[k].l}</option>`).join('')}</select></div>` : ''}
+    <div class="f"><label>Fecha <span class="mini" data-hoy="dcFecha">Hoy</span>${d.tipo === 'indic' ? '<span class="mini" data-man="dcFecha">Mañana</span>' : ''}</label><input id="dcFecha" data-date value="${dmy(d.fecha)}" placeholder="DD.MM.AA"></div>
+    <div class="f s1"><label>Hora ${hrs.map(x => `<span class="mini" data-hr="${x}">${x}</span>`).join('') || '<span class="mini" data-ahora>Ahora</span>'}</label><input id="dcHora" type="time" value="${esc(d.hora || '')}"></div>
+    <div class="f s2"><label>Lugar de atención</label><select id="dcSede">${sedeOpts(d.sede)}</select></div>
     <div class="f"><label>Ámbito</label><select id="dcAmb"><option value="cext"${d.amb === 'cext' ? ' selected' : ''}>Consulta externa</option><option value="hosp"${d.amb === 'hosp' ? ' selected' : ''}>Hospitalización</option></select></div>
     ${d.amb === 'hosp' ? `<div class="f s1"><label>Cama</label><input id="dcCama" class="up" value="${esc(d.cama || h.cama || '')}"></div>` : ''}
+    ${d.tipo === 'nota' ? `<div class="f s6"><label>Tipo de nota ${d.est === 'nuevo' && NOTAS_CONS.includes(d.sub) ? `<span class="hint">· elegida según el historial del paciente</span>` : ''}</label><select id="dcSub">${Object.keys(NOTAS).map(k => `<option value="${k}"${k === d.sub ? ' selected' : ''}>${NOTAS[k].l}</option>`).join('')}</select></div>` : ''}
   </div>`;
 }
 function svHTML(d, titulo) {
-  return `<div class="sub">${titulo || 'Signos vitales y somatometría'} <span style="text-transform:none;font-weight:500;color:var(--mute);letter-spacing:0">· solo se imprimen los campos llenos</span></div>
-  <div class="grid" style="grid-template-columns:repeat(8,minmax(0,1fr))">${SV.map(([k, l]) => `<div class="f s1" style="grid-column:span 1"><label>${l}</label><input data-sv="${k}" value="${esc((d.sv || {})[k] || '')}"></div>`).join('')}</div>`;
+  return `<div class="sub">${titulo || 'Signos vitales y somatometría'} <span class="sub-h">· solo se imprimen los llenos</span></div>
+  <div class="grid svg">${SV.map(([k, l]) => `<div class="f"><label>${l}</label><input data-sv="${k}" inputmode="decimal" value="${esc((d.sv || {})[k] || '')}"></div>`).join('')}</div>`;
 }
+const copiarBtn = (txt) => D.ro ? '' : `<button class="btn sm" data-a="last">${ic('copy')}${txt}</button>`;
 function formDoc(d) {
   const c = d.c || {}; let h = cabeceraDoc(d);
   if (d.tipo === 'nota') {
-    h += svHTML(d) + `<div class="sub" style="display:flex;align-items:center;gap:8px">Contenido <span class="grow"></span>${D.ro ? '' : '<button class="btn sm" data-a="last">Copiar última nota</button>'}</div><div class="grid">`;
-    (NOTAS[d.sub] || NOTAS.libre).f.forEach(k => { h += k === 'fechaCx' ? `<div class="f s2"><label>${FC[k][0]}</label><input data-c="fechaCx" data-date value="${dmy(c.fechaCx)}" placeholder="DD.MM.AA"></div><div class="f s4"></div>` : fld(k, FC[k][0], c[k], FC[k][1]); });
-    h += '</div>';
+    h += svHTML(d) + `<div class="sub sub-f">Contenido <span class="grow"></span>${copiarBtn('Copiar última nota')}</div>
+      <textarea id="dcTxt" data-c="txt" class="grow big-txt" data-min="420" spellcheck="true">${esc(c.txt || '')}</textarea>`;
   } else if (d.tipo === 'indic') {
-    h += `<div class="sub" style="display:flex;align-items:center;gap:8px">Indicaciones <span class="grow"></span>${D.ro ? '' : '<button class="btn sm" data-a="last">Copiar últimas indicaciones</button>'}</div><div class="grid">`;
-    INDIC_F.forEach(([k, l, r]) => { h += r === 'meds' ? `<div class="f s6"><label>${l}</label>${medsHTML(d.meds)}</div>` : fld(k, l, c[k], r); });
+    h += `<div class="sub sub-f">Indicaciones <span class="grow"></span>${copiarBtn('Copiar últimas indicaciones')}</div><div class="grid">`;
+    INDIC_F.forEach(([k, l]) => { h += `<div class="f s6"><label>${l}${D.ro ? '' : ` <span class="mini" data-def="${k}">Predeterminado</span>`}</label><textarea data-c="${k}" class="grow up" data-min="${k === 'meds' || k === 'cuid' ? 130 : 60}">${esc(c[k] || '')}</textarea></div>`; });
     h += '</div>';
   } else if (d.tipo === 'postqx') {
-    h += svHTML(d, 'Signos vitales al término') + '<div class="sub">Nota postoperatoria · NOM-004 8.8</div><div class="grid">';
-    POSTQX_F.forEach(([k, l, r, ph]) => { h += r === 'date' ? `<div class="f s2"><label>${l}</label><input data-c="${k}" data-date value="${dmy(c[k])}" placeholder="DD.MM.AA"></div>` : r === 'time' ? `<div class="f s2"><label>${l}</label><input type="time" data-c="${k}" value="${esc(c[k] || '')}"></div>` : fld(k, l, c[k], r, ph ? ` placeholder="${ph}"` : ''); });
-    h += `<div class="f s6"><label>Responsable de la cirugía</label><div class="auto">${esc(perfil().nombre || '')} · ${esc(perfil().cedulas || '')}</div></div></div>`;
+    h += svHTML(d, 'Signos vitales al término') + `<div class="sub sub-f">Nota postoperatoria <span class="grow"></span>${copiarBtn('Copiar última')}</div>
+      <textarea id="dcTxt" data-c="txt" class="grow big-txt" data-min="520">${esc(c.txt || '')}</textarea>`;
   } else if (d.tipo === 'alta') {
-    h += svHTML(d, 'Signos vitales al egreso') + '<div class="sub">Nota de egreso · NOM-004 8.9</div><div class="grid">';
-    ALTA_F.forEach(([k, l, r, ph, g]) => { if (g === 'def' && c.motEgr !== 'DEFUNCIÓN') return;
-      h += r === 'date' ? `<div class="f s2"><label>${l}</label><input data-c="${k}" data-date value="${dmy(c[k])}" placeholder="DD.MM.AA"></div>`
-        : r === 'motegr' ? `<div class="f s2"><label>${l}</label><select data-c="${k}" id="altaMot">${MOT_EGR.map(x => `<option${x === c[k] ? ' selected' : ''}>${x}</option>`).join('')}</select></div>` : fld(k, l, c[k], r); });
-    h += `</div>${D.pac.hosp && D.pac.hosp.activo ? '<p class="hint muted" style="font-size:12px;margin-top:10px">Al firmar se registra el egreso hospitalario del paciente.</p>' : ''}`;
+    h += `<div class="grid"><div class="f s2"><label>Fecha de ingreso</label><input data-c="fIng" data-date value="${dmy(c.fIng)}" placeholder="DD.MM.AA"></div><div class="f s2"><label>Fecha de egreso <span class="mini" data-hoyc="fEgr">Hoy</span></label><input data-c="fEgr" data-date value="${dmy(c.fEgr)}" placeholder="DD.MM.AA"></div>
+      <div class="f s2"><label>Tratamiento</label><div class="chips-sel">${['QUIRÚRGICO', 'MÉDICO'].map(x => `<button type="button" data-trat="${x}" class="${(c.trat || []).includes(x) ? 'on' : ''}"${D.ro ? ' disabled' : ''}>${x === 'QUIRÚRGICO' ? 'Quirúrgico' : 'Médico'}</button>`).join('')}</div></div></div><div class="grid">`;
+    ALTA_F.forEach(([k, l, r]) => { h += fld(k, l, c[k], r); });
+    h += `<div class="f s6"><label>Egreso por</label><div class="chips-sel">${MOT_EGR.map(x => `<button type="button" data-mot="${x}" class="${c.motEgr === x ? 'on' : ''}"${D.ro ? ' disabled' : ''}>${x.charAt(0) + x.slice(1).toLowerCase()}</button>`).join('')}</div></div></div>
+      ${D.pac.hosp && D.pac.hosp.activo ? '<p class="hint muted" style="font-size:12px;margin-top:10px">Al guardar se registra el egreso hospitalario del paciente.</p>' : ''}`;
   } else if (d.tipo === 'receta') {
     h += svHTML(d, 'Datos del encabezado (peso, estatura y signos)');
-    h += `<div class="sub">Hoja de receta</div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px"><span class="muted" style="font-size:12.5px">Hoja carta en dos mitades:</span>
-      <div class="halfseg">${[['solo', 'Solo una receta'], ['copia', 'Original y copia'], ['otro', 'Dos recetas distintas']].map(([v, l]) => `<button type="button" data-modo="${v}" class="${c.modo === v ? 'on' : ''}">${l}</button>`).join('')}</div></div>
-      <div class="rx-half"><h6>Receta${c.modo === 'otro' ? ' · mitad superior' : ''}</h6><textarea data-c="r1" placeholder="Medicamento, presentación\nIndicación: dosis, vía, frecuencia y duración">${esc(c.r1 || '')}</textarea></div>
-      ${c.modo === 'otro' ? `<div class="rx-half"><h6>Segunda receta · mitad inferior</h6><div class="grid" style="margin-bottom:8px"><div class="f s3"><label>Lugar (membrete de abajo)</label><select data-c="sede2">${sedeOpts(c.sede2, null, 'El mismo de arriba')}</select></div></div><textarea data-c="r2">${esc(c.r2 || '')}</textarea></div>` : ''}
+    h += `<div class="rx-half"><h6>${c.modo === 'otro' ? 'Receta · mitad superior' : c.modo === 'copia' ? 'Receta · se imprime dos veces' : 'Receta'}</h6><textarea data-c="r1" class="grow" data-min="220" placeholder="Medicamento, presentación\nIndicación: dosis, vía, frecuencia y duración">${esc(c.r1 || '')}</textarea></div>
+      ${c.modo === 'otro' ? `<div class="rx-half"><h6>Segunda receta · mitad inferior</h6><div class="grid" style="margin-bottom:8px"><div class="f s3"><label>Lugar (membrete de abajo)</label><select data-c="sede2">${sedeOpts(c.sede2, null, 'El mismo de arriba')}</select></div></div><textarea data-c="r2" class="grow" data-min="220">${esc(c.r2 || '')}</textarea></div>` : ''}
       <div class="grid"><div class="f s6"><label>Diagnóstico (opcional en la receta)</label><input data-c="dx" class="up" value="${esc(c.dx || '')}"></div></div>`;
-  } else if (d.tipo === 'lab') {
-    const sel = c.sel || [];
-    h += `<div class="sub">Estudios de laboratorio</div><div class="checks">${LAB_CAT.map(([g, l]) => `<span class="grp">${g}</span>` + l.map(x => `<label><input type="checkbox" data-lab="${esc(x)}"${sel.includes(x) ? ' checked' : ''}>${esc(x)}</label>`).join('')).join('')}</div><div class="grid" style="margin-top:12px">`;
-    LAB_F.forEach(([k, l, r]) => { h += r === 'prio' ? selF(k, l, ['RUTINA', 'URGENTE'], c[k]) : r === 'ayuno' ? selF(k, l, ['', 'AYUNO DE 8 HORAS', 'AYUNO DE 12 HORAS', 'NO REQUIERE'], c[k]) : fld(k, l, c[k], r); });
-    h += '</div>';
-  } else if (d.tipo === 'gab') {
-    h += `<div class="sub">Estudios solicitados</div><table class="meds"><tr><th style="width:32%">Estudio</th><th>Región / estudio específico / protocolo</th><th style="width:22%">Contraste</th><th></th></tr>${(d.est2 || []).map((x, i) => `<tr>
-      <td><input list="gabMod" data-g="${i}.mod" value="${esc(x.mod || '')}"></td><td><input data-g="${i}.reg" value="${esc(x.reg || '')}"></td><td><input list="gabCon" data-g="${i}.con" value="${esc(x.con || '')}"></td><td><button class="del" data-delg="${i}">✕</button></td></tr>`).join('')}</table>
-      <datalist id="gabMod">${GAB_MOD.map(x => `<option value="${x}">`).join('')}</datalist><datalist id="gabCon">${GAB_CONTR.map(x => `<option value="${x}">`).join('')}</datalist>
-      ${D.ro ? '' : '<button class="btn sm" data-a="addg" style="margin-top:4px">+ Agregar estudio</button>'}<div class="grid" style="margin-top:12px">`;
-    GAB_F.forEach(([k, l, r, sx]) => { if (sx === 'F' && D.pac.datos.sexo !== 'F') return; h += r === 'sino' ? selF(k, l, ['', 'NO', 'SÍ'], c[k], 2) : r === 'prio' ? selF(k, l, ['RUTINA', 'URGENTE'], c[k], 2) : r === 1 ? `<div class="f s3"><label>${l}</label><input data-c="${k}" class="up" value="${esc(c[k] || '')}"></div>` : fld(k, l, c[k], r); });
-    h += '</div>';
+  } else if (d.tipo === 'lab' || d.tipo === 'gab') {
+    h += `<div class="sub sub-f">${d.tipo === 'lab' ? 'Estudios de laboratorio solicitados' : 'Estudios de gabinete solicitados'} <span class="grow"></span>${copiarBtn('Copiar última solicitud')}</div>
+      <textarea id="dcTxt" data-c="txt" class="grow big-txt up" data-min="300" placeholder="Escribe un estudio por renglón o elige de los predeterminados">${esc(c.txt || '')}</textarea>
+      <div class="grid" style="margin-top:12px"><div class="f s6"><label>Diagnóstico</label><input data-c="dx" class="up" value="${esc(c.dx || '')}"></div>
+      <div class="f s6"><label>Indicaciones / observaciones</label><input data-c="obs" class="up" value="${esc(c.obs || '')}" placeholder="${d.tipo === 'lab' ? 'AYUNO DE 8 HORAS' : 'PREPARACIÓN, CONTRASTE, PRIORIDAD…'}"></div></div>`;
+  } else if (d.tipo === 'consent') {
+    h += `<div class="sub">Acto autorizado</div><div class="grid">${fld('proc', 'Procedimiento que se autoriza', c.proc, 1)}${fld('dx', 'Diagnóstico', c.dx, 1)}
+      <div class="f s6"><label>Tipo de anestesia</label><input data-c="anest" class="up" list="anestL" value="${esc(c.anest || '')}"><datalist id="anestL">${['GENERAL BALANCEADA', 'REGIONAL (BLOQUEO NEUROAXIAL)', 'SEDACIÓN', 'LOCAL', 'LOCAL CON SEDACIÓN'].map(x => `<option value="${x}">`).join('')}</datalist></div>
+      ${fld('desc', 'En qué consiste el procedimiento (explicado al paciente)', c.desc, 3)}</div>
+      <div class="sub">Información proporcionada</div><div class="grid">${fld('benef', 'Beneficios esperados', c.benef, 2)}${fld('riesgos', 'Riesgos y posibles complicaciones', c.riesgos, 5)}${fld('alt', 'Alternativas de tratamiento', c.alt, 2)}</div>
+      <div class="sub">Firmas <span class="sub-h">· el paciente, el médico y dos testigos firman en papel</span></div><div class="grid">
+      <div class="f s3"><label>Representante legal / familiar (si el paciente no firma)</label><input data-c="rep" class="up" value="${esc(c.rep || '')}"></div><div class="f s3"><label>Parentesco</label><input data-c="parent" class="up" value="${esc(c.parent || '')}"></div>
+      <div class="f s3"><label>Testigo 1</label><input data-c="t1" class="up" value="${esc(c.t1 || '')}"></div><div class="f s3"><label>Testigo 2</label><input data-c="t2" class="up" value="${esc(c.t2 || '')}"></div></div>`;
   }
   return h;
-}
-const selF = (k, l, opts, v, w = 2) => `<div class="f s${w}"><label>${l}</label><select data-c="${k}">${opts.map(x => `<option${x === (v || '') ? ' selected' : ''}>${x}</option>`).join('')}</select></div>`;
-function medsHTML(l) {
-  l = l && l.length ? l : [{}];
-  return `<table class="meds"><tr><th style="width:34%">Medicamento y presentación</th><th>Dosis</th><th>Vía</th><th>Frecuencia</th><th>Duración</th><th></th></tr>${l.map((m, i) => `<tr>${['med', 'dosis', 'via', 'frec', 'dur'].map(k => `<td><input data-m="${i}.${k}" class="up" value="${esc(m[k] || '')}"${k === 'via' ? ' list="vias"' : ''}></td>`).join('')}<td><button class="del" data-delm="${i}">✕</button></td></tr>`).join('')}</table>
-  <datalist id="vias">${['ORAL', 'INTRAVENOSA', 'SUBCUTÁNEA', 'INTRAMUSCULAR', 'SUBLINGUAL', 'TÓPICA', 'RECTAL', 'INHALADA'].map(x => `<option value="${x}">`).join('')}</datalist>${D.ro ? '' : '<button class="btn sm" data-a="addm">+ Agregar medicamento</button>'}`;
 }
 function leerForm() {
   if (D.ro) return;
@@ -1750,174 +1928,199 @@ function leerForm() {
   if ($('#dcSub')) d.sub = $('#dcSub').value; if ($('#dcAmb')) d.amb = $('#dcAmb').value; d.cama = d.amb === 'hosp' ? (($('#dcCama') || {}).value || '').toUpperCase() : '';
   d.sv = {}; $$('[data-sv]', f).forEach(e => { if (e.value.trim()) d.sv[e.dataset.sv] = e.value.trim(); });
   $$('[data-c]', f).forEach(e => { let v = e.value; if (e.dataset.date !== undefined) v = parseDMY(v) || v; else if (e.classList.contains('up')) v = v.toUpperCase(); d.c[e.dataset.c] = v; });
-  if (d.tipo === 'indic') { const m = []; $$('[data-m]', f).forEach(e => { const [i, k] = e.dataset.m.split('.'); (m[i] = m[i] || {})[k] = e.value.toUpperCase().trim(); }); d.meds = m.filter(Boolean); }
-  if (d.tipo === 'lab') d.c.sel = $$('[data-lab]', f).filter(e => e.checked).map(e => e.dataset.lab);
-  if (d.tipo === 'gab') { const g = []; $$('[data-g]', f).forEach(e => { const [i, k] = e.dataset.g.split('.'); (g[i] = g[i] || {})[k] = e.value.toUpperCase().trim(); }); d.est2 = g.filter(Boolean); }
 }
 async function onEditorClick(ev) {
   const t = ev.target, d = D.doc;
-  const tt = t.closest('[data-tt]'); if (tt) { if (tt.dataset.tt === d.tipo) return; if (!await salirSinGuardar()) return; D.doc = docNuevo(tt.dataset.tt, { pre: { sede: d.sede } }, D.pac); D.ro = false; D.dirty = false; D.opt = {}; pintaEditor(); return; }
-  const op = t.closest('[data-open]'); if (op) { if (!await salirSinGuardar()) return; D.doc = clone(D.pac.docs.find(x => x.id === op.dataset.open)); D.ro = D.doc.est !== 'borrador'; D.dirty = false; pintaEditor(); return; }
+  const tt = t.closest('[data-tt]'); if (tt) { if (tt.dataset.tt === d.tipo && d.est === 'nuevo') return; if (!await salirSinGuardar()) return; D.doc = docNuevo(tt.dataset.tt, { pre: { sede: d.sede } }, D.pac); D.ro = false; D.dirty = false; D.opt = {}; pintaEditor(); return; }
+  if (await accionRegistro(t, D.pac, true)) return;
   const hy = t.closest('[data-hoy]'); if (hy) { $('#' + hy.dataset.hoy).value = dmy(hoyISO()); leerForm(); marcar(); return; }
+  const mn = t.closest('[data-man]'); if (mn) { const x = new Date(); x.setDate(x.getDate() + 1); $('#' + mn.dataset.man).value = dmy(x.toISOString().slice(0, 10)); leerForm(); marcar(); return; }
+  const hc = t.closest('[data-hoyc]'); if (hc) { $(`[data-c="${hc.dataset.hoyc}"]`).value = dmy(hoyISO()); leerForm(); marcar(); return; }
   if (t.closest('[data-ahora]')) { $('#dcHora').value = ahoraHM(); leerForm(); marcar(); return; }
-  const md = t.closest('[data-modo]'); if (md && !D.ro) { leerForm(); d.c.modo = md.dataset.modo; if (md.dataset.modo === 'copia') d.c.r2 = ''; marcar(); pintaEditor(); D.dirty = true; return; }
-  const pr = t.closest('[data-pre]'); if (pr && !D.ro) { leerForm(); aplicarPreset(+pr.dataset.pre); return; }
-  const dm = t.closest('[data-delm]'); if (dm) { leerForm(); d.meds.splice(+dm.dataset.delm, 1); $('#dcForm').innerHTML = formDoc(d); marcar(); return; }
-  const dg = t.closest('[data-delg]'); if (dg) { leerForm(); d.est2.splice(+dg.dataset.delg, 1); $('#dcForm').innerHTML = formDoc(d); marcar(); return; }
+  const hr = t.closest('[data-hr]'); if (hr) { $('#dcHora').value = hr.dataset.hr; leerForm(); marcar(); return; }
+  if (D.ro) { const a = t.closest('[data-a]'); if (a) await accionCabecera(a.dataset.a); return; }
+  const df = t.closest('[data-def]'); if (df) { const e = $(`[data-c="${df.dataset.def}"]`); e.value = (INDIC_F.find(x => x[0] === df.dataset.def) || [])[2] || ''; autoAlto(e); leerForm(); marcar(); return; }
+  const md = t.closest('[data-modo]'); if (md) { leerForm(); d.c.modo = md.dataset.modo; if (md.dataset.modo !== 'otro') d.c.r2 = ''; D.dirty = true; pintaEditor(); return; }
+  const pr = t.closest('[data-pre]'); if (pr) { leerForm(); aplicarPreset(+pr.dataset.pre); return; }
+  const sp = t.closest('[data-spre]'); if (sp) { leerForm(); const L = d.tipo === 'lab' ? LAB_PRE : GAB_PRE, txt = L[+sp.dataset.spre][1], cur = d.c.txt || '';
+    if (norm(cur).includes(norm(txt))) d.c.txt = cur.split('\n').filter(x => !txt.split('\n').map(norm).includes(norm(x))).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+    else d.c.txt = (cur.trim() ? cur.trim() + '\n' : '') + txt;
+    D.dirty = true; pintaEditor(); return; }
+  const tr = t.closest('[data-trat]'); if (tr) { leerForm(); const l = d.c.trat = d.c.trat || [], x = tr.dataset.trat; if (l.includes(x)) l.splice(l.indexOf(x), 1); else l.push(x); tr.classList.toggle('on'); marcar(); return; }
+  const mo = t.closest('[data-mot]'); if (mo) { leerForm(); d.c.motEgr = mo.dataset.mot; $$('[data-mot]').forEach(b => b.classList.toggle('on', b === mo)); marcar(); return; }
   const a = t.closest('[data-a]'); if (!a) return;
   const act = a.dataset.a;
+  if (act === 'last') { const l = ultimoDoc(D.pac, d.tipo, d.id);
+    if (!l) { toast('No hay un registro anterior para copiar', 'warn'); return; }
+    Object.assign(d.c, clone(l.c)); if (d.tipo === 'indic' && !l.c.meds && l.meds) d.c.meds = medsTxt(l.meds); if (d.tipo === 'nota' && NOTAS[l.sub]) d.sub = l.sub;
+    refrescaForm(); marcar(); toast('Copiado de ' + tituloDoc(l) + ' del ' + dmy(l.fecha)); return; }
+  if (act === 'reset') { const n = docNuevo(d.tipo, D.opt, D.pac); n.id = d.id; D.doc = n; D.dirty = false; pintaEditor(); return; }
+  await accionCabecera(act);
+}
+async function accionCabecera(act) {
+  const d = D.doc;
   if (act === 'close') return cerrarEditor();
-  if (act === 'addm') { leerForm(); d.meds.push({}); $('#dcForm').innerHTML = formDoc(d); return; }
-  if (act === 'addg') { leerForm(); d.est2.push({}); $('#dcForm').innerHTML = formDoc(d); return; }
-  if (act === 'last') { const l = D.pac.docs.filter(x => x.tipo === d.tipo && x.id !== d.id && x.est !== 'anulado').sort((a, b) => (b.fecha + b.hora).localeCompare(a.fecha + a.hora))[0];
-    if (!l) { toast('No hay un documento anterior para copiar', 'warn'); return; }
-    Object.assign(d.c, clone(l.c)); if (l.meds) d.meds = clone(l.meds); if (d.tipo === 'nota' && NOTAS[l.sub] && l.sub !== 'preop') d.sub = d.sub || l.sub; $('#dcForm').innerHTML = formDoc(d); marcar(); toast('Copiado de ' + tituloDoc(l) + ' del ' + dmy(l.fecha)); return; }
-  if (act === 'draft') { leerForm(); await guardarDoc('borrador'); return; }
-  if (act === 'sign') { leerForm(); await firmarDoc(); return; }
-  if (act === 'signprint') { leerForm(); if (await firmarDoc()) imprimirDoc(D.pac, D.doc); return; }
-  if (act === 'preview') { leerForm(); imprimirDoc(D.pac, D.doc); return; }
-  if (act === 'print') { leerForm();
-    if (d.est === 'nuevo' || d.est === 'borrador') { const r = await ask({ title: 'Imprimir', text: 'Para que la impresión forme parte del expediente conviene firmarla primero.', ok: 'Firmar e imprimir', cancel: 'Vista previa sin firmar' }); if (r) { if (await firmarDoc()) imprimirDoc(D.pac, D.doc); return; } }
-    imprimirDoc(D.pac, D.doc); return; }
-  if (act === 'copy') { const n = clone(d); Object.assign(n, { id: uid('d'), est: 'nuevo', fecha: hoyISO(), hora: ahoraHM(), adendas: [], anul: null, firmadoTs: 0, cita: null }); D.doc = n; D.ro = false; D.dirty = true; pintaEditor(); return; }
-  if (act === 'adenda') { const txt = await ask({ title: 'Adenda', input: 'Texto de la adenda (aclaración o corrección)', area: true, ok: 'Agregar' }); if (!txt) return;
-    await modDocGuardado(d.id, x => (x.adendas = x.adendas || []).push({ ts: Date.now(), txt: txt.toUpperCase(), autor: perfil().nombre || S.ses.email }), 'adenda'); return; }
-  if (act === 'anular') { const m = await ask({ title: 'Anular documento', input: 'Motivo de la anulación', ok: 'Anular', danger: true }); if (!m) return;
-    await modDocGuardado(d.id, x => { x.est = 'anulado'; x.anul = { ts: Date.now(), motivo: m.toUpperCase(), por: S.ses.email }; }, 'anular'); return; }
+  if (act === 'editar') { D.ro = false; pintaEditor(); return; }
+  if (act === 'save') { leerForm(); guardarDoc(); return; }
+  if (act === 'print') { if (!D.ro) { leerForm(); if (!guardarDoc()) return; } imprimirDoc(D.pac, D.doc); return; }
+  if (act === 'restaurar') { restaurarDoc(D.pac.id, d.id); return; }
+  if (act === 'copy') { const n = clone(d); Object.assign(n, { id: uid('d'), est: 'nuevo', fecha: hoyISO(), hora: ahoraHM(), firmadoTs: 0, autor: '', anul: null, ver: [], cita: null }); D.doc = n; D.ro = false; D.dirty = true; pintaEditor(); return; }
+}
+/* Botones Ver · Editar · Imprimir · Cancelar · Restaurar (lista lateral y archivo clínico) */
+async function accionRegistro(t, pac, enEditor) {
+  const g = (k) => { const b = t.closest('[data-' + k + ']'); return b ? (pac.docs || []).find(x => x.id === b.getAttribute('data-' + k)) : null; };
+  let d;
+  if ((d = g('rv'))) { verDoc(pac, d); return true; }
+  if ((d = g('rp'))) { imprimirDoc(pac, d); return true; }
+  if ((d = g('re'))) { if (enEditor && !await salirSinGuardar()) return true; abrirDoc(pac.id, null, { docId: d.id, editar: true }); return true; }
+  if ((d = g('rc'))) { await cancelarDoc(pac.id, d); return true; }
+  if ((d = g('rr'))) { restaurarDoc(pac.id, d.id); return true; }
+  return false;
 }
 function aplicarPreset(i) {
   const p = (S.ses.presets || [])[i], c = D.doc.c; if (!p) return;
   const n = norm(p.txt);
   if (norm(c.r1) === n) c.r1 = ''; else if (norm(c.r2) === n) { c.r2 = ''; if (c.modo === 'otro' && !c.r2) c.modo = c.r1 ? 'solo' : c.modo; }
-  else if (!c.r1.trim()) c.r1 = p.txt;
+  else if (!(c.r1 || '').trim()) c.r1 = p.txt;
   else if (c.modo !== 'otro') { c.modo = 'otro'; c.r2 = p.txt; }
   else if (!(c.r2 || '').trim()) c.r2 = p.txt;
   else { toast('Ya hay 2 recetas. Quita una para elegir otra.', 'warn'); return; }
-  marcar(); pintaEditor(); D.dirty = true;
+  D.dirty = true; pintaEditor();
 }
 async function salirSinGuardar() {
   if (!D.dirty || D.ro) return true;
-  return await ask({ title: 'Cambios sin guardar', text: 'El documento actual tiene cambios sin guardar. ¿Descartarlos?', ok: 'Descartar', danger: true });
+  const r = await ask({ title: 'Cambios sin guardar', text: '¿Guardar los cambios de este documento?', ok: 'Guardar', cancel: 'Descartar' });
+  if (r) { leerForm(); return guardarDoc(); }
+  return true;
 }
 async function cerrarEditor() {
-  if (D.dirty && !D.ro) { const r = await ask({ title: 'Cambios sin guardar', text: '¿Guardar este documento como borrador antes de cerrar?', ok: 'Guardar borrador', cancel: 'Descartar' }); if (r) { leerForm(); if (!await guardarDoc('borrador')) return; } }
+  if (!await salirSinGuardar()) return;
   $('#dlgDoc').close();
   if ($('#dlgExp').open) pintaExp(); if ($('#dlgPac').open && H.pac && H.pac.id === D.pac.id) { H.pac.docs = clone(D.pac.docs); H.pac.hosp = clone(D.pac.hosp); H.pac.ingresos = clone(D.pac.ingresos || []); hjResumen(); }
 }
 function validar(d) {
   if (!d.fecha) return 'Falta la fecha';
-  if (!d.hora && ['nota', 'postqx', 'alta', 'indic'].includes(d.tipo)) return 'Falta la hora (NOM-004 5.10)';
-  const c = d.c || {};
-  if (d.tipo === 'nota' && !(NOTAS[d.sub] || NOTAS.libre).f.some(k => String(c[k] || '').trim() && k !== 'dx')) return 'La nota no tiene contenido';
-  if (d.tipo === 'nota' && d.sub !== 'libre' && d.sub !== 'ref' && !String(c.dx || '').trim()) return 'Escribe los diagnósticos o problemas clínicos';
-  if (d.tipo === 'postqx' && (!c.opReal || !c.tecnica || !c.dxPost)) return 'Faltan operación realizada, diagnóstico postoperatorio o técnica quirúrgica';
-  if (d.tipo === 'alta' && (!c.fEgr || !c.dxFin || !c.resumen)) return 'Faltan fecha de egreso, diagnósticos finales o resumen';
+  if (!d.hora && ['nota', 'postqx', 'indic'].includes(d.tipo)) return 'Falta la hora (NOM-004 5.10)';
+  const c = d.c || {}, vacio = t => !String(t || '').split('\n').some(l => l.replace(/^[^:]*:\s*/, '').trim() && !/^[A-ZÁÉÍÓÚÑ ,/()\-.]+:\s*$/.test(l.trim()));
+  if ((d.tipo === 'nota' || d.tipo === 'postqx') && vacio(c.txt)) return 'El documento no tiene contenido';
+  if (d.tipo === 'alta' && (!c.fEgr || !String(c.dxEgr || '').trim())) return 'Faltan la fecha de egreso o el diagnóstico de egreso';
   if (d.tipo === 'receta' && !String(c.r1 || '').trim()) return 'La receta está vacía';
-  if (d.tipo === 'lab' && !(c.sel || []).length && !c.otros) return 'Elige al menos un estudio';
-  if (d.tipo === 'gab' && !(d.est2 || []).some(x => x.mod || x.reg)) return 'Escribe al menos un estudio';
-  if (d.tipo === 'indic' && !INDIC_F.some(([k]) => String(c[k] || '').trim()) && !(d.meds || []).some(m => m.med)) return 'Las indicaciones están vacías';
+  if ((d.tipo === 'lab' || d.tipo === 'gab') && !String(c.txt || '').trim()) return 'Escribe al menos un estudio';
+  if (d.tipo === 'consent' && !String(c.proc || '').trim()) return 'Escribe el procedimiento que se autoriza';
+  if (d.tipo === 'indic' && !INDIC_F.some(([k]) => String(c[k] || '').trim())) return 'Las indicaciones están vacías';
   return '';
 }
-async function guardarDoc(est) {
-  const d = D.doc;
-  if (est === 'borrador') d.est = 'borrador';
-  d.mod = Date.now();
-  const pac = D.pac, i = pac.docs.findIndex(x => x.id === d.id), prev = i >= 0 ? pac.docs[i] : null;
-  if (i >= 0) pac.docs[i] = clone(d); else pac.docs.push(clone(d));
-  try { await guardarPac(pac, { accion: est === 'firmado' ? 'firmar documento' : 'borrador', detalle: d.tipo + (d.sub ? ':' + d.sub : '') }); D.dirty = false; pintaEditor(); toast(est === 'firmado' ? 'Documento firmado y archivado' : 'Borrador guardado', 'ok'); return true; }
-  catch (e) { if (i >= 0) pac.docs[i] = prev; else pac.docs.pop(); toast(e.message, 'bad'); return false; }
-}
-async function firmarDoc() {
+/* Guarda al instante en pantalla; Drive se actualiza en segundo plano */
+function guardarDoc() {
   const d = D.doc, err = validar(d);
   if (err) { toast(err, 'warn'); return false; }
   if (!perfil().nombre) toast('Configura tu nombre y cédulas en Panel › Configuración para que aparezcan en el documento.', 'warn');
-  const bk = clone(d), pacBk = clone(D.pac);
-  firmarMeta(d);
-  if (d.tipo === 'alta' && D.pac.hosp && D.pac.hosp.activo) egresar(D.pac, d.c.fEgr || hoyISO(), d.c.motEgr);
-  if (d.tipo === 'postqx' && d.c.opReal) { D.pac.cx = D.pac.cx || {}; D.pac.cx.realizada = d.c.opReal; D.pac.cx.fechaReal = d.c.fechaCx; }
-  D.ro = true;
-  const ok = await guardarDoc('firmado');
-  if (!ok) { D.doc = bk; D.pac = pacBk; D.ro = false; pintaEditor(); return false; }
-  if (d.cita) {
-    const t = d.cita.tipo, set = t === 'consulta' ? { est: 'atendida', nota: d.id, pac: D.pac.id } : (d.tipo === 'postqx' ? { est: 'realizada', postqx: d.id, pac: D.pac.id } : { pac: D.pac.id });
-    try { await cambiarAg(t, [{ id: d.cita.id, set, a: tituloDoc(d) + ' firmada' }]); } catch (e) { toast('La nota se guardó, pero no se actualizó la agenda: ' + e.message, 'warn'); }
+  const nuevo = d.est === 'nuevo';
+  firmarMeta(d); d.mod = Date.now();
+  const id = D.pac.id, doc = clone(d), base = D.pac;
+  const pac = mutarPac(id, p => {
+    p.docs = p.docs || []; const i = p.docs.findIndex(x => x.id === doc.id);
+    if (i >= 0) { const prev = p.docs[i]; doc.ver = (prev.ver || []).concat([{ ts: prev.mod || prev.firmadoTs, por: prev.por, c: prev.c, sv: prev.sv, fecha: prev.fecha, hora: prev.hora, sub: prev.sub }]).slice(-8); doc.edTs = Date.now(); doc.edPor = S.ses.email; p.docs[i] = doc; }
+    else p.docs.push(doc);
+    if (doc.tipo === 'alta' && p.hosp && p.hosp.activo) egresar(p, doc.c.fEgr || hoyISO(), doc.c.motEgr);
+    if (doc.tipo === 'postqx') { const m = /CIRUGÍA REALIZADA:\s*(.+)/.exec(doc.c.txt || ''); if (m && m[1].trim()) { p.cx = p.cx || {}; p.cx.realizada = m[1].trim(); p.cx.fechaReal = doc.fecha; } }
+  }, { accion: nuevo ? 'guardar documento' : 'editar documento', detalle: d.tipo + (d.sub ? ':' + d.sub : '') }, base);
+  D.pac = pac; D.doc = clone(pac.docs.find(x => x.id === d.id)); D.dirty = false; D.ro = true;
+  pintaEditor(); toast(nuevo ? 'Guardado' : 'Cambios guardados', 'ok');
+  if (d.cita && nuevo) {
+    const t = d.cita.tipo, set = t === 'consulta' ? { est: 'atendida', nota: d.id, pac: id } : (d.tipo === 'postqx' ? { est: 'realizada', postqx: d.id, pac: id } : { pac: id });
+    cambiarAg(t, [{ id: d.cita.id, set, a: tituloDoc(d) + ' guardada' }]).catch(e => toast('La nota se guardó, pero no se actualizó la agenda: ' + e.message, 'warn'));
   }
-  if (S.tab === 'hosp') pintaHosp();
+  if (S.tab === 'hosp') pintaHosp(); if (S.tab === 'archivo') pintaArchivo();
   return true;
 }
-async function modDocGuardado(id, fn, accion) {
-  try {
-    const pac = await leerPac(D.pac.id, true); const x = pac.docs.find(y => y.id === id); if (!x) throw new Error('No se encontró el documento');
-    fn(x); await guardarPac(pac, { accion, detalle: x.tipo }); D.pac = clone(pac); D.doc = clone(x); D.ro = true; D.dirty = false; pintaEditor(); toast('Listo', 'ok');
-  } catch (e) { toast(e.message, 'bad'); }
+async function cancelarDoc(pacId, d) {
+  const m = await ask({ title: 'Cancelar ' + tituloDoc(d).toLowerCase(), text: 'Dejará de aparecer como vigente y no se podrá copiar; seguirá en el archivo clínico marcado como CANCELADO (NOM-004). Puedes restaurarlo después.', input: 'Motivo de la cancelación', ok: 'Cancelar documento', cancel: 'Volver', danger: true });
+  if (!m) return;
+  modDoc(pacId, d.id, x => { x.est = 'anulado'; x.anul = { ts: Date.now(), motivo: String(m).toUpperCase(), por: S.ses.email }; x.mod = Date.now(); }, 'cancelar documento');
+  toast('Documento cancelado', 'ok');
+}
+function restaurarDoc(pacId, id) { modDoc(pacId, id, x => { x.est = 'firmado'; x.restaurado = { ts: Date.now(), por: S.ses.email, antes: x.anul }; x.anul = null; x.mod = Date.now(); }, 'restaurar documento'); toast('Documento restaurado', 'ok'); }
+function modDoc(pacId, id, fn, accion) {
+  const pac = mutarPac(pacId, p => { const x = (p.docs || []).find(y => y.id === id); if (x) fn(x); }, { accion });
+  if ($('#dlgDoc').open && D.pac && D.pac.id === pacId) { D.pac = clone(pac); if (D.doc.id === id) { D.doc = clone(pac.docs.find(x => x.id === id)); D.ro = true; D.dirty = false; } pintaEditor(); }
+  if ($('#dlgExp').open && X.pac && X.pac.id === pacId) { X.pac = clone(pac); pintaExp(true); }
+  if ($('#dlgPac').open && H.pac && H.pac.id === pacId) { H.pac.docs = clone(pac.docs); hjResumen(); }
+}
+/* Vista previa (Ver): el documento tal como se imprime */
+function verDoc(pac, d) {
+  const html = d.tipo === 'receta' ? htmlReceta(pac, d) : { html: paginaCarta(pac, d), page: '' };
+  const r = $('#verRoot');
+  r.innerHTML = `<div class="dlg-h"><div class="t"><span class="fcat">${esc(nombreDe(pac.datos))}</span><b>${esc(tituloDoc(d))} <span class="rstate ${d.est === 'anulado' ? 'bad' : 'ok'}">${dmy(d.fecha)} · ${esc(d.hora || '')}</span></b></div>
+    <div class="acts">${d.tipo !== 'hc' && d.est !== 'anulado' ? `<button class="btn" data-ve>${ic('edit')}Editar</button>` : ''}<button class="btn dark" data-vp>${ic('print')}Imprimir</button></div><button class="x" data-vx>✕</button></div>
+    <div class="dlg-b ver-b"><iframe id="verF" title="Vista previa"></iframe></div>`;
+  const f = $('#verF');
+  f.srcdoc = `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><style>${PRINT_CSS}${html.page || ''}@media screen{html{background:#e6e6ee}body{background:#fff;width:8.5in;min-height:11in;margin:14px auto;box-shadow:0 6px 24px rgba(0,0,0,.18);position:relative;padding-bottom:1.1in;box-sizing:border-box}.hdfix{position:static!important}.wmfix{position:absolute!important;top:5.5in!important}.ftfix{position:absolute!important}.pg thead,.pg tfoot{display:none}.sello{position:absolute!important}}</style></head><body>${html.html}</body></html>`;
+  f.onload = () => { try { const b = f.contentDocument.documentElement; const ajusta = () => { const w = f.clientWidth, s = Math.min(1, (w - 16) / (8.5 * 96)); f.contentDocument.body.style.zoom = s; }; ajusta(); } catch (_) { } };
+  r.onclick = e => { if (e.target.closest('[data-vx]')) $('#dlgVer').close(); if (e.target.closest('[data-vp]')) imprimirDoc(pac, d); if (e.target.closest('[data-ve]')) { $('#dlgVer').close(); abrirDoc(pac.id, null, { docId: d.id, editar: true }); } };
+  openDlg($('#dlgVer'));
 }
 
-/* ---------- Archivo clínico del paciente (expediente) ---------- */
+/* ---------- Archivo clínico del paciente ---------- */
 const X = { pac: null, f: 'todo', q: '', orden: 'desc', vista: 'fecha' };
-const X_FILT = [['todo', 'Todo'], ['hc', 'Historia clínica'], ['nota', 'Notas'], ['indic', 'Indicaciones'], ['postqx', 'Postoperatorias'], ['alta', 'Altas'], ['receta', 'Recetas'], ['lab', 'Laboratorio'], ['gab', 'Gabinete']];
+const X_FILT = [['todo', 'Todo'], ['hc', 'Historia clínica'], ['nota', 'Notas'], ['indic', 'Indicaciones'], ['postqx', 'Postoperatorias'], ['alta', 'Altas'], ['receta', 'Recetas'], ['lab', 'Laboratorio'], ['gab', 'Gabinete'], ['consent', 'Consentimientos'], ['arch', 'Archivos subidos']];
 async function abrirExpediente(id) {
   if (!esMedico()) return;
-  cargando(true, 'Abriendo archivo clínico…');
-  try { X.pac = clone(await leerPac(id, true)); } catch (e) { toast(e.message, 'bad'); return; } finally { cargando(false); }
-  X.f = 'todo'; X.q = '';
+  let pac = PAC.has(id) ? PAC.get(id).pac : null;
+  if (!pac) { cargando(true, 'Abriendo archivo clínico…'); try { pac = await leerPac(id); } catch (e) { toast(e.message, 'bad'); return; } finally { cargando(false); } }
+  else leerPac(id, true);
+  X.pac = clone(pac); X.f = 'todo'; X.q = '';
   pintaExp(true); openDlg($('#dlgExp'));
 }
 async function pintaExp(primera) {
-  if (!primera && X.pac) { try { X.pac = clone(await leerPac(X.pac.id)); } catch (_) { } }
+  if (!primera && X.pac && PAC.has(X.pac.id)) X.pac = clone(PAC.get(X.pac.id).pac);
   const p = X.pac, dd = p.datos, h = p.hosp || {};
-  const docs = (p.docs || []).filter(x => x.est !== 'nuevo');
-  const cnt = k => k === 'todo' ? docs.length : docs.filter(x => x.tipo === k).length;
-  $('#expRoot').innerHTML = `<div class="dlg-h"><div class="t"><b>Archivo clínico</b><small>${esc(nombreDe(dd))}</small></div>
-    <button class="btn" data-hoja="${p.id}">${ic('grid')}Hoja de datos</button><button class="btn pri" data-nd="nota">${ic('plus')}Nueva nota</button><button class="x" data-xx>✕</button></div>
-  <div class="dlg-b"><div class="xhead"><div style="flex:1"><h3>${esc(nombreDe(dd))}</h3><div style="display:flex;gap:6px;flex-wrap:wrap">
-    ${dd.fnac ? `<span class="chip">Nac. <b>${dmy(dd.fnac)}</b></span><span class="chip"><b>${edad(dd.fnac)}</b></span>` : ''}${dd.sexo ? `<span class="chip"><b>${SEXO[dd.sexo]}</b></span>` : ''}${dd.tel1 ? `<span class="chip">Tel. <b>${esc(dd.tel1)}</b></span>` : ''}
+  const docs = (p.docs || []).filter(x => x.est !== 'nuevo'), arch = (p.archivos || []).filter(a => !a.borrado);
+  const cnt = k => k === 'todo' ? docs.length : k === 'arch' ? arch.length : docs.filter(x => x.tipo === k).length;
+  $('#expRoot').innerHTML = `<div class="dlg-h"><div class="t"><span class="fcat">Archivo clínico</span><b>${esc(nombreDe(dd))}</b></div>
+    <div class="acts"><button class="btn" data-hoja="${p.id}">${ic('grid')}Hoja de datos</button></div><button class="x" data-xx>✕</button></div>
+  <div class="dlg-b"><div class="xhead"><div style="flex:1"><div style="display:flex;gap:6px;flex-wrap:wrap">
+    ${dd.fnac ? `<span class="chip">Nac. <b>${dmy(dd.fnac)}</b></span><span class="chip"><b>${edad(dd.fnac)}</b></span>` : ''}${dd.sexo ? `<span class="chip"><b>${SEXO[dd.sexo]}</b></span>` : ''}${dd.tel1 ? `<span class="chip">${ic('phone')} <b>${esc(dd.tel1)}</b></span>` : ''}
     ${h.activo ? `<span class="chip blue">Hospitalizado · <b>${esc(sedeNom(h.sede))} cama ${esc(h.cama || '—')}</b> desde ${dmy(h.fIngreso)}</span>` : '<span class="chip">Consulta externa</span>'}
     ${dd.alergias ? `<span class="chip bad">Alergias: <b>${esc(dd.alergias)}</b></span>` : ''}</div>
-    ${dd.dx ? `<p style="margin:10px 0 0;font-size:13px"><b>Dx:</b> ${esc(dd.dx)}</p>` : ''}${(p.ingresos || []).length ? `<p class="muted" style="font-size:12.5px;margin:6px 0 0">${p.ingresos.length} ingreso(s) hospitalario(s) previo(s)</p>` : ''}</div>
-    <div class="seg"><button data-vista="fecha" class="${X.vista === 'fecha' ? 'on' : ''}">Por fecha</button><button data-vista="tipo" class="${X.vista === 'tipo' ? 'on' : ''}">Por tipo</button></div></div>
-    <details class="pend-acc" id="xArchD" style="margin:0 0 14px"${(p.archivos || []).some(a => !a.borrado) ? '' : ''}><summary>${ic('clip')} Estudios y archivos externos <i>${(p.archivos || []).filter(a => !a.borrado).length}</i></summary><div class="in" id="xArch"></div></details>
+    ${(() => { const u = docs.filter(x => x.est !== 'anulado' && x.tipo !== 'hc').sort((a, b) => (b.fecha + b.hora).localeCompare(a.fecha + a.hora))[0]; return `<div class="x-res">${dd.dx ? `<div><small>Diagnóstico</small><b>${esc(dd.dx)}</b></div>` : ''}<div><small>Última atención</small><b>${u ? dmy(u.fecha) + ' · ' + esc(tituloDoc(u)) : 'Sin registros'}</b></div><div><small>Alergias</small><b class="${dd.alergias && !/^NEGAD/.test(dd.alergias) ? 'bad-t' : ''}">${esc(dd.alergias || 'Sin registro')}</b></div></div>`; })()}</div></div>
+    <div class="fmt-grid">${ED_TABS.map(t => `<button class="fmt-b" data-nd="${t}"><span class="ti">${ic(TIPOS[t].ic)}</span><span>${t === 'nota' ? 'Nota médica' : TIPOS[t].tab}</span><i>${ic('plus')}</i></button>`).join('')}
+      <button class="fmt-b g" data-xf="arch"><span class="ti">${ic('clip')}</span><span>Archivos subidos</span><i>${arch.length || ''}</i></button></div>
     <div class="tools"><label class="search">${ic('search')}<input type="search" id="xQ" placeholder="Buscar fecha, tipo o contenido…" value="${esc(X.q)}"></label>
       <label class="sel"><select id="xOrd"><option value="desc">Más recientes primero</option><option value="asc">Más antiguos primero</option></select></label>
-      <button class="btn" data-exp-all="1">Expandir todo</button><button class="btn" data-exp-all="0">Contraer todo</button></div>
-    <div class="filters">${X_FILT.map(([k, l]) => `<button data-xf="${k}" class="${X.f === k ? 'on' : ''}">${l} <i>${cnt(k)}</i></button>`).join('')}</div>
+      <div class="seg"><button data-vista="fecha" class="${X.vista === 'fecha' ? 'on' : ''}">Por fecha</button><button data-vista="tipo" class="${X.vista === 'tipo' ? 'on' : ''}">Por tipo</button></div></div>
+    <div class="filters">${X_FILT.filter(([k]) => k === 'todo' || cnt(k)).map(([k, l]) => `<button data-xf="${k}" class="${X.f === k ? 'on' : ''}">${l} <i>${cnt(k)}</i></button>`).join('')}</div>
     <div id="xList"></div></div>`;
   $('#xOrd').value = X.orden;
-  $('#xArchD').ontoggle = () => { if ($('#xArchD').open) pintaArchivos($('#xArch'), X.pac, pac => { X.pac = clone(pac); }); };
   $('#xQ').oninput = e => { X.q = e.target.value; pintaXList(); };
   $('#xOrd').onchange = e => { X.orden = e.target.value; pintaXList(); };
   pintaXList();
   $('#expRoot').onclick = async ev => {
     const t = ev.target;
     if (t.closest('[data-xx]')) { $('#dlgExp').close(); return; }
-    const f = t.closest('[data-xf]'); if (f) { X.f = f.dataset.xf; $$('[data-xf]').forEach(b => b.classList.toggle('on', b === f)); pintaXList(); return; }
+    const f = t.closest('[data-xf]'); if (f) { X.f = f.dataset.xf; $$('.filters [data-xf]').forEach(b => b.classList.toggle('on', b.dataset.xf === X.f)); pintaXList(); return; }
     const v = t.closest('[data-vista]'); if (v) { X.vista = v.dataset.vista; $$('[data-vista]').forEach(b => b.classList.toggle('on', b === v)); pintaXList(); return; }
-    const ea = t.closest('[data-exp-all]'); if (ea) { $$('#xList details').forEach(d => d.open = ea.dataset.expAll === '1'); return; }
     const nd = t.closest('[data-nd]'); if (nd) { abrirDoc(p.id, nd.dataset.nd); return; }
-    const o = t.closest('[data-xopen]'); if (o) { abrirDoc(p.id, null, { docId: o.dataset.xopen }); return; }
-    const pr = t.closest('[data-xprint]'); if (pr) { const d = p.docs.find(x => x.id === pr.dataset.xprint); if (d) imprimirDoc(p, d); return; }
-    const del = t.closest('[data-xdel]'); if (del) { if (!await ask({ title: 'Eliminar borrador', text: 'Los borradores no forman parte del expediente firmado. ¿Eliminar este borrador?', ok: 'Eliminar', danger: true })) return;
-      try { const pac = await leerPac(p.id, true); pac.docs = pac.docs.filter(x => x.id !== del.dataset.xdel); await guardarPac(pac, { accion: 'eliminar borrador' }); X.pac = clone(pac); pintaExp(true); } catch (e) { toast(e.message, 'bad'); } return; }
+    if (await accionRegistro(t, X.pac, false)) return;
   };
   $('#dlgExp').oncancel = null;
 }
 function pintaXList() {
   const p = X.pac, w = norm(X.q).split(' ').filter(Boolean);
+  if (X.f === 'arch') { $('#xList').innerHTML = '<div id="xArch"></div>'; pintaArchivos($('#xArch'), p, pac => { X.pac = clone(pac); }); return; }
   let l = (p.docs || []).filter(d => (X.f === 'todo' || d.tipo === X.f) && d.est !== 'nuevo');
   if (w.length) l = l.filter(d => { const t = norm(tituloDoc(d) + ' ' + dmy(d.fecha) + ' ' + camposDoc(d).map(x => x[1]).join(' ')); return w.every(x => t.includes(x)); });
   l.sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora) * (X.orden === 'asc' ? 1 : -1));
-  const item = d => `<details class="doc${d.est === 'anulado' ? ' anul' : ''}"><summary><span class="dt">${dmy(d.fecha)} <small class="muted" style="font-weight:500">${esc(d.hora || '')}</small></span><span class="ti" style="color:#4545a6">${ic(TIPOS[d.tipo].ic)}</span><span class="tt">${esc(tituloDoc(d))}</span>
-      <span class="chip">${esc(sedeNom(d.sede) || (d.amb === 'hosp' ? 'Hospitalización' : 'Consulta externa'))}${d.cama ? ' · cama ' + esc(d.cama) : ''}</span>
-      <span class="chip ${d.est === 'firmado' ? 'ok' : d.est === 'anulado' ? 'bad' : 'warn'}">${d.est === 'firmado' ? 'Firmado' : d.est === 'anulado' ? 'Anulado' : 'Borrador'}</span>${(d.adendas || []).length ? `<span class="chip blue">${d.adendas.length} adenda(s)</span>` : ''}</summary>
-    <div class="body">${d.sv && Object.keys(d.sv).length ? `<div class="fld"><b>Signos vitales</b><div>${esc(svTxt(d.sv))}</div></div>` : ''}${camposDoc(d).map(([l, v]) => `<div class="fld"><b>${esc(l)}</b><div>${esc(v)}</div></div>`).join('')}
-      ${(d.adendas || []).map(a => `<div class="fld"><b>Adenda · ${new Date(a.ts).toLocaleString('es-MX')}</b><div>${esc(a.txt)}</div></div>`).join('')}
-      ${d.est === 'anulado' ? `<div class="fld"><b>Motivo de anulación</b><div>${esc(d.anul.motivo)}</div></div>` : ''}
-      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn sm" data-xprint="${d.id}">${ic('print')}Imprimir</button>${d.tipo !== 'hc' ? `<button class="btn sm" data-xopen="${d.id}">${ic('edit')}${d.est === 'borrador' ? 'Continuar' : 'Abrir'}</button>` : ''}${d.est === 'borrador' ? `<button class="btn sm danger" data-xdel="${d.id}">Eliminar borrador</button>` : ''}
-      ${d.est === 'firmado' ? `<span class="muted" style="font-size:12px;align-self:center">Firmado por ${esc(d.autor || '')} · ${new Date(d.firmadoTs).toLocaleString('es-MX')}</span>` : ''}</div></div></details>`;
+  const item = d => `<div class="xdoc${d.est === 'anulado' ? ' anul' : ''}"><span class="ti">${ic(TIPOS[d.tipo].ic)}</span>
+      <div class="xd-t"><b>${esc(tituloDoc(d))}</b><small>${dmy(d.fecha)} · ${esc(d.hora || '')} · ${esc(sedeNom(d.sede) || (d.amb === 'hosp' ? 'Hospitalización' : 'Consulta externa'))}${d.cama ? ' · cama ' + esc(d.cama) : ''}${d.est === 'anulado' ? ' · <b class="bad-t">CANCELADO</b>: ' + esc(d.anul.motivo) : ''}</small></div>
+      <div class="rec-a">${accionesDoc(d)}</div></div>`;
   let html;
-  if (!l.length) html = `<div class="empty"><b>Sin documentos ${X.q ? 'que coincidan' : 'todavía'}</b>Los documentos guardados de este paciente aparecerán aquí.</div>`;
-  else if (X.vista === 'tipo') html = X_FILT.slice(1).map(([k, lab]) => { const g = l.filter(d => d.tipo === k); return g.length ? `<div class="sub" style="margin-top:14px">${lab} · ${g.length}</div>` + g.map(item).join('') : ''; }).join('');
+  const arch = (p.archivos || []).filter(a => !a.borrado);
+  const archAviso = X.f === 'todo' && arch.length && !w.length ? `<button class="xdoc xarch" data-xf="arch"><span class="ti">${ic('clip')}</span><div class="xd-t"><b>Archivos subidos</b><small>${arch.length} estudio(s) o archivo(s) externos · toca para verlos</small></div></button>` : '';
+  if (!l.length) html = `<div class="empty"><b>Sin documentos ${X.q ? 'que coincidan' : 'todavía'}</b>Usa los botones de arriba para crear el primero.</div>`;
+  else if (X.vista === 'tipo') html = X_FILT.slice(1, -1).map(([k, lab]) => { const g = l.filter(d => d.tipo === k); return g.length ? `<div class="sub" style="margin-top:14px">${lab} · ${g.length}</div>` + g.map(item).join('') : ''; }).join('');
   else html = l.map(item).join('');
-  $('#xList').innerHTML = `<p class="muted" style="font-size:12.5px;margin:0 0 8px">${l.length} documento(s)</p>` + html;
+  $('#xList').innerHTML = archAviso + html;
 }
 
 /* =====================================================================
@@ -1982,6 +2185,18 @@ table.t td{border-bottom:1px solid #e3e3f0;padding:4px;vertical-align:top}
 .fb .c{text-align:center;width:3.2in;color:${INK};font-size:8.6pt;font-family:"Libre Caslon Text",Georgia,serif}
 .fb .c i{display:block;border-top:1px solid ${INK};margin-bottom:4px}
 .ad{border-left:3px solid ${INK};padding:3px 8px;margin:8px 0;background:#F6F6FC;font-size:9pt}
+/* contenido único, solicitudes y consentimiento */
+.txt{white-space:pre-wrap;font-size:10pt;line-height:1.5}.txt b{color:${INK}}
+.sec.ind ul{margin:2px 0 0 16px;padding:0}.sec.ind li{margin:1px 0}
+.sol{white-space:pre-wrap;font-size:13pt;line-height:1.65;min-height:3in;padding:6px 2px}
+.alta-kv{grid-template-columns:1fr 1fr}
+.cons p{font-size:9.6pt;line-height:1.5;text-align:justify;margin:6px 0}.cons .nom{font-size:7.6pt;color:#555}
+.cfs{display:grid;grid-template-columns:1fr 1fr;gap:.5in .6in;margin-top:.55in;break-inside:avoid}
+.cf{text-align:center;font-size:8.4pt;color:${INK}}.cf i{display:block;border-top:1px solid ${INK};margin-bottom:4px}.cf b{display:block;font-size:9pt}.cf span{color:#444}
+/* aviso */
+.ft .conf{font-size:5.6pt;color:#7a7aa8;margin-top:1px;letter-spacing:.02em}
+.aviso h2{font-family:"Libre Caslon Text",Georgia,serif;color:${INK};font-size:14pt;margin:4px 0 10px}.aviso p{font-size:9.4pt;line-height:1.5;text-align:justify;margin:6px 0}
+.aviso-f{display:grid;grid-template-columns:2fr 1fr;gap:.5in;margin-top:.7in;font-size:8.5pt;text-align:center;color:${INK}}.aviso-f i{display:block;border-top:1px solid ${INK};margin-bottom:4px}
 /* listas */
 .lst{padding:.2in .45in;font-size:9pt}.lst h2{font-family:"Libre Caslon Text",Georgia,serif;color:${INK};font-size:13pt;margin:8px 0 10px}
 .lst table{width:100%;border-collapse:collapse}.lst th{text-align:left;font-size:8pt;text-transform:uppercase;color:${INK};border-bottom:1.5px solid ${INK};padding:4px}
@@ -1994,7 +2209,7 @@ function membrete(sedeId) {
   return `<div class="mb"><div class="mb-logo">${logoSVG('#4A4AA6', '#2E2E7A')}</div><div class="mb-l"><div class="mb-n">${esc(p.nombre || '')}</div>${p.especialidad ? `<div class="mb-e">${esc(p.especialidad)}</div>` : ''}${p.formacion ? `<div class="mb-e">${esc(p.formacion)}</div>` : ''}${p.cedulas ? `<div class="mb-e">${esc(p.cedulas)}</div>` : ''}</div>
     <div class="mb-sep"></div><div class="mb-r">${der}</div></div>`;
 }
-function piePagina() { const p = perfil(); return `<div class="ft"><b>${esc(p.nombreCorto || p.nombre || '')}</b><br><b>${esc(p.especialidadCorta || p.especialidad || '')}</b><br>${esc(p.cedulasPie || p.cedulas || '')}</div>`; }
+function piePagina() { const p = perfil(); return `<div class="ft"><b>${esc(p.nombreCorto || p.nombre || '')}</b><br><b>${esc(p.especialidadCorta || p.especialidad || '')}</b><br>${esc(p.cedulasPie || p.cedulas || '')}<div class="conf">Documento confidencial · NOM-004-SSA3-2012 · v${APP_VERSION}</div></div>`; }
 const u = (v, cls) => `<u${cls ? ` class="${cls}"` : ''}>${esc(v || '')}</u>`;
 function lineaPaciente(pac, d) {
   const dd = d.dsnap || pac.datos, sv = d.sv || {};
@@ -2026,33 +2241,60 @@ function cuerpoDoc(pac, d) {
     flush();
   } else {
     if (d.sv && Object.keys(d.sv).length && d.tipo !== 'receta') h += `<div class="sv"><b>Signos vitales:</b> ${esc(svTxt(d.sv))}${d.sv.peso && d.sv.talla ? '   IMC ' + imcDe(d.sv.peso, d.sv.talla) : ''}</div>`;
-    if (d.tipo === 'indic') {
-      INDIC_F.forEach(([k, l, t]) => {
-        if (t === 'meds') { const m = (d.meds || []).filter(x => x.med); if (m.length) h += `<div class="sec"><h3>${l}</h3><table class="t"><tr><th>#</th><th>Medicamento</th><th>Dosis</th><th>Vía</th><th>Frecuencia</th><th>Duración</th></tr>${m.map((x, i) => `<tr><td>${i + 1}</td><td><b>${esc(x.med)}</b></td><td>${esc(x.dosis || '')}</td><td>${esc(x.via || '')}</td><td>${esc(x.frec || '')}</td><td>${esc(x.dur || '')}</td></tr>`).join('')}</table></div>`; }
-        else if (String(d.c[k] || '').trim()) h += `<div class="sec"><h3>${l}</h3><div>${esc(d.c[k])}</div></div>`;
-      });
-    } else if (d.tipo === 'lab') {
-      const sel = d.c.sel || [];
-      if (sel.length) h += `<div class="sec"><h3>Estudios solicitados</h3><div class="cols">${sel.map(x => `<div>☒ ${esc(x)}</div>`).join('')}</div></div>`;
-      LAB_F.forEach(([k, l]) => { if (String(d.c[k] || '').trim()) h += `<div class="sec"><h3>${l}</h3><div>${esc(d.c[k])}</div></div>`; });
-    } else if (d.tipo === 'gab') {
-      const l = (d.est2 || []).filter(x => x.mod || x.reg);
-      h += `<div class="sec"><h3>Estudios solicitados</h3><table class="t"><tr><th>Estudio</th><th>Región / protocolo</th><th>Contraste</th></tr>${l.map(x => `<tr><td><b>${esc(x.mod || '')}</b></td><td>${esc(x.reg || '')}</td><td>${esc(x.con || '')}</td></tr>`).join('')}</table></div>`;
-      GAB_F.forEach(([k, l]) => { if (String(d.c[k] || '').trim()) h += `<div class="sec"><h3>${l}</h3><div>${esc(d.c[k])}</div></div>`; });
+    const c = d.c || {};
+    if ((d.tipo === 'nota' || d.tipo === 'postqx') && c.txt != null) h += `<div class="txt">${fmtTxt(c.txt)}</div>`;
+    else if (d.tipo === 'indic') {
+      INDIC_F.forEach(([k, l]) => { const v = k === 'meds' && c.meds == null ? medsTxt(d.meds) : c[k]; if (String(v || '').trim()) h += `<div class="sec ind"><h3>${l}</h3><ul>${String(v).split('\n').filter(x => x.trim()).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>`; });
+    } else if (d.tipo === 'alta') {
+      const tr = c.trat || [];
+      h += `<div class="kv alta-kv"><div><b>Fecha de ingreso:</b> ${dmy(c.fIng) || '—'}</div><div><b>Fecha de egreso:</b> ${dmy(c.fEgr) || '—'}</div>
+        <div><b>Tratamiento:</b> ${['QUIRÚRGICO', 'MÉDICO'].map(x => (tr.includes(x) ? '☒ ' : '☐ ') + x.charAt(0) + x.slice(1).toLowerCase()).join('   ')}</div><div><b>Egreso por:</b> ${esc(c.motEgr || '')}</div></div>`;
+      [['dxIng', 'Diagnóstico de ingreso'], ['dxEgr', 'Diagnóstico de egreso']].forEach(([k, l]) => { const v = c[k] || (k === 'dxEgr' ? c.dxFin : ''); if (v) h += `<div class="sec"><h3>${l}</h3><div>${esc(v)}</div></div>`; });
+      if (String(c.resumen || '').trim()) h += `<div class="sec"><h3>Resumen</h3><div class="txt">${fmtTxt(c.resumen)}</div></div>`;
+      if (String(c.indic || '').trim()) h += `<div class="sec"><h3>Indicaciones al egreso</h3><div class="txt">${fmtTxt(c.indic)}</div></div>`;
+      if (c.cita) h += `<div class="sec"><h3>Próxima cita</h3><div>${esc(c.cita)}</div></div>`;
+      if (!c.resumen && !c.indic) camposDoc(d).forEach(([l, v]) => { h += `<div class="sec"><h3>${esc(l)}</h3><div>${esc(v)}</div></div>`; });
+    } else if (d.tipo === 'lab' || d.tipo === 'gab') {
+      if (c.dx) h += `<div class="rxdx" style="margin:4px 0 10px">Diagnóstico: ${esc(c.dx)}</div>`;
+      h += `<div class="sol serif">${esc(c.txt || (c.sel || []).join('\n'))}</div>`;
+      if (c.obs) h += `<div class="sec"><h3>Indicaciones</h3><div>${esc(c.obs)}</div></div>`;
+    } else if (d.tipo === 'consent') {
+      const dd = d.dsnap || pac.datos, p = perfil(), lugar = sedeDe(d.sede);
+      const firma = (t, n) => `<div class="cf"><i></i><b>${esc(n || '')}</b><span>${t}</span></div>`;
+      h += `<div class="cons">
+        <p>En ${esc(lugar ? lugar.nombre : '________________________')}, el día ${esc(largo(d.fecha))}, a las ${esc(d.hora || '____')} horas, yo <b>${esc(c.rep || nombreDe(dd))}</b>${c.rep ? `, en mi carácter de <b>${esc(c.parent || 'representante legal')}</b> del paciente <b>${esc(nombreDe(dd))}</b>` : ''}, declaro que el <b>${esc(p.nombre || '')}</b> me ha explicado de forma clara y comprensible mi diagnóstico, el procedimiento propuesto, sus beneficios, riesgos y alternativas, y que he tenido la oportunidad de hacer preguntas, mismas que me fueron respondidas a mi satisfacción.</p>
+        <div class="sec"><h3>Diagnóstico</h3><div>${esc(c.dx || '')}</div></div>
+        <div class="sec"><h3>Acto autorizado (procedimiento)</h3><div><b>${esc(c.proc || '')}</b>${c.anest ? ` · Anestesia: ${esc(c.anest)}` : ''}</div></div>
+        ${c.desc ? `<div class="sec"><h3>En qué consiste</h3><div>${esc(c.desc)}</div></div>` : ''}
+        <div class="sec"><h3>Beneficios esperados</h3><div>${esc(c.benef || '')}</div></div>
+        <div class="sec"><h3>Riesgos y posibles complicaciones</h3><div>${esc(c.riesgos || '')}</div></div>
+        ${c.alt ? `<div class="sec"><h3>Alternativas de tratamiento</h3><div>${esc(c.alt)}</div></div>` : ''}
+        <p>Por lo anterior, <b>otorgo mi consentimiento</b> para que se realice el procedimiento señalado y <b>autorizo</b> al médico tratante y a su equipo para atender las contingencias y urgencias que se deriven del acto autorizado, atendiendo al principio de libertad prescriptiva. Sé que puedo revocar este consentimiento en cualquier momento antes del procedimiento.</p>
+        <p class="nom">Con fundamento en la NOM-004-SSA3-2012, Del expediente clínico (numeral 10.1), y en el Reglamento de la Ley General de Salud en materia de prestación de servicios de atención médica (artículos 80 a 83).</p>
+        <div class="cfs">${firma(c.rep ? 'Representante legal o familiar (' + esc(c.parent || '') + ')' : 'Paciente · nombre completo y firma', c.rep || nombreDe(dd))}${firma('Médico que informa · ' + esc(d.ced || p.cedulas || ''), d.autor || p.nombre)}${firma('Testigo', c.t1)}${firma('Testigo', c.t2)}</div></div>`;
+      return h + adendasHTML(d);
     } else camposDoc(d).forEach(([l, v]) => { h += `<div class="sec"><h3>${esc(l)}</h3><div>${esc(v)}</div></div>`; });
   }
+  return h + adendasHTML(d) + firmaBloque(d);
+}
+function adendasHTML(d) {
+  let h = '';
   (d.adendas || []).forEach(a => { h += `<div class="ad"><b>ADENDA · ${new Date(a.ts).toLocaleString('es-MX')} · ${esc(a.autor)}</b><br>${esc(a.txt)}</div>`; });
-  if (d.est === 'anulado') h += `<div class="ad" style="border-color:#b33"><b>DOCUMENTO ANULADO</b> · ${esc(d.anul.motivo)}</div>`;
-  return h + firmaBloque(d);
+  if (d.est === 'anulado') h += `<div class="ad" style="border-color:#b33"><b>DOCUMENTO CANCELADO</b> · ${esc(d.anul.motivo)}</div>`;
+  return h;
+}
+/* Texto con títulos «TÍTULO:» en negritas */
+function fmtTxt(t) {
+  return String(t || '').replace(/\s+$/, '').split('\n').map(l => { const m = /^([A-ZÁÉÍÓÚÑÜ0-9][A-ZÁÉÍÓÚÑÜ0-9 ,.\/()\-]{1,80}):(.*)$/.exec(l); return m ? `<b>${esc(m[1])}:</b>${esc(m[2])}` : esc(l); }).join('\n');
 }
 function paginaCarta(pac, d) {
-  const sello = d.est === 'anulado' ? 'ANULADO' : d.est !== 'firmado' ? 'BORRADOR · SIN FIRMA' : '';
+  const sello = d.est === 'anulado' ? 'CANCELADO' : d.est !== 'firmado' ? 'VISTA PREVIA' : '';
   return `<div class="hdfix">${membrete(d.sede)}${lineaPaciente(pac, d)}</div><div class="wmfix">${WM_SVG}</div>${sello ? `<div class="sello" style="position:fixed">${sello}</div>` : ''}
   <div class="ftfix"><div class="wave">${WAVE_SVG}</div>${piePagina()}</div>
   <table class="pg"><thead><tr><td><div style="height:2.32in"></div></td></tr></thead><tbody><tr><td><div class="body">${cuerpoDoc(pac, d)}</div></td></tr></tbody><tfoot><tr><td><div style="height:1.05in"></div></td></tr></tfoot></table>`;
 }
 function mitadReceta(pac, d, texto, sedeId) {
-  const sello = d.est === 'anulado' ? 'ANULADO' : d.est !== 'firmado' ? 'BORRADOR' : '';
+  const sello = d.est === 'anulado' ? 'CANCELADO' : d.est !== 'firmado' ? 'VISTA PREVIA' : '';
   return `<div class="half"><div class="wm">${WM_SVG}</div>${sello ? `<div class="sello" style="font-size:34pt">${sello}</div>` : ''}${membrete(sedeId)}${lineaPaciente(pac, Object.assign({}, d, { tipo: 'receta' }))}
     ${d.c.dx ? `<div class="rxdx">Dx: ${esc(d.c.dx)}</div>` : ''}<div class="rxb serif" data-fit>${esc(texto || '')}</div>
     <div class="firma"><i></i>Firma</div><div class="wave">${WAVE_SVG}</div>${piePagina()}</div>`;
@@ -2248,9 +2490,9 @@ $('#btnPanel').onclick = () => { if (!esMedico()) return; pintaPanel(); openDlg(
 $('#btnOut').onclick = async () => { if (await ask({ title: 'Cerrar sesión', text: '¿Cerrar la sesión en este equipo?', ok: 'Cerrar sesión' })) salir(); };
 function pintaPanel() {
   $('#panelRoot').innerHTML = `<div class="dlg-h" style="background:#EDEDF8"><div class="t"><b>Panel de Control</b></div><button class="x" data-px>✕</button></div>
-  <div class="dlg-b"><div class="ptabs">${[['est', 'Estadísticas', 'grid'], ['err', 'Errores', 'x'], ['dl', 'Descargas', 'dl'], ['cfg', 'Configuración', 'edit']].map(([k, l, i]) => `<button data-pt="${k}" class="${PN.tab === k ? 'on' : ''}">${ic(i)}${l}</button>`).join('')}</div><div id="pnBody"></div></div>`;
+  <div class="dlg-b"><div class="ptabs">${[['est', 'Estadísticas', 'grid'], ['pac', 'Pacientes', 'user'], ['sedes', 'Lugares de trabajo', 'pin'], ['rx', 'Recetas', 'receta'], ['usr', 'Usuarios', 'users'], ['cfg', 'Configuración', 'edit'], ['err', 'Errores', 'x'], ['dl', 'Descargas', 'dl']].map(([k, l, i]) => `<button data-pt="${k}" class="${PN.tab === k ? 'on' : ''}">${ic(i)}${l}</button>`).join('')}</div><div id="pnBody"></div></div>`;
   $('#panelRoot').onclick = e => { if (e.target.closest('[data-px]')) { $('#dlgPanel').close(); return; } const b = e.target.closest('[data-pt]'); if (b) { PN.tab = b.dataset.pt; pintaPanel(); } };
-  ({ est: pnEst, err: pnErr, dl: pnDl, cfg: pnCfg })[PN.tab]();
+  ({ est: pnEst, err: pnErr, dl: pnDl, cfg: pnCfg, sedes: pnCfg, rx: pnCfg, usr: pnCfg, pac: pnPac })[PN.tab]();
 }
 
 /* ---------- Estadísticas personales ---------- */
@@ -2385,7 +2627,8 @@ const PERFIL_F = [['nombre', 'Nombre para el membrete', 'DR. NOMBRE APELLIDOS', 
   ['leyenda', 'Leyenda derecha cuando no hay lugar', 'Cirugía Programada y Urgencias', 3], ['celular', 'Celular de contacto', '10 dígitos', 3]];
 function pnCfg() {
   const B = $('#pnBody'), s = S.ses;
-  B.innerHTML = `<div class="seg" style="margin-bottom:14px">${[['perfil', 'Perfil y membrete'], ['sedes', 'Lugares de trabajo'], ['rx', 'Recetas predeterminadas'], ['usr', 'Usuarios asistentes'], ['pref', 'Preferencias y seguridad'], ['bit', 'Bitácora']].map(([k, l]) => `<button data-cf="${k}" class="${PN.cfg === k ? 'on' : ''}">${l}</button>`).join('')}</div><div id="cfB"></div>`;
+  if (PN.tab !== 'cfg') PN.cfg = PN.tab; else if (!['perfil', 'pref', 'bit'].includes(PN.cfg)) PN.cfg = 'perfil';
+  B.innerHTML = PN.tab === 'cfg' ? `<div class="seg" style="margin-bottom:14px">${[['perfil', 'Perfil y membrete'], ['pref', 'Preferencias y seguridad'], ['bit', 'Bitácora']].map(([k, l]) => `<button data-cf="${k}" class="${PN.cfg === k ? 'on' : ''}">${l}</button>`).join('')}</div><div id="cfB"></div>` : '<div id="cfB"></div>';
   $$('[data-cf]', B).forEach(b => b.onclick = () => { PN.cfg = b.dataset.cf; pnCfg(); });
   const C = $('#cfB');
   if (PN.cfg === 'perfil') {
@@ -2403,9 +2646,10 @@ function pnCfg() {
       <p class="muted" style="font-size:12.5px;margin:0 0 12px">Cada lugar define su membrete (nombre, dirección y teléfono), sus consultorios y sus quirófanos. Se usan en Consulta Externa, Quirófano, Hospitalizados y en los documentos.</p>
       ${sedes().length ? sedes().map((x, i) => `<div class="sede-card"><i class="dot" style="background:${esc(x.color || '#999')};width:14px;height:14px"></i><div><b>${esc(x.nombre)}</b> <span class="chip">${esc({ hospital: 'Hospital', clinica: 'Clínica', consultorio: 'Consultorio' }[x.tipo] || x.tipo)}</span>${x.activa === false ? ' <span class="chip warn">Inactivo</span>' : ''}
         <div class="muted" style="font-size:12.5px;margin-top:3px">${esc(x.direccion || '')}${x.telefono ? ' · Tel. ' + esc(x.telefono) : ''}</div><div class="muted" style="font-size:12px;margin-top:2px">${(x.consultorios || []).length ? 'Consultorios: ' + esc(x.consultorios.join(', ')) : ''}${(x.quirofanos || []).length ? ' · Quirófanos: ' + esc(x.quirofanos.join(', ')) : ''}</div></div>
-        <div style="display:flex;gap:6px"><button class="btn sm" data-sed="${i}">${ic('edit')}Editar</button></div></div>`).join('') : '<div class="empty"><b>Sin lugares registrados</b>Agrega los hospitales y consultorios donde trabajas.</div>'}</div><div id="sdForm"></div>`;
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn sm" data-sed="${i}">${ic('edit')}Editar</button><button class="btn sm danger" data-sdel="${i}">Borrar</button></div></div>`).join('') : '<div class="empty"><b>Sin lugares registrados</b>Agrega los hospitales y consultorios donde trabajas.</div>'}</div><div id="sdForm"></div>`;
     $('#sdAdd').onclick = () => sedeForm(null);
     $$('[data-sed]', C).forEach(b => b.onclick = () => sedeForm(+b.dataset.sed));
+    $$('[data-sdel]', C).forEach(b => b.onclick = () => borrarSede(+b.dataset.sdel));
   }
   if (PN.cfg === 'rx') {
     const ps = clone(s.presets || []);
@@ -2465,11 +2709,7 @@ function sedeForm(i) {
     <div style="margin-top:12px;display:flex;gap:8px">${i != null ? '<button class="btn danger" id="sdDel" style="margin-right:auto">Eliminar</button>' : ''}<button class="btn" id="sdX">Cancelar</button><button class="btn pri" id="sdOk">${ic('save')}Guardar lugar</button></div></div>`;
   F.scrollIntoView({ behavior: 'smooth' });
   $('#sdX').onclick = () => F.innerHTML = '';
-  if ($('#sdDel')) $('#sdDel').onclick = async () => {
-    const uso = ['quirofano', 'consulta'].some(t => Object.values(S.ag[t].items).some(e => e.sede === x.id)) || S.lista.some(p => p.m && p.m.s === x.id);
-    if (!await ask({ title: 'Eliminar lugar', text: uso ? 'Este lugar está en uso en la agenda o en hospitalizados. Te recomendamos desactivarlo en lugar de eliminarlo. ¿Eliminar de todos modos?' : '¿Eliminar este lugar?', ok: 'Eliminar', danger: true })) return;
-    l.splice(i, 1); cfgGuardar({ sedes: l });
-  };
+  if ($('#sdDel')) $('#sdDel').onclick = () => borrarSede(i);
   $('#sdOk').onclick = () => {
     const sp = v => v.split(',').map(y => y.trim().toUpperCase()).filter(Boolean);
     Object.assign(x, { nombre: $('#sdN').value.trim().toUpperCase(), corto: $('#sdC').value.trim().toUpperCase(), tipo: $('#sdT').value, color: $('#sdCol').value, direccion: $('#sdD').value.trim(), telefono: $('#sdTel').value.trim(), consultorios: sp($('#sdCons').value), quirofanos: sp($('#sdQx').value), activa: $('#sdA').checked });
@@ -2479,12 +2719,84 @@ function sedeForm(i) {
   };
 }
 
+async function borrarSede(i) {
+  const l = clone(sedes()), x = l[i]; if (!x) return;
+  const uso = ['quirofano', 'consulta'].some(t => Object.values(S.ag[t].items).some(e => e.sede === x.id)) || S.lista.some(p => p.m && p.m.s === x.id);
+  if (!await ask({ title: 'Borrar lugar de trabajo', text: '¿Borrar «' + x.nombre + '»?' + (uso ? ' Está en uso en la agenda o en hospitalizados; esas entradas quedarán «sin lugar». Si solo ya no trabajas ahí, puedes desactivarlo en Editar.' : ''), ok: 'Borrar', danger: true })) return;
+  l.splice(i, 1); cfgGuardar({ sedes: l });
+}
+
+/* ---------- Pacientes: lista completa, última actualización y eliminación ---------- */
+const PP = { q: '', dup: false, orden: 'mod' };
+function pnPac() {
+  const B = $('#pnBody');
+  const grupos = {}; S.lista.forEach(p => { const k = norm((p.m || {}).n); if (k) (grupos[k] = grupos[k] || []).push(p.id); });
+  const esDup = p => (grupos[norm((p.m || {}).n)] || []).length > 1, nDup = S.lista.filter(esDup).length;
+  B.innerHTML = `<div class="panel-sec"><div class="tools" style="margin-bottom:10px"><label class="search">${ic('search')}<input type="search" id="ppQ" placeholder="Buscar paciente…" value="${esc(PP.q)}"></label>
+    <label class="sel"><span>Orden</span><select id="ppO"><option value="mod">Última actualización</option><option value="az">Alfabético</option><option value="cr">Fecha de registro</option></select></label>
+    ${nDup ? `<button class="btn sm${PP.dup ? ' pri' : ''}" id="ppDup">${ic('users')}Repetidos <b>${nDup}</b></button>` : ''}</div>
+    <p class="muted" style="font-size:12.5px;margin:0 0 10px">${S.lista.length} pacientes. Al eliminar, el expediente va a la papelera de Drive y puede recuperarse durante 30 días.</p><div id="ppL"></div></div>`;
+  $('#ppO').value = PP.orden;
+  const pinta = () => {
+    let l = buscarEn(S.lista, PP.q).filter(p => !PP.dup || esDup(p)).slice();
+    if (PP.orden === 'az' || PP.dup) l.sort((a, b) => (a.m.n || '').localeCompare(b.m.n || '')); else if (PP.orden === 'cr') l.sort((a, b) => (b.m.cr || 0) - (a.m.cr || 0)); else l.sort((a, b) => String(b.mod).localeCompare(String(a.mod)));
+    $('#ppL').innerHTML = l.length ? `<div class="pp-l">${l.slice(0, 400).map(p => { const m = p.m || {}; return `<div class="pp-r${esDup(p) ? ' dup' : ''}"><div class="pp-n"><b>${esc(m.n || 'SIN NOMBRE')}</b>${esDup(p) ? ' <span class="chip warn">Repetido</span>' : ''}<small>${m.fn ? 'FN ' + dmy(m.fn) + ' · ' : ''}${m.nd || 0} documento(s)${m.h ? ' · hospitalizado' : ''}</small></div>
+      <div class="pp-f"><small>Actualizado</small><b>${p.mod ? new Date(p.mod).toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' }) : '—'}</b></div>
+      <div class="pp-f"><small>Registrado</small><b>${m.cr ? new Date(m.cr).toLocaleDateString('es-MX', { dateStyle: 'medium' }) : '—'}</b></div>
+      <div class="rec-a">${RB('view', 'Archivo clínico', `data-ppx="${p.id}"`)}${RB('del', 'Eliminar', `data-ppd="${p.id}"`)}</div></div>`; }).join('')}</div>` : '<div class="empty"><b>Sin pacientes</b></div>';
+  };
+  $('#ppQ').oninput = e => { PP.q = e.target.value; pinta(); };
+  $('#ppO').onchange = e => { PP.orden = e.target.value; pinta(); };
+  if ($('#ppDup')) $('#ppDup').onclick = () => { PP.dup = !PP.dup; pnPac(); };
+  B.onclick = async e => { const x = e.target.closest('[data-ppx]'); if (x) { abrirExpediente(x.dataset.ppx); return; }
+    const d = e.target.closest('[data-ppd]'); if (d) { if (await eliminarPaciente(d.dataset.ppd)) pnPac(); } };
+  pinta();
+}
+
+/* ---------- Pie de página: confidencialidad, aviso de privacidad y versión ---------- */
+function pintaPie() {
+  const f = $('#appFt'); if (!f) return; f.hidden = !S.ses;
+  f.innerHTML = `<span>${ic('lock')} Información confidencial · Expediente clínico conforme a NOM-004-SSA3-2012 y NOM-024-SSA3-2012 · Datos personales sensibles protegidos por la LFPDPPP</span>
+    <span><button type="button" class="lnk" id="ftAviso">Aviso de privacidad</button> · Versión ${APP_VERSION}${S.ses && S.ses.version ? ' · servidor ' + esc(S.ses.version) : ''}</span>`;
+  $('#ftAviso').onclick = verAviso;
+}
+function avisoHTML() {
+  const p = perfil(), s = sedes().filter(x => x.activa !== false)[0];
+  return `<div class="aviso"><h2>Aviso de privacidad simplificado</h2>
+    <p><b>${esc(p.nombre || 'El médico tratante')}</b>${s ? `, con domicilio en ${esc(s.direccion || s.nombre)}` : ''}, es responsable del tratamiento de sus datos personales, incluidos los <b>datos personales sensibles</b> relativos a su estado de salud, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p>
+    <p><b>Datos que se tratan:</b> identificación y contacto (nombre, fecha de nacimiento, sexo, domicilio, teléfono, correo, responsable o familiar) y datos sensibles de salud (antecedentes, padecimientos, diagnósticos, estudios, tratamientos, fotografías clínicas e imágenes de estudios).</p>
+    <p><b>Finalidades necesarias:</b> brindarle atención médica y quirúrgica; integrar, conservar y resguardar su expediente clínico conforme a la NOM-004-SSA3-2012 y la NOM-024-SSA3-2012; programar citas y cirugías; emitir recetas, solicitudes de estudios, notas y constancias; y cumplir obligaciones legales y sanitarias.</p>
+    <p><b>Transferencias:</b> sus datos solo se comparten con hospitales, laboratorios, gabinetes, aseguradoras o médicos interconsultantes cuando es necesario para su atención, o cuando lo exija una autoridad competente.</p>
+    <p><b>Resguardo:</b> el expediente se conserva de forma confidencial por al menos 5 años; el acceso electrónico está restringido a la cuenta del médico tratante y al personal que él autorice.</p>
+    <p><b>Derechos ARCO:</b> usted puede solicitar el acceso, rectificación, cancelación u oposición al tratamiento de sus datos, así como revocar su consentimiento, dirigiéndose al médico tratante${p.celular ? ' al teléfono ' + esc(p.celular) : ''}.</p>
+    <p class="muted">Este aviso puede actualizarse; la versión vigente estará disponible en el consultorio.</p>
+    <div class="aviso-f"><div><i></i>Nombre y firma del paciente o representante</div><div><i></i>Fecha</div></div></div>`;
+}
+function verAviso() {
+  ask({ title: 'Aviso de privacidad', html: avisoHTML() + '<p class="muted" style="font-size:12px;margin:10px 0 0">Imprímelo para que el paciente lo firme y anéxalo a su expediente (puedes subir la foto en Archivos).</p>', ok: 'Imprimir', cancel: 'Cerrar' })
+    .then(ok => { if (ok) imprimirHTML(`<div class="hdfix" style="position:static">${membrete('')}</div><div class="body" style="padding-top:.2in">${avisoHTML()}</div>`, { titulo: 'Aviso de privacidad' }); });
+}
+
 /* ---------- Arranque ---------- */
 paintLogos();
 if (tokGet() && apiUrl()) { $('#gate').hidden = false; gateMsg('Conectando…'); enter(); } else showGate();
 
 /* ---------- Instalación como aplicación (PWA) ---------- */
 if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => { }));
+let INST = null;
+const enApp = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); INST = e; $('#btnInst').hidden = false; });
+window.addEventListener('appinstalled', () => { INST = null; $('#btnInst').hidden = true; toast('Aplicación instalada', 'ok'); });
+if (!enApp()) $('#btnInst').hidden = false;
+$('#btnInst').onclick = async () => {
+  if (INST) { INST.prompt(); const r = await INST.userChoice; if (r.outcome === 'accepted') $('#btnInst').hidden = true; INST = null; return; }
+  const ua = navigator.userAgent, ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1), crios = /CriOS/.test(ua), android = /Android/.test(ua);
+  const pasos = ios ? (crios ? ['Toca el botón <b>Compartir</b> (cuadro con flecha) arriba a la derecha, junto a la barra de dirección.', 'Elige <b>Agregar a pantalla de inicio</b> (si no aparece, desliza la lista hacia abajo).', 'Toca <b>Agregar</b>. El ícono del expediente quedará en tu pantalla de inicio.']
+      : ['Toca el botón <b>Compartir</b> (cuadro con flecha) en la barra inferior de Safari.', 'Desliza y elige <b>Agregar a pantalla de inicio</b>.', 'Activa «Abrir como app web» si aparece y toca <b>Agregar</b>.'])
+    : android ? ['Abre el menú <b>⋮</b> de Chrome (arriba a la derecha).', 'Elige <b>Instalar aplicación</b> o <b>Agregar a pantalla principal</b>.', 'Confirma con <b>Instalar</b>.']
+    : ['En Chrome abre el menú <b>⋮</b> (arriba a la derecha).', 'Elige <b>Transmitir, guardar y compartir › Instalar página como aplicación</b> (o el ícono de instalar en la barra de dirección).', 'Confirma con <b>Instalar</b>. En Safari de Mac: menú Archivo › <b>Agregar al Dock</b>.'];
+  await ask({ title: 'Instalar como aplicación', html: `<ol class="inst">${pasos.map(p => `<li>${p}</li>`).join('')}</ol><p class="muted" style="font-size:12.5px;margin:8px 0 0">${ios ? 'En iPhone la instalación siempre se hace desde el botón Compartir; Apple no muestra un aviso automático.' : 'Si ya está instalada, ábrela desde tus aplicaciones.'}</p>`, ok: 'Entendido', cancel: '' });
+};
 
 </script>
 </body>
